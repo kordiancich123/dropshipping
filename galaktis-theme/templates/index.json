@@ -4,7 +4,8 @@
   "hero": {
    "type": "gx-hero",
    "settings": {
-    "image": "shopify://shop_images/GALAKTIS_HERO_01.png"
+    "image": "shopify://shop_images/GALAKTIS_HERO_01.png",
+    "video": "shopify://files/videos/GALAKTIS_VIDEO_HERO_01.mp4"
    }
   },
   "proof": {

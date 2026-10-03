@@ -5,7 +5,7 @@
     <div class="gx-hero__media">
       {% render 'gx-img', image: s.image, alt: s.image_alt, ph: 'GALAKTIS W CIEMNEJ SYPIALNI, PROJEKCJA NA ŚCIANIE, 4:5', sizes: '(min-width:1000px) 520px, 100vw', eager: true %}
       {%- if s.video != blank -%}
-        {%- assign mp4 = s.video.sources | where: 'format', 'mp4' | sort: 'height' | last -%}
+        {%- assign mp4 = s.video.sources | where: 'format', 'mp4' | sort: 'height' | first -%}
         {%- if mp4 -%}<video class="gx-hero__video" muted loop playsinline preload="none" aria-hidden="true" data-gx-lazy-video="{{ mp4.url }}"></video>{%- endif -%}
       {%- endif -%}
     </div>

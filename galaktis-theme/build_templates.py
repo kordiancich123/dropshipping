@@ -7,7 +7,7 @@ def blocks(kind, items):
     b = {f"{kind}{i+1}": {"type": kind, "settings": s} for i, s in enumerate(items)}
     return {"blocks": b, "block_order": list(b)}
 
-hero = {"type": "gx-hero", "settings": {"image": img("GALAKTIS_HERO_01.png")}}
+hero = {"type": "gx-hero", "settings": {"image": img("GALAKTIS_HERO_01.png"), "video": "shopify://files/videos/GALAKTIS_VIDEO_HERO_01.mp4"}}
 proof = {"type": "gx-proof", "settings": {}, **blocks("photo", [
     {"image": img("nn-opinia-es.jpg"), "alt": "Zdjęcie klienta: księżyc na suficie"},
     {"image": img("nn-opinia-sa.jpg"), "alt": "Zdjęcie klienta: projekcja księżyca"},
