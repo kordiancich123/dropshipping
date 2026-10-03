@@ -40,13 +40,41 @@
 
 Formaty (16:9, 1:1, 4:5, 9:16) to przycięcia mastera w `crops/`, nie nowe generacje.
 
-## 4. Uczciwość reklam (ważne przed publikacją)
+## 4. Wideo i gotowe reklamy
+
+| Plik | Co to jest | Gdzie użyty |
+|---|---|---|
+| video/GALAKTIS_VIDEO_HERO_01.mp4 | 5 s, sypialnia nocą, projekcja księżyca, kamera lekko płynie (Kling) | tło hero (Shopify: Pliki, wideo), reklamy |
+| video/GALAKTIS_VIDEO_HERO_01_web.mp4 | lekka wersja 200 KB | zapasowa do strony |
+| video/GALAKTIS_VIDEO_POV_01.mp4 | 5 s, POV z łóżka, projekcja na suficie (Kling) | reklamy „po 22:00” |
+| ads/GALAKTIS_AD_01_POV_9x16.mp4 | 10 s, hook „POV: odkrywasz, czego brakowało w Twoim pokoju” | TikTok, Reels, Meta 9:16 |
+| ads/GALAKTIS_AD_02_SUFIT_9x16.mp4 | 10 s, „Wsuwasz slajd. Gasisz światło.” → „Poczekaj, aż zobaczysz sufit” | TikTok, Reels, Meta 9:16 |
+| ads/GALAKTIS_AD_03_PO22_9x16.mp4 | 10 s, „Mój pokój po 22:00” | TikTok, Reels |
+| ads/GALAKTIS_AD_04_PREZENT_9x16.mp4 | 9,5 s, „Prezent dla kogoś, kto ma już wszystko” | Meta, sezon prezentowy |
+
+Reklamy składa skrypt `make_ads.sh` (ffmpeg, 0 kredytów): zmień tekst hooka i uruchom ponownie. Każda kończy się planszą: logo, „od 149 zł · dostawa 7 do 12 dni”, „Kup teraz”. Muzykę dodaj w aplikacji TikTok lub Meta (licencjonowana biblioteka platformy).
+
+**Odrzucone:** GALAKTIS_VIDEO_TRANSFORMATION_01 (MiniMax). Lampka zamieniała się w projektor, widoczne nierealne promienie, gwiazdy na całym suficie. Nie pokazuje prawdziwego działania produktu, więc nie trafiło do sklepu ani reklam.
+
+### Rozmieszczenie w sklepie
+
+* Hero: GALAKTIS_HERO_01 (zdjęcie, ładuje się od razu) + GALAKTIS_VIDEO_HERO_01 (włącza się po załadowaniu strony; nie przy oszczędzaniu danych i ograniczonym ruchu)
+* Galeria produktu: PRODUCT_CLOSEUP_01, HERO_01, UGC_01, GIFT_01, BEDROOM_01
+* Jak to działa, krok 2: UGC_01
+* Zastosowania: sypialnia BEDROOM_01, prezent GIFT_01, pokój dziecięcy, gaming, salon (wcześniejsze kadry)
+* Końcowe CTA: BEDROOM_01
+
+### Koszt kredytów Higgsfield
+
+Mastery i poprawki około 3,5; wideo Kling 2 × 7,5; MiniMax 10 (odrzucone). Razem około 28,5 kredytu. Upscale nie był potrzebny: mastery mają 2k, a sklep wyświetla maksymalnie 1500 px.
+
+## 5. Uczciwość reklam (ważne przed publikacją)
 
 * **Materiały są wygenerowane przez AI.** TikTok i Meta wymagają oznaczenia realistycznych treści AI (na TikToku przełącznik „AI-generated content”). Bez oznaczenia grozi usunięcie filmu albo blokada konta reklamowego.
 * **Hooków „To nie jest filtr” i „To wygląda jeszcze lepiej na żywo” używaj tylko z prawdziwym nagraniem** projektora. Z materiałem AI byłyby wprowadzaniem w błąd.
 * **Najlepszy materiał zrobisz sam za 0 zł:** zamów 1 projektor i nagraj telefonem schemat z punktu 1.3. Takie wideo wygrywa z każdym AI w kosztach i zaufaniu.
 
-## 5. Koncepty: 10 TikTok, 10 Reels, 10 Meta Ads
+## 6. Koncepty: 10 TikTok, 10 Reels, 10 Meta Ads
 
 Każdy koncept składa się z gotowych assetów: inny hook, napisy, crop, tempo i CTA. Bez nowych generacji.
 
@@ -54,7 +82,7 @@ Każdy koncept składa się z gotowych assetów: inny hook, napisy, crop, tempo 
 
 1. **„POV: odkrywasz, czego brakowało w Twoim pokoju”:** VIDEO_HERO_01, cięcie na sufit.
 2. **„Poczekaj, aż zobaczysz sufit”:** UGC_01 (wsuwanie slajdu), potem VIDEO_HERO_01.
-3. **„Każdy rodzic przedszkolaka potrzebuje tego wieczorem”:** VIDEO_TRANSFORMATION_01 (pokój dziecka).
+3. **„Każdy rodzic przedszkolaka potrzebuje tego wieczorem”:** BEFORE_01 → KIDS_01 (przejście zdjęć), potem VIDEO_HERO_01.
 4. **„Mój pokój po 22:00”:** VIDEO_POV_01, wolne tempo, muzyka lo-fi.
 5. **„Zgadnij, ile kosztuje ten klimat”:** HERO_01, odliczanie, „149 zł”.
 6. **„Prezent dla kogoś, kto ma już wszystko”:** GIFT_01, potem projekcje (galeria motywów).
@@ -72,7 +100,7 @@ Każdy koncept składa się z gotowych assetów: inny hook, napisy, crop, tempo 
 5. „Prezent, który zostaje na dłużej”: GIFT_01, ciepłe kolory.
 6. „Jeden projektor. Niezliczone klimaty.”: karuzela projekcji.
 7. „Przed / po”: BEFORE_01 i KIDS_01 jako przesuwany slider.
-8. „Pokój dziecka bez walki o zgaszenie światła”: VIDEO_TRANSFORMATION_01.
+8. „Pokój dziecka bez walki o zgaszenie światła”: BEFORE_01 → KIDS_01, wolne przenikanie.
 9. „Gaming setup, level: kosmos”: GAMING_01.
 10. „3 kroki do własnej galaktyki”: kroki ze strony jako Reel.
 
@@ -85,11 +113,11 @@ Każdy koncept składa się z gotowych assetów: inny hook, napisy, crop, tempo 
 5. **AD 05, reakcja na produkt:** VIDEO_POV_01, 9:16.
 6. **AD 06, reakcja na prezent:** GIFT_01 + „2 szt. za 259 zł, darmowa dostawa”.
 7. **AD 07, gaming setup:** GAMING_01, 4:5.
-8. **AD 08, transformacja sypialni:** VIDEO_TRANSFORMATION_01, 9:16.
+8. **AD 08, transformacja sypialni:** BEDROOM_01 + VIDEO_POV_01, 9:16 (docelowo prawdziwe nagranie „światło zgaszone, sufit”).
 9. **AD 09, close-up i projekcja:** CLOSEUP_01 + kafel projekcji, karuzela 1:1.
 10. **AD 10, styl rekomendacji UGC:** UGC_01 + napisy „kupiłam, polecam, bo…” (tylko z prawdziwą opinią klienta).
 
-## 6. Hooki (po polsku)
+## 7. Hooki (po polsku)
 
 * „Zobacz, co zrobiłam z pokojem w kilka sekund.”
 * „Poczekaj, aż zobaczysz sufit.”

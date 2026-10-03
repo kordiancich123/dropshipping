@@ -1,8 +1,8 @@
 # GALAKTIS: nowy sklep (motyw „GALAKTIS”)
 
-Motyw jest gotowy w Shopify jako **nieopublikowany motyw „GALAKTIS”**. Konektor nie może publikować motywów, więc publikujesz go sam: Sklep online, Motywy, GALAKTIS, Opublikuj.
+Najnowsza wersja to **nieopublikowany motyw „GALAKTIS v2”** (wideo w hero, nowe zdjęcia). Konektor nie może publikować motywów, więc publikujesz go sam: Sklep online, Motywy, GALAKTIS v2, Opublikuj.
 
-Podgląd przed publikacją: https://xpii1s-1p.myshopify.com/?preview_theme_id=201873293639
+Podgląd przed publikacją: https://xpii1s-1p.myshopify.com/?preview_theme_id=201876406599
 
 ## Struktura strony głównej
 
