@@ -26,3 +26,8 @@
 * FAQ przepisane na podstawie realnych opinii: wielkość i jasność obrazu, ostrość, przycisk dotykowy, nie zostawiać na całą noc.
 * Czasu dostawy do Polski nie udało się odczytać (strona AliExpress ładuje go skryptem). Zostaje 7 do 12 dni roboczych do potwierdzenia.
 * Szybkości strony nie zmierzyłem: sklep jest za hasłem.
+
+## Czcionki (3.10.2026)
+* Nagłówki, ceny, przyciski: Montserrat Bold. Tekst: Inter (400 i 600). Obie z CDN fontów Shopify, z polskimi znakami, `font-display: swap`.
+* Zmienione w ustawieniach sekcji (pola „Czcionka nagłówków” i „Czcionka tekstu”), więc można je podmienić w edytorze motywu bez kodu.
+* Horizon jest już opublikowany, więc konektor nie może go edytować. Zmiana jest w kopii „Galaktis (nowe czcionki)” do opublikowania.

@@ -7,9 +7,13 @@
   assign s = section.settings
 -%}
 <style>
-:root{--navy:#10163A;--navy2:#1B2350;--gold:#F4C95D;--ink:#1D2033;--muted:#5B6075;--bg:#F7F5EF;--card:#fff;--line:#E6E2D6;--ok:#2F7D4F}
+{{ s.font_heading | font_face: font_display: 'swap' }}
+{{ s.font_body | font_face: font_display: 'swap' }}
+{%- assign fb_bold = s.font_body | font_modify: 'weight', '600' -%}
+{{ fb_bold | font_face: font_display: 'swap' }}
+:root{--fh:{{ s.font_heading.family }},{{ s.font_heading.fallback_families }};--fb:{{ s.font_body.family }},{{ s.font_body.fallback_families }};--navy:#10163A;--navy2:#1B2350;--gold:#F4C95D;--ink:#1D2033;--muted:#5B6075;--bg:#F7F5EF;--card:#fff;--line:#E6E2D6;--ok:#2F7D4F}
 *{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 var(--fb)}
 img{max-width:100%;height:auto;display:block}a{color:inherit}
 .nn-w{max-width:1080px;margin:0 auto;padding:0 16px}
 .nn-head{background:var(--navy);color:#fff;height:48px;display:flex;align-items:center}
@@ -20,7 +24,7 @@ img{max-width:100%;height:auto;display:block}a{color:inherit}
 .nn-hero__grid{display:grid;gap:0}
 .nn-hero__img{position:relative;overflow:hidden;margin:0 -16px}
 .nn-hero__img img{width:100%;height:42vh;min-height:260px;max-height:460px;object-fit:cover}
-.nn-hero__img h1{position:absolute;left:0;right:0;bottom:0;margin:0;padding:48px 16px 12px;font:700 26px/1.15 Georgia,"Times New Roman",serif;background:linear-gradient(transparent,rgba(16,22,58,.92))}
+.nn-hero__img h1{position:absolute;left:0;right:0;bottom:0;margin:0;padding:48px 16px 12px;font:700 26px/1.15 var(--fh);background:linear-gradient(transparent,rgba(16,22,58,.92))}
 .nn-sub{margin:12px 0 10px;color:#D9DCEB;font-size:15px}
 .nn-opts{display:grid;gap:8px;margin:0 0 12px;border:0;padding:0}
 .nn-opt{display:flex;align-items:center;gap:10px;background:var(--navy2);border:2px solid #343D72;border-radius:12px;padding:10px 12px;cursor:pointer}
@@ -28,14 +32,14 @@ img{max-width:100%;height:auto;display:block}a{color:inherit}
 .nn-opt:has(input:checked){border-color:var(--gold)}
 .nn-opt__name{flex:1;font-weight:600}
 .nn-opt__note{display:block;font-weight:400;font-size:13px;color:#B9BEDA}
-.nn-opt__price{text-align:right;font-weight:700;font-size:18px}
+.nn-opt__price{text-align:right;font:700 18px/1.2 var(--fh)}
 .nn-opt__price s{display:block;font-weight:400;font-size:13px;color:#B9BEDA}
-.nn-btn{display:block;width:100%;border:0;border-radius:12px;background:var(--gold);color:var(--navy);font:700 18px/1 inherit;padding:17px;cursor:pointer;text-align:center;text-decoration:none}
+.nn-btn{display:block;width:100%;border:0;border-radius:12px;background:var(--gold);color:var(--navy);font:700 18px/1 var(--fh);letter-spacing:.2px;padding:17px;cursor:pointer;text-align:center;text-decoration:none}
 .nn-btn:active{transform:translateY(1px)}
 .nn-trust{display:flex;flex-wrap:wrap;gap:4px 14px;justify-content:center;margin:10px 0 0;padding:0;list-style:none;font-size:13px;color:#D9DCEB}
 .nn-trust li:before{content:"✓ ";color:var(--gold)}
 .nn-sec{padding:44px 0}.nn-sec--alt{background:#fff}
-.nn-sec h2{font:700 26px/1.2 Georgia,"Times New Roman",serif;margin:0 0 18px;text-align:center}
+.nn-sec h2{font:700 26px/1.2 var(--fh);margin:0 0 18px;text-align:center}
 .nn-lead{font-size:19px;text-align:center;max-width:620px;margin:0 auto 10px}
 .nn-muted{color:var(--muted);text-align:center;max-width:620px;margin:0 auto}
 .nn-steps{display:grid;gap:18px;counter-reset:s;margin:0;padding:0;list-style:none}
@@ -54,7 +58,7 @@ img{max-width:100%;height:auto;display:block}a{color:inherit}
 .nn-box{position:relative;border-radius:14px;overflow:hidden;background:#fff;border:1px solid var(--line)}
 .nn-box ul{list-style:none;margin:0;padding:14px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center}
 .nn-box li{background:var(--bg);border-radius:10px;padding:10px 4px;font-size:13px;color:var(--muted)}
-.nn-box li b{display:block;font:700 28px/1.1 Georgia,serif;color:var(--navy)}
+.nn-box li b{display:block;font:700 28px/1.1 var(--fh);color:var(--navy)}
 .nn-tbl{width:100%;border-collapse:collapse;background:#fff;border-radius:14px;overflow:hidden;font-size:14px}
 .nn-tbl th,.nn-tbl td{padding:11px 8px;border-bottom:1px solid var(--line);text-align:center}
 .nn-tbl th:first-child,.nn-tbl td:first-child{text-align:left}
@@ -80,10 +84,10 @@ img{max-width:100%;height:auto;display:block}a{color:inherit}
 .nn-foot a{color:#fff}
 .nn-sticky{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--line);padding:10px 16px calc(10px + env(safe-area-inset-bottom));display:flex;gap:12px;align-items:center;transform:translateY(110%);transition:transform .2s;z-index:10;box-shadow:0 -4px 16px rgba(0,0,0,.08)}
 .nn-sticky.is-on{transform:none}
-.nn-sticky__p{font-weight:700;font-size:18px;white-space:nowrap}
+.nn-sticky__p{font:700 18px/1 var(--fh);white-space:nowrap}
 .nn-sticky .nn-btn{padding:14px;font-size:16px}
 .nn-ann{background:var(--gold);color:var(--navy);text-align:center;font-size:13px;font-weight:700;padding:7px 12px}
-.nn-title{font:700 20px/1.25 Georgia,"Times New Roman",serif;margin:14px 0 6px}
+.nn-title{font:700 20px/1.25 var(--fh);margin:14px 0 6px}
 .nn-bul{list-style:none;margin:0 0 12px;padding:0;display:grid;gap:4px;font-size:15px;color:#E6E8F3}
 .nn-bul li:before{content:"★ ";color:var(--gold)}
 .nn-pay{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:12px 0 0;padding:0;list-style:none}
@@ -303,6 +307,8 @@ if(b&&'IntersectionObserver'in window){new IntersectionObserver(function(en){var
  "settings": [
   {"type":"product","id":"product","label":"Produkt"},
   {"type":"text","id":"delivery_days","label":"Czas dostawy (dni robocze)","default":"7 do 12"},
+  {"type":"font_picker","id":"font_heading","label":"Czcionka nagłówków","default":"montserrat_n7"},
+  {"type":"font_picker","id":"font_body","label":"Czcionka tekstu","default":"inter_n4"},
   {"type":"text","id":"announcement","label":"Pasek na górze","default":"Darmowa dostawa od 200 zł · 30 dni na zwrot"},
   {"type":"header","content":"Hero"},
   {"type":"text","id":"bullet1","label":"Punkt 1"},
