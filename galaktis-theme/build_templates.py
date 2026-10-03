@@ -84,10 +84,10 @@ def template(order):
     return {"layout": "galaktis", "sections": secs, "order": [k for k, _ in order]}
 
 index = template([("hero", hero), ("proof", proof), ("ba", ba), ("why", why), ("product", prod_home),
-                  ("bundles", bundles_home), ("steps", steps), ("proj", proj), ("uses", uses), ("emo", emo),
+                  ("bundles", bundles_home), ("proj", proj), ("uses", uses), ("emo", emo),
                   ("reviews", reviews), ("faq", faq), ("guar", guar), ("final", final)])
 product = template([("product", prod_page), ("proof", proof), ("why", why), ("bundles", bundles_page),
-                    ("steps", steps), ("proj", proj), ("uses", uses), ("reviews", reviews), ("faq", faq),
+                    ("proj", proj), ("uses", uses), ("reviews", reviews), ("faq", faq),
                     ("guar", guar), ("final", final)])
 page = template([("main", {"type": "gx-page", "settings": {}})])
 

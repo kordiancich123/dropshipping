@@ -103,44 +103,6 @@
    "type": "gx-bundles",
    "settings": {}
   },
-  "steps": {
-   "type": "gx-steps",
-   "settings": {},
-   "blocks": {
-    "step1": {
-     "type": "step",
-     "settings": {
-      "image": "shopify://shop_images/GALAKTIS_STEP_01_CONNECT.jpg",
-      "ph": "WTYK USB WKŁADANY DO ŁADOWARKI, 1:1",
-      "title": "Podłącz GALAKTIS",
-      "text": "Wtyk USB do ładowarki, powerbanku albo laptopa."
-     }
-    },
-    "step2": {
-     "type": "step",
-     "settings": {
-      "image": "shopify://shop_images/GALAKTIS_STEP_02_CHOOSE.jpg",
-      "ph": "SLAJD WSUWANY DO PROJEKTORA, 1:1",
-      "title": "Wybierz projekcję",
-      "text": "Wsuń jeden z 12 slajdów i włącz tryb gwiazd albo lampki."
-     }
-    },
-    "step3": {
-     "type": "step",
-     "settings": {
-      "image": "shopify://shop_images/GALAKTIS_STEP_03_ENJOY.jpg",
-      "ph": "PROJEKCJA NA SUFICIE W CIEMNYM POKOJU, 1:1",
-      "title": "Ciesz się galaktyką",
-      "text": "Zgaś światło, wygnij szyjkę w stronę sufitu i ustaw ostrość."
-     }
-    }
-   },
-   "block_order": [
-    "step1",
-    "step2",
-    "step3"
-   ]
-  },
   "proj": {
    "type": "gx-tiles",
    "settings": {
@@ -461,7 +423,6 @@
   "proof",
   "why",
   "bundles",
-  "steps",
   "proj",
   "uses",
   "reviews",
