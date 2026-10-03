@@ -18,4 +18,11 @@
 3. Wklej treści z folderu `polityki/` w Ustawienia, Polityki (konektor nie ma uprawnienia write_legal_policies).
 4. Sprawdź czas dostawy na ofercie AliExpress. Jeśli inny niż 7 do 12 dni, zmień go w: ustawieniach sekcji (pole „Czas dostawy”), nazwach stawek wysyłki, stronie Wysyłka, regulaminie §6, FAQ.
 5. Podłącz nowy produkt w aplikacji do realizacji zamówień (DSers lub inna) do wariantu „12 star slices”.
-6. Obejrzyj grafiki: nie mogłem ich zobaczyć (sieć środowiska blokuje CDN), więc zgodności kształtu produktu nie zweryfikowałem.
+6. Wyłącz hasło sklepu (Sklep online, Preferencje, Ochrona hasłem), inaczej ruch z TikToka trafi na stronę z hasłem.
+
+## Aktualizacja po odblokowaniu sieci
+* Grafiki obejrzane. Poprawione: krok 1 (wtyk USB do ładowarki) i krok 3 (jeden okrągły obraz na suficie, projektor podłączony). Pozostałe zgodne z produktem.
+* Dodane 3 opinie dostawcy ze zdjęciami, z nagłówkiem, że to kupujący ten model u dostawcy.
+* FAQ przepisane na podstawie realnych opinii: wielkość i jasność obrazu, ostrość, przycisk dotykowy, nie zostawiać na całą noc.
+* Czasu dostawy do Polski nie udało się odczytać (strona AliExpress ładuje go skryptem). Zostaje 7 do 12 dni roboczych do potwierdzenia.
+* Szybkości strony nie zmierzyłem: sklep jest za hasłem.

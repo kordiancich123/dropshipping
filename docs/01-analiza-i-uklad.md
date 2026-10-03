@@ -4,36 +4,48 @@ Sklep: xpii1s-1p.myshopify.com (PLN, Polska, plan Basic)
 
 ## 1. Konkurencja: thegalix.com/products/galix
 
-Uwaga o źródle: strona thegalix.com jest zablokowana przez politykę sieci tego środowiska, więc nie odczytałem jej bezpośrednio. Poniższa analiza pochodzi z wyszukiwarki (fragmenty strony, FAQ, Amazon, opinie). Kolejność sekcji jest odtworzona z tych fragmentów i typowego szablonu, którego używają. Jeśli dodasz domenę do dozwolonych, przejdę stronę sekcja po sekcji jeszcze raz i uzupełnię.
+Strona przejrzana sekcja po sekcji 3.10.2026 (widok telefonu).
 
 | # | Sekcja | Argument, który niesie |
 |---|---|---|
-| 1 | Hero: „Galix™ Dream Projector”, ocena 4,8/5 z 12 311 opinii, cena z przekreśleniem, warianty pakietów | Wszyscy to kupują, teraz taniej |
-| 2 | Lista korzyści pod ceną: 8 projekcji, regulacja ostrości, dwa tryby, lekki, miękkie światło | Dużo funkcji za małe pieniądze |
-| 3 | Gwarancja 90 dni, ubezpieczona wysyłka ze śledzeniem | Nie ryzykujesz |
-| 4 | Jak to działa w 3 krokach: podłącz do USB, wybierz efekt, przekręć górę żeby wyostrzyć | To proste |
-| 5 | Galeria 8 projekcji: Droga Mleczna, księżyc, mgławice | Różnorodność |
-| 6 | Blok „dla dziecka”: pokój zamienia się w niebo, które uspokaja i szykuje do snu | Wieczór z dzieckiem bez walki |
-| 7 | Opinie (głównie własny widżet sklepu) | Dowód społeczny |
-| 8 | FAQ: „Czy będzie wyglądać jak na filmach?”, „Czy mogę zostawić na długo?”, „Czy pomaga zasnąć?” | Zbija trzy główne obawy |
+| 1 | Pasek: „37% OFF FALL SALE” | Pośpiech, promocja |
+| 2 | Hero: „Excellent 4.8, +12,273 parents”, nazwa, 3 punkty z emoji (pokój w sekundy, wiele efektów, relaks), „Low Stock, selling fast”, przycisk | Wszyscy rodzice to mają, kończy się |
+| 3 | Pakiety slajdów: 3 slajdy 29,95 $ (39,95), 12 slajdów + poradnik 44,95 $ (69,95), 20+4 slajdy + poradnik 59,95 $ (99,95) | Większy pakiet to „darmowe” dodatki |
+| 4 | Gwarancja 90 dni i ikony płatności (Klarna, Apple Pay) | Bez ryzyka, wygodna płatność |
+| 5 | 3 krótkie opinie pod przyciskiem: dziecko bało się ciemności, pokój bardziej relaksujący, prezent | Dowód od razu przy decyzji |
+| 6 | Rozwijane: wysyłka ubezpieczona i śledzona, 1 do 3 dni realizacji plus 5 do 10 dni roboczych | Paczka dotrze |
+| 7 | Rozwijane: gwarancja 90 dni, ale zwrot bez wady na koszt klienta | Ryzyko po stronie klienta, schowane |
+| 8 | Jak to działa: USB, wybór efektu, przekręć górę, żeby wyostrzyć | Proste; obietnica „bez ekranów, bez hałasu, bez kłótni” |
+| 9 | „+12,200 People have it at home” | Dowód społeczny jeszcze raz |
+| 10 | FAQ: czy będzie jak na filmach (tak), czy można zostawić na długo (tak), czy pomaga zasnąć, czy nie za jasny | Zbija obawy |
+| 11 | „Bedtime shouldn't be a battle” | Ból rodzica (ten sam, który wybraliśmy) |
+| 12 | Baner gwarancji 90 dni | Bez ryzyka |
+| 13 | „Upgrade your sleep tonight: fall asleep in minutes” | Obietnica zdrowotna |
+| 14 | Ticker: wysyłka, bezpieczna płatność, oferta ograniczona | Pośpiech |
+| 15 | Opinie: 4,8 z 12 310, własny widżet, teksty po angielsku, długie i entuzjastyczne | Dowód społeczny |
 
-**Na jakie obiekcje odpowiadają:** czy to trudne w obsłudze, czy jest bezpieczne na długie włączenie, czy kupuję bez ryzyka (90 dni).
+**Na jakie obiekcje odpowiadają:** trudność obsługi, ryzyko zakupu, „czy to dla dziecka”, płatność.
 
-**Których unikają (tu jest nasza przewaga):**
+**Których unikają albo odpowiadają nieprawdziwie (nasza przewaga):**
 
-1. **Czas dostawy.** Podają 1 do 3 dni realizacji plus 5 do 10 dni roboczych, czyli realnie do dwóch tygodni, ale schowane w polityce. My podajemy realną liczbę dni w hero i w sekcji dostawy.
-2. **Zwroty.** Zwrot bez wady jest na koszt klienta i do Chin; tego nie piszą na stronie produktu. My piszemy wprost: 30 dni, polski adres zwrotu, prosty formularz.
-3. **„Czy będzie jak na filmie?”** Odpowiadają wymijająco („w ciemnym pokoju”). My pokazujemy kadry z telefonu w prawdziwym pokoju, bez podkręcania.
-4. **Wielkość obrazu i odległość.** Nie podają, jak duża jest projekcja z danej odległości. My podajemy w liczbach.
-5. **Zasilanie.** Tylko USB, nie mówią, czy jest zasilacz i jak długi jest kabel. My piszemy wprost, co jest w pudełku.
-6. **Wiarygodność opinii.** 12 311 opinii we własnym widżecie, w sieci skargi na uszkodzenia, brakujące slajdy i kontakt z obsługą. My: tylko prawdziwe opinie ze zdjęciami i polski kontakt.
-7. **Obietnice zdrowotne.** „Pomaga zasnąć” sugeruje efekt, którego nie da się obiecać. My mówimy o rytuale i atmosferze, nie o leczeniu snu.
-
-Źródła: [thegalix.com](https://www.thegalix.com/products/galix), [Amazon](https://www.amazon.com/Projector-Powered-Ceiling-Adjustable-Projection/dp/B0H83328GK), [YouTube review](https://www.youtube.com/watch?v=whtKS3vKHXY), [Trendvyo, kopia tej samej strony](https://trendvyo.com/en/products/galix).
+1. **„Czy będzie jak na filmach? Tak.”** Kupujący ten sam typ projektora na AliExpress (73 opinie, średnio 4,1, 14% jedynek) najczęściej piszą: za ciemno, małe obrazy, nie jak w reklamie. My mówimy wprost: jeden okrągły obraz naraz, wyraźny tylko w ciemnym pokoju, i pokazujemy zdjęcia kupujących.
+2. **„Czy można zostawić na długo? Tak.”** Jeden z kupujących pisze, że slajd zniszczył się po wielu godzinach. My radzimy wyłączyć, gdy dziecko zaśnie.
+3. **Ostrość.** Część kupujących nie może wyostrzyć niektórych slajdów. My to mówimy i dajemy wymianę, jeśli żaden slajd nie jest ostry.
+4. **Zwrot na koszt klienta** schowany w rozwijanej sekcji. My piszemy o koszcie odesłania otwarcie, a przy wadzie płacimy my.
+5. **Czas dostawy** schowany w rozwijanej sekcji. My podajemy dni pod przyciskiem.
+6. **„Fall asleep in minutes”, „+12 273 parents”, „Low stock”.** Obietnica zdrowotna i liczby, których nie da się sprawdzić. My tego nie używamy.
 
 ## 2. Zdjęcia i opinie dostawcy
 
-**Wstrzymane:** w briefie zamiast linku do oferty jest placeholder. Potrzebuję linku (AliExpress, CJ lub inny), ceny zakupu i czasu dostawy do Polski. Wtedy pobiorę zdjęcia i opinie ze zdjęciami, przetłumaczę te o efekcie i odrzucę te o kurierze. Niczego nie wymyślam do tego czasu.
+Oferta: AliExpress 1005013012061168, ten sam projektor co zaimportowany (biała kapsuła na giętkiej szyjce z USB, slajdy w wkładkach, przycisk dotykowy: lampka nocna, gwiazdy, wyłącz, przytrzymanie zmienia jasność). 73 opinie, średnio 4,1.
+
+Opinie ze zdjęciami o efekcie (przetłumaczone, bez wątków o kurierze), wstawione na stronę:
+
+* Arabia Saudyjska, 4 gwiazdki: „Za tę cenę dobry produkt. Kilka slajdów jest mniej wyraźnych, ale da się z tym żyć. Córka jest zadowolona.”
+* Hiszpania, 5 gwiazdek: „Świetny i piękny, najbardziej podobają mi się czarno-białe obrazy. Ostrość da się regulować, a projektor działa też jako lampka nocna z przyciskiem dotykowym. Minus: każdy slajd trzeba zmieniać ręcznie. Daję 9 na 10.”
+* Holandia, 5 gwiazdek: „Bardzo ładny efekt.”
+
+Pominięte: opinia z Włoch ze zdjęciami, ale bez tekstu; opinie bez zdjęć. Negatywne opinie posłużyły do uczciwego FAQ.
 
 ## 3. Persony
 
