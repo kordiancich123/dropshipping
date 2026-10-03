@@ -363,3 +363,10 @@ button{font:inherit;color:inherit}
   .gx-ctas .gx-btn{min-height:54px}
   .gx-trust{margin-top:12px;justify-content:center}
 }
+
+/* produkt na telefonie: mniej przewijania do przycisku */
+@media (max-width:999px){
+  .gx-sec--prod{padding-top:16px}
+  .gx-gal__main{aspect-ratio:4/3}
+  .gx-gal__thumbs button{flex-basis:56px;height:56px}
+}

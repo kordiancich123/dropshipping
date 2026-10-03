@@ -137,7 +137,7 @@
     var io = new IntersectionObserver(function (es) {
       es.forEach(function (en) { vis.set(en.target, en.isIntersecting); });
       var any = false; vis.forEach(function (v) { if (v) any = true; });
-      var on = !any && window.scrollY > 300;
+      var on = !any;
       sticky.classList.toggle('is-on', on);
       sticky.setAttribute('aria-hidden', !on);
     });
