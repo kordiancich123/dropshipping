@@ -55,6 +55,22 @@ Formaty 16:9, 4:5 i 1:1 w `crops/`; 4:5 i 1:1 przycięte z przesunięciem na pro
 Uwaga produktowa: GALAKTIS nie ma gniazda kabla. Szyjka kończy się własnym wtykiem USB, dlatego krok 1 pokazuje wkładanie wtyku do ładowarki, a krok 2 wsuwanie slajdu (jedyny realny „wybór projekcji”).
 Odrzucone w kontroli jakości: pierwsza wersja ENJOY (wymyślona podstawka i dodatkowy kabel) i pierwsza wersja CONNECT (wtyk w dłoni niepołączony z szyjką). Obie poprawione edycją, bez nowych generacji od zera. Koszt: 5 generacji gpt_image_2_5 high 2k.
 
+### Social proof (sekcja „Opinie”)
+
+Research Galix: widżet Loox, siatka kart ze zdjęciem, imieniem, 5/5, „Verified” i datą; nagłówek „4,8 / 5 z 12 310 opinii”. Sygnał ostrzegawczy: dziesiątki opinii z tą samą datą i same piątki, co wygląda na import hurtowy. Przejmujemy układ kart, nie liczby.
+
+| Koncept | Asset | Źródło |
+|---|---|---|
+| 1. Prawdziwa sypialnia | GALAKTIS_AFTER_02 → sp/GALAKTIS_SP_BEDROOM.jpg | reuse (0 kredytów) |
+| 2. Produkt w dłoni | masters/GALAKTIS_PRODUCT_IN_HAND_01.png (2k, 4:5) | nowa generacja |
+| 3. Prawdziwe doświadczenie | STEP_03_ENJOY → sp/GALAKTIS_SP_FEATURED_EXPERIENCE.jpg | reuse |
+| 4. Pokój do grania | masters/GALAKTIS_GAMING_02.png (2k, 4:5) | nowa generacja |
+| 5. Prezent | GALAKTIS_GIFT_01 → sp/GALAKTIS_SP_GIFT.jpg | reuse |
+| 6. Close-up | PRODUCT_CLOSEUP_01 → sp/GALAKTIS_SP_CLOSEUP.jpg, crops/…_1x1.jpg | reuse |
+| Master video | video/GALAKTIS_VIDEO_REAL_EXPERIENCE_01.mp4 (4:5) i …_16x9.mp4 | 1 generacja Kling, start z ENJOY |
+
+Zasady w sekcji: ocena i liczba opinii ukryte do czasu wpisania prawdziwych; zdjęcia podpisane „wizualizacja”, chyba że zaznaczysz „prawdziwe zdjęcie klienta (mam zgodę)”; puste opinie (sypialnia, prezent, łatwość użycia, gaming) widać tylko w edytorze jako [REAL REVIEW REQUIRED]. Zdjęcia kupujących z platformy producenta (nn-opinia-*) nie są już wyświetlane, bo nie mamy potwierdzonych praw do publikacji.
+
 ## 4. Wideo i gotowe reklamy
 
 | Plik | Co to jest | Gdzie użyty |
