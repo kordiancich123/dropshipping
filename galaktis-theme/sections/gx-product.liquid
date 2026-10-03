@@ -1,0 +1,127 @@
+{%- comment -%}
+  Główna sekcja produktu: galeria z powiększeniem, cena, pakiety jako warianty, dodanie do koszyka (AJAX),
+  akordeony, sticky pasek na telefonie, dane strukturalne Product.
+{%- endcomment -%}
+{%- liquid
+  assign s = section.settings
+  assign p = s.product
+  if p == blank
+    assign p = product
+  endif
+  assign cur = p.selected_or_first_available_variant
+  assign max_save = 0
+  for v in p.variants
+    if v.compare_at_price > v.price
+      assign sv = v.compare_at_price | minus: v.price
+      if sv > max_save
+        assign max_save = sv
+      endif
+    endif
+  endfor
+-%}
+{%- if p -%}
+<section class="gx-sec" id="produkt" aria-labelledby="gx-prod-h">
+  <div class="gx-w gx-prod" data-gx-product>
+    <div class="gx-gal" data-gx-gallery>
+      {%- assign first = p.featured_media -%}
+      <div class="gx-gal__main" data-gx-main>
+        {%- if first -%}
+          {{ first.preview_image | image_url: width: 1200 | image_tag: widths: '400,600,800,1000,1200', sizes: '(min-width:1000px) 600px, 100vw', alt: first.alt | default: p.title, loading: 'lazy' }}
+        {%- else -%}{% render 'gx-img', ph: 'PRODUKT NA CIEMNYM TLE, 1:1' %}{%- endif -%}
+        <span class="gx-gal__zoom" aria-hidden="true">{% render 'gx-icon', name: 'zoom' %}</span>
+      </div>
+      {%- if p.media.size > 1 -%}
+      <div class="gx-gal__thumbs" role="list" aria-label="Zdjęcia produktu">
+        {%- for m in p.media -%}{%- if m.media_type == 'image' -%}
+        <button type="button" role="listitem" data-gx-thumb aria-current="{% if forloop.first %}true{% else %}false{% endif %}" aria-label="Pokaż zdjęcie {{ forloop.index }}"
+          data-src="{{ m.preview_image | image_url: width: 1000 }}"
+          data-srcset="{{ m.preview_image | image_url: width: 600 }} 600w, {{ m.preview_image | image_url: width: 1000 }} 1000w, {{ m.preview_image | image_url: width: 1200 }} 1200w"
+          data-full="{{ m.preview_image | image_url: width: 1800 }}" data-alt="{{ m.alt | default: p.title | escape }}">
+          {{ m.preview_image | image_url: width: 160 | image_tag: width: 68, height: 68, loading: 'lazy', alt: '' }}
+        </button>
+        {%- endif -%}{%- endfor -%}
+      </div>
+      {%- endif -%}
+      <dialog class="gx-zoom" aria-label="Powiększone zdjęcie">
+        <form method="dialog"><button class="gx-icon-btn" aria-label="Zamknij">{% render 'gx-icon', name: 'close' %}</button></form>
+        {%- if first -%}<img src="{{ first.preview_image | image_url: width: 1800 }}" alt="" loading="lazy">{%- endif -%}
+      </dialog>
+    </div>
+
+    <div class="gx-pinfo">
+      <span class="gx-eyebrow">{{ s.eyebrow }}</span>
+      {%- if request.page_type == 'product' -%}<h1 id="gx-prod-h">{{ p.title }}</h1>{%- else -%}<h2 class="gx-ptitle" id="gx-prod-h">{{ p.title }}</h2>{%- endif -%}
+      {%- if s.rating != blank -%}<div class="gx-rating">{% render 'gx-stars' %} <span>{{ s.rating }}/5{% if s.rating_count != blank %} · {{ s.rating_count }} opinii{% endif %}</span></div>{%- endif -%}
+      <p class="gx-pdesc">{{ s.short }}</p>
+
+      <div class="gx-price">
+        <span class="gx-price__now" data-gx-price>{{ cur.price | money }}</span>
+        <s class="gx-price__was" data-gx-was{% unless cur.compare_at_price > cur.price %} hidden{% endunless %}>{% if cur.compare_at_price > cur.price %}{{ cur.compare_at_price | money }}{% endif %}</s>
+      </div>
+      {%- if max_save > 0 -%}<span class="gx-save">{{ s.save_prefix }} {{ max_save | money }}</span>{%- endif -%}
+
+      <form action="{{ routes.cart_add_url }}" method="post" data-gx-add>
+        <fieldset class="gx-opts">
+          <legend>Wybierz zestaw</legend>
+          {%- for v in p.variants -%}
+            {%- liquid
+              assign was = ''
+              assign save = ''
+              if v.compare_at_price > v.price
+                assign was = v.compare_at_price | money
+                assign save = v.compare_at_price | minus: v.price | money | prepend: 'Oszczędzasz '
+              endif
+              assign unit = v.price | divided_by: forloop.index | money
+            -%}
+            <label class="gx-opt">
+              <input type="radio" name="id" value="{{ v.id }}"{% if v.id == cur.id %} checked{% endif %}{% unless v.available %} disabled{% endunless %}
+                data-price="{{ v.price | money }}" data-was="{{ was }}" data-save="{{ save }}">
+              <span class="gx-opt__dot" aria-hidden="true"></span>
+              <span class="gx-opt__txt"><b>{{ v.title }}</b><small>{% if forloop.index > 1 %}{{ unit }} za sztukę{% else %}12 wymiennych slajdów{% endif %}</small></span>
+              <span class="gx-opt__pr">{% if was != '' %}<s>{{ was }}</s>{% endif %}{{ v.price | money }}</span>
+              {%- if forloop.index == 2 -%}<span class="gx-opt__tag">Najpopularniejszy</span>{%- elsif forloop.index == 3 -%}<span class="gx-opt__tag">Najlepsza wartość</span>{%- endif -%}
+            </label>
+          {%- endfor -%}
+        </fieldset>
+        <button type="submit" class="gx-btn gx-btn--primary gx-btn--block" data-gx-watch>Dodaj do koszyka</button>
+      </form>
+
+      <ul class="gx-ptrust">
+        <li>{% render 'gx-icon', name: 'lock' %}Bezpieczna płatność</li>
+        <li>{% render 'gx-icon', name: 'truck' %}Śledzona wysyłka</li>
+        <li>{% render 'gx-icon', name: 'return' %}30 dni na zwrot</li>
+      </ul>
+
+      <div class="gx-acc">
+        {%- if p.description != blank -%}<details><summary>Opis</summary><div class="gx-acc__b gx-rte">{{ p.description }}</div></details>{%- endif -%}
+        {%- if s.box != blank -%}<details><summary>Co jest w zestawie</summary><div class="gx-acc__b">{{ s.box }}</div></details>{%- endif -%}
+        {%- if s.shipping != blank -%}<details><summary>Dostawa</summary><div class="gx-acc__b">{{ s.shipping }}</div></details>{%- endif -%}
+        {%- if s.returns != blank -%}<details><summary>Zwroty i gwarancja</summary><div class="gx-acc__b">{{ s.returns }}</div></details>{%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="gx-sticky" id="gx-sticky" aria-hidden="true">
+  <div class="gx-sticky__info"><b>{{ p.title }}</b><span data-gx-sticky-price>{{ cur.price | money }}</span></div>
+  <button type="button" class="gx-btn gx-btn--primary" data-gx-sticky-add>Do koszyka</button>
+</div>
+{% render 'gx-schema-product', p: p, rating: s.rating_schema, rating_count: s.rating_count %}
+{%- endif -%}
+{% schema %}
+{
+  "name": "Produkt",
+  "settings": [
+    {"type":"product","id":"product","label":"Produkt (na stronie głównej)"},
+    {"type":"text","id":"eyebrow","label":"Nadtytuł","default":"Projektor gwiazd"},
+    {"type":"text","id":"rating","label":"Ocena do wyświetlenia (np. 4,9). Puste = ukryte","info":"Tylko prawdziwa ocena z Twojego sklepu."},
+    {"type":"text","id":"rating_count","label":"Liczba opinii. Puste = ukryte"},
+    {"type":"text","id":"rating_schema","label":"Ocena dla Google (format 4.9). Puste = brak","info":"Wymaga prawdziwych opinii widocznych na stronie."},
+    {"type":"textarea","id":"short","label":"Krótki opis","default":"Mały projektor na giętkiej szyjce z USB. Wsuwasz slajd, gasisz światło i nad Tobą pojawia się księżyc, planeta albo galaktyka. Dotykowy przycisk włącza tryb gwiazd albo delikatną lampkę nocną."},
+    {"type":"text","id":"save_prefix","label":"Tekst przy oszczędności","default":"W pakiecie oszczędzasz do"},
+    {"type":"richtext","id":"box","label":"Co jest w zestawie","default":"<p>Projektor GALAKTIS na giętkiej szyjce z wtykiem USB i 12 wymiennych slajdów z motywami kosmicznymi. Zasilanie z dowolnego portu USB: ładowarka do telefonu, powerbank albo laptop.</p>"},
+    {"type":"richtext","id":"shipping","label":"Dostawa","default":"<p>7 do 12 dni roboczych, z numerem śledzenia. 14,99 zł, od 200 zł za darmo. Cło i podatki wliczone w cenę.</p>"},
+    {"type":"richtext","id":"returns","label":"Zwroty","default":"<p>30 dni na zwrot bez podawania przyczyny. Uszkodzony albo niedziałający? Wymiana albo zwrot pieniędzy, odesłanie na nasz koszt. <a href=\"/pages/zwroty\">Szczegóły</a></p>"}
+  ]
+}
+{% endschema %}

@@ -1,0 +1,41 @@
+{%- comment -%} Kafle ze zdjęciami: projekcje albo zastosowania. Na telefonie przewijane w bok. {%- endcomment -%}
+{%- assign s = section.settings -%}
+<section class="gx-sec{% if s.alt %} gx-sec--alt{% endif %}"{% if s.anchor != blank %} id="{{ s.anchor }}"{% endif %} aria-labelledby="gx-t-{{ section.id }}">
+  <div class="gx-w">
+    <div class="gx-head gx-reveal">
+      <span class="gx-eyebrow">{{ s.eyebrow }}</span>
+      <h2 class="gx-h2" id="gx-t-{{ section.id }}">{{ s.heading | newline_to_br }}</h2>
+      {%- if s.lead != blank -%}<p class="gx-lead">{{ s.lead }}</p>{%- endif -%}
+    </div>
+    <div class="gx-rail" style="--cols:{{ section.blocks.size | at_most: 5 }}">
+      {%- for b in section.blocks -%}
+      <figure class="gx-tile{% if s.square %} gx-tile--sq{% endif %}" {{ b.shopify_attributes }}>
+        {% render 'gx-img', image: b.settings.image, alt: b.settings.alt, ph: b.settings.ph, sizes: '(min-width:1000px) 240px, 76vw' %}
+        <figcaption><b>{{ b.settings.title }}</b>{% if b.settings.text != blank %}<span>{{ b.settings.text }}</span>{% endif %}</figcaption>
+      </figure>
+      {%- endfor -%}
+    </div>
+    {%- if s.note != blank -%}<p class="gx-note">{{ s.note }}</p>{%- endif -%}
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Kafle ze zdjęciami",
+  "settings": [
+    {"type":"text","id":"anchor","label":"Kotwica (id)"},
+    {"type":"checkbox","id":"alt","label":"Jaśniejsze tło","default":false},
+    {"type":"checkbox","id":"square","label":"Kwadratowe kafle","default":false},
+    {"type":"text","id":"eyebrow","label":"Nadtytuł"},
+    {"type":"textarea","id":"heading","label":"Nagłówek"},
+    {"type":"text","id":"lead","label":"Opis"},
+    {"type":"text","id":"note","label":"Notka pod kaflami"}
+  ],
+  "blocks": [{"type":"tile","name":"Kafel","settings":[
+    {"type":"image_picker","id":"image","label":"Zdjęcie"},
+    {"type":"text","id":"ph","label":"Opis wymaganego zdjęcia","default":"ZDJĘCIE, 4:5"},
+    {"type":"text","id":"alt","label":"Alt"},
+    {"type":"text","id":"title","label":"Tytuł"},
+    {"type":"text","id":"text","label":"Tekst"}
+  ]}]
+}
+{% endschema %}

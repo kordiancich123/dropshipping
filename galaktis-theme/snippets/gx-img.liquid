@@ -1,0 +1,18 @@
+{%- comment -%}
+  Obraz albo placeholder. Parametry: image, alt, ph (opis wymaganego zdjęcia), widths, sizes, eager
+  Placeholder z opisem widać tylko w edytorze motywu; dla klientów jest neutralne tło.
+{%- endcomment -%}
+{%- if image != blank -%}
+  {%- liquid
+    assign w = widths | default: '360,540,720,900,1200'
+    assign load = 'lazy'
+    assign prio = 'auto'
+    if eager
+      assign load = 'eager'
+      assign prio = 'high'
+    endif
+  -%}
+  {{ image | image_url: width: 1400 | image_tag: widths: w, sizes: sizes, loading: load, fetchpriority: prio, alt: alt }}
+{%- else -%}
+  <div class="gx-ph" role="img" aria-label="{{ alt | escape }}">{% if request.design_mode %}[IMAGE: {{ ph }}]{% endif %}</div>
+{%- endif -%}

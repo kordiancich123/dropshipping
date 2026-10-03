@@ -1,0 +1,32 @@
+{%- assign s = section.settings -%}
+<section class="gx-sec gx-sec--alt" aria-labelledby="gx-why-h">
+  <div class="gx-w">
+    <div class="gx-head gx-reveal">
+      <span class="gx-eyebrow">{{ s.eyebrow }}</span>
+      <h2 class="gx-h2" id="gx-why-h">{{ s.heading }}</h2>
+    </div>
+    <div class="gx-cards">
+      {%- for b in section.blocks -%}
+      <div class="gx-card gx-reveal" {{ b.shopify_attributes }}>
+        <span class="gx-card__ic">{% render 'gx-icon', name: b.settings.icon %}</span>
+        <h3>{{ b.settings.title }}</h3>
+        <p>{{ b.settings.text }}</p>
+      </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Dlaczego GALAKTIS",
+  "settings": [
+    {"type":"text","id":"eyebrow","label":"Nadtytuł","default":"Dlaczego GALAKTIS"},
+    {"type":"text","id":"heading","label":"Nagłówek","default":"Mały projektor. Wielka zmiana klimatu."}
+  ],
+  "blocks": [{"type":"card","name":"Karta","settings":[
+    {"type":"select","id":"icon","label":"Ikona","options":[{"value":"galaxy","label":"Galaktyka"},{"value":"sparkle","label":"Gwiazdy"},{"value":"moon","label":"Księżyc"},{"value":"gift","label":"Prezent"},{"value":"gamepad","label":"Pad"},{"value":"bolt","label":"Błyskawica"}],"default":"galaxy"},
+    {"type":"text","id":"title","label":"Tytuł"},
+    {"type":"textarea","id":"text","label":"Tekst"}
+  ]}]
+}
+{% endschema %}

@@ -1,0 +1,48 @@
+{%- comment -%}
+  Opinie. Każda opinia to blok. „Zweryfikowany zakup” zaznaczasz tylko, gdy opinia pochodzi z potwierdzonego zamówienia w Twoim sklepie.
+{%- endcomment -%}
+{%- assign s = section.settings -%}
+{%- if section.blocks.size > 0 -%}
+<section class="gx-sec gx-sec--alt" id="opinie" aria-labelledby="gx-rev-h">
+  <div class="gx-w">
+    <div class="gx-head gx-reveal">
+      <span class="gx-eyebrow">{{ s.eyebrow }}</span>
+      <h2 class="gx-h2" id="gx-rev-h">{{ s.heading }}</h2>
+      {%- if s.lead != blank -%}<p class="gx-lead">{{ s.lead }}</p>{%- endif -%}
+    </div>
+    {%- if s.rating != blank -%}<div class="gx-revsum gx-reveal"><b>{{ s.rating }}</b>{% render 'gx-stars' %}{% if s.count != blank %}<span style="color:var(--gx-muted)">{{ s.count }} opinii</span>{% endif %}</div>{%- endif -%}
+    <div class="gx-revs">
+      {%- for b in section.blocks -%}
+      <article class="gx-rev gx-reveal" {{ b.shopify_attributes }}>
+        {%- if b.settings.image != blank -%}<div class="gx-rev__img">{% render 'gx-img', image: b.settings.image, alt: b.settings.alt, sizes: '(min-width:700px) 33vw, 100vw' %}</div>{%- endif -%}
+        <div class="gx-rev__b">
+          {% render 'gx-stars', count: b.settings.stars %}
+          <p>{{ b.settings.text }}</p>
+          <div class="gx-rev__who">{{ b.settings.name }}{% if b.settings.verified %}<span class="gx-rev__tag">✓ Zweryfikowany zakup</span>{% endif %}</div>
+        </div>
+      </article>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+{%- endif -%}
+{% schema %}
+{
+  "name": "Opinie",
+  "settings": [
+    {"type":"text","id":"eyebrow","label":"Nadtytuł","default":"Opinie"},
+    {"type":"text","id":"heading","label":"Nagłówek","default":"Co mówią kupujący"},
+    {"type":"text","id":"lead","label":"Opis","default":"Zdjęcia i opinie osób, które kupiły ten sam projektor. Przetłumaczone na polski."},
+    {"type":"text","id":"rating","label":"Średnia ocena. Puste = ukryte"},
+    {"type":"text","id":"count","label":"Liczba opinii. Puste = ukryte"}
+  ],
+  "blocks": [{"type":"review","name":"Opinia","settings":[
+    {"type":"image_picker","id":"image","label":"Zdjęcie klienta"},
+    {"type":"text","id":"alt","label":"Alt zdjęcia","default":"Zdjęcie od klienta"},
+    {"type":"range","id":"stars","label":"Gwiazdki","min":1,"max":5,"step":1,"default":5},
+    {"type":"textarea","id":"text","label":"Treść"},
+    {"type":"text","id":"name","label":"Podpis"},
+    {"type":"checkbox","id":"verified","label":"Zweryfikowany zakup w moim sklepie","default":false}
+  ]}]
+}
+{% endschema %}

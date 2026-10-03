@@ -1,0 +1,30 @@
+{%- assign s = section.settings -%}
+<section class="gx-sec" id="faq" aria-labelledby="gx-faq-h">
+  <div class="gx-w">
+    <div class="gx-head gx-reveal">
+      <span class="gx-eyebrow">{{ s.eyebrow }}</span>
+      <h2 class="gx-h2" id="gx-faq-h">{{ s.heading }}</h2>
+    </div>
+    <div class="gx-faq">
+      {%- for b in section.blocks -%}
+      <details {{ b.shopify_attributes }}><summary>{{ b.settings.q }}</summary><div class="gx-faq__a">{{ b.settings.a }}</div></details>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{%- for b in section.blocks -%}{"@type":"Question","name":{{ b.settings.q | json }},"acceptedAnswer":{"@type":"Answer","text":{{ b.settings.a | strip_html | json }}}}{% unless forloop.last %},{% endunless %}{%- endfor -%}]}
+</script>
+{% schema %}
+{
+  "name": "FAQ",
+  "settings": [
+    {"type":"text","id":"eyebrow","label":"Nadtytuł","default":"FAQ"},
+    {"type":"text","id":"heading","label":"Nagłówek","default":"Pytania przed zakupem"}
+  ],
+  "blocks": [{"type":"qa","name":"Pytanie","settings":[
+    {"type":"text","id":"q","label":"Pytanie"},
+    {"type":"richtext","id":"a","label":"Odpowiedź"}
+  ]}]
+}
+{% endschema %}

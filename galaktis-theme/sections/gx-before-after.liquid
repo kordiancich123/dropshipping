@@ -1,0 +1,34 @@
+{%- assign s = section.settings -%}
+<section class="gx-sec" aria-labelledby="gx-ba-h">
+  <div class="gx-w">
+    <div class="gx-head gx-reveal">
+      <span class="gx-eyebrow">{{ s.eyebrow }}</span>
+      <h2 class="gx-h2" id="gx-ba-h">{{ s.heading }}</h2>
+    </div>
+    <div class="gx-ba gx-reveal">
+      <figure>{% render 'gx-img', image: s.before, alt: s.before_alt, ph: 'TEN SAM POKÓJ ZE ZWYKŁĄ LAMPKĄ, 3:4', sizes: '(min-width:1000px) 450px, 50vw' %}<figcaption>Przed</figcaption></figure>
+      <figure>{% render 'gx-img', image: s.after, alt: s.after_alt, ph: 'TEN SAM POKÓJ Z PROJEKCJĄ NA SUFICIE, 3:4', sizes: '(min-width:1000px) 450px, 50vw' %}<figcaption>Po</figcaption></figure>
+    </div>
+    <div class="gx-ba-lists gx-reveal">
+      <ul>{% assign l = s.before_list | newline_to_br | split: '<br />' %}{% for x in l %}<li>{{ x | strip }}</li>{% endfor %}</ul>
+      <ul>{% assign l = s.after_list | newline_to_br | split: '<br />' %}{% for x in l %}<li>{{ x | strip }}</li>{% endfor %}</ul>
+    </div>
+    {%- if s.note != blank -%}<p class="gx-note">{{ s.note }}</p>{%- endif -%}
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Przed i po",
+  "settings": [
+    {"type":"text","id":"eyebrow","label":"Nadtytuł","default":"Przed i po"},
+    {"type":"text","id":"heading","label":"Nagłówek","default":"Twój pokój może wyglądać zupełnie inaczej po zmroku"},
+    {"type":"image_picker","id":"before","label":"Przed (3:4)"},
+    {"type":"text","id":"before_alt","label":"Alt przed","default":"Pokój wieczorem przy zwykłej lampce"},
+    {"type":"image_picker","id":"after","label":"Po (3:4)"},
+    {"type":"text","id":"after_alt","label":"Alt po","default":"Ten sam pokój z księżycem i gwiazdami na suficie"},
+    {"type":"textarea","id":"before_list","label":"Lista przed (każda linia osobno)","default":"Zwykły pokój\nBiałe światło sufitówki\nBrak klimatu"},
+    {"type":"textarea","id":"after_list","label":"Lista po (każda linia osobno)","default":"Księżyc i gwiazdy nad głową\nWieczorny relaks\nKlimat na film i granie"},
+    {"type":"text","id":"note","label":"Notka","default":"Zdjęcia poglądowe. Projekcja jest najwyraźniejsza w ciemnym pokoju."}
+  ]
+}
+{% endschema %}

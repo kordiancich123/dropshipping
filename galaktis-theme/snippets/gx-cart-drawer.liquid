@@ -1,0 +1,20 @@
+{%- comment -%} Koszyk wysuwany. Treść renderuje galaktis.js z /cart.js; bez JS ikona prowadzi do /cart. {%- endcomment -%}
+<div class="gx-drawer" id="gx-drawer" aria-hidden="true">
+  <div class="gx-drawer__bg"></div>
+  <div class="gx-drawer__panel" role="dialog" aria-modal="true" aria-labelledby="gx-drawer-title">
+    <div class="gx-drawer__head">
+      <h2 id="gx-drawer-title">Twój koszyk</h2>
+      <button type="button" class="gx-icon-btn" data-gx-drawer-close aria-label="Zamknij koszyk">{% render 'gx-icon', name: 'close' %}</button>
+    </div>
+    <div class="gx-ship" data-gx-ship>
+      <span data-gx-ship-txt>Darmowa dostawa od 200 zł</span>
+      <div class="gx-ship__bar"><i></i></div>
+    </div>
+    <div class="gx-lines" data-gx-lines><p class="gx-empty">Twój koszyk jest pusty.</p></div>
+    <div class="gx-drawer__foot" data-gx-foot hidden>
+      <div class="gx-sub"><span>Razem</span><span data-gx-subtotal></span></div>
+      <a href="{{ routes.root_url }}checkout" class="gx-btn gx-btn--primary gx-btn--block">Przejdź do kasy</a>
+      <small>Koszt dostawy zobaczysz w kasie. Bezpieczna płatność.</small>
+    </div>
+  </div>
+</div>

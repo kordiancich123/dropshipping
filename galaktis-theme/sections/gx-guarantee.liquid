@@ -1,0 +1,30 @@
+{%- assign s = section.settings -%}
+<section class="gx-sec gx-sec--alt" aria-labelledby="gx-g-h">
+  <div class="gx-w">
+    <div class="gx-head gx-reveal">
+      <span class="gx-eyebrow">{{ s.eyebrow }}</span>
+      <h2 class="gx-h2" id="gx-g-h">{{ s.heading }}</h2>
+      {%- if s.lead != blank -%}<p class="gx-lead">{{ s.lead }}</p>{%- endif -%}
+    </div>
+    <ul class="gx-guar gx-guar-wrap">
+      {%- for b in section.blocks -%}
+      <li class="gx-reveal" {{ b.shopify_attributes }}>{% render 'gx-icon', name: b.settings.icon %}<b>{{ b.settings.title }}</b><span>{{ b.settings.text }}</span></li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Gwarancja",
+  "settings": [
+    {"type":"text","id":"eyebrow","label":"Nadtytuł","default":"Bez ryzyka"},
+    {"type":"text","id":"heading","label":"Nagłówek","default":"Zakup bez zbędnego ryzyka"},
+    {"type":"textarea","id":"lead","label":"Opis"}
+  ],
+  "blocks": [{"type":"item","name":"Punkt","settings":[
+    {"type":"select","id":"icon","label":"Ikona","options":[{"value":"lock","label":"Kłódka"},{"value":"truck","label":"Wysyłka"},{"value":"return","label":"Zwrot"},{"value":"chat","label":"Kontakt"}],"default":"lock"},
+    {"type":"text","id":"title","label":"Tytuł"},
+    {"type":"text","id":"text","label":"Tekst"}
+  ]}]
+}
+{% endschema %}

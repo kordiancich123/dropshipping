@@ -1,0 +1,71 @@
+{%- assign s = section.settings -%}
+<footer class="gx-foot">
+  <div class="gx-w">
+    <div class="gx-foot__grid">
+      <div>
+        <a href="{{ routes.root_url }}" class="gx-logo" aria-label="GALAKTIS, strona główna">{% render 'gx-logo', id: 'f' %}</a>
+        <p style="margin-top:14px;max-width:300px">{{ s.about }}</p>
+        {%- if s.instagram != blank or s.tiktok != blank or s.facebook != blank -%}
+        <div class="gx-social">
+          {%- if s.instagram != blank -%}<a href="{{ s.instagram }}" aria-label="Instagram" rel="noopener" target="_blank">{% render 'gx-icon', name: 'instagram' %}</a>{%- endif -%}
+          {%- if s.tiktok != blank -%}<a href="{{ s.tiktok }}" aria-label="TikTok" rel="noopener" target="_blank">{% render 'gx-icon', name: 'tiktok' %}</a>{%- endif -%}
+          {%- if s.facebook != blank -%}<a href="{{ s.facebook }}" aria-label="Facebook" rel="noopener" target="_blank">{% render 'gx-icon', name: 'facebook' %}</a>{%- endif -%}
+        </div>
+        {%- endif -%}
+      </div>
+      <nav aria-label="Sklep">
+        <h3>Sklep</h3>
+        <ul>
+          <li><a href="{{ s.shop_url | default: '/products/projektor-gwiazd' }}">Sklep</a></li>
+          <li><a href="/pages/o-nas">O nas</a></li>
+          <li><a href="/pages/kontakt">Kontakt</a></li>
+          <li><a href="/#faq">FAQ</a></li>
+          <li><a href="/pages/sledzenie-zamowienia">Śledzenie zamówienia</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Informacje">
+        <h3>Informacje</h3>
+        <ul>
+          <li><a href="/pages/regulamin">Regulamin</a></li>
+          <li><a href="/policies/privacy-policy">Polityka prywatności</a></li>
+          <li><a href="/pages/zwroty">Polityka zwrotów</a></li>
+          <li><a href="/pages/wysylka">Dostawa</a></li>
+          <li><a href="/pages/kontakt">Kontakt</a></li>
+        </ul>
+      </nav>
+      <div>
+        <h3>{{ s.news_heading }}</h3>
+        <p>{{ s.news_text }}</p>
+        {%- form 'customer', id: 'gx-news' -%}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          <div class="gx-news">
+            <label class="gx-sr" for="gx-news-email">Twój adres e-mail</label>
+            <input id="gx-news-email" type="email" name="contact[email]" placeholder="Twój adres e-mail" autocomplete="email" required>
+            <button type="submit" class="gx-btn gx-btn--primary">Dołącz</button>
+          </div>
+          {%- if form.posted_successfully? -%}<p class="gx-news-msg" role="status">Dzięki! Jesteś na liście.</p>{%- endif -%}
+          {%- if form.errors -%}<p class="gx-news-msg" role="alert">Sprawdź adres e-mail i spróbuj ponownie.</p>{%- endif -%}
+        {%- endform -%}
+      </div>
+    </div>
+    <div class="gx-foot__bottom">
+      <span>© {{ 'now' | date: '%Y' }} GALAKTIS · {{ s.email }}</span>
+      {%- if shop.enabled_payment_types.size > 0 -%}<ul class="gx-pay" aria-label="Metody płatności">{%- for t in shop.enabled_payment_types -%}<li>{{ t | payment_type_svg_tag }}</li>{%- endfor -%}</ul>{%- endif -%}
+    </div>
+  </div>
+</footer>
+{% schema %}
+{
+  "name": "Stopka",
+  "settings": [
+    {"type":"textarea","id":"about","label":"O marce","default":"Projektory, które zamieniają zwykły wieczór w mały spektakl na suficie."},
+    {"type":"text","id":"shop_url","label":"Link Sklep","default":"/products/projektor-gwiazd"},
+    {"type":"text","id":"email","label":"E-mail","default":"galaktis773@gmail.com"},
+    {"type":"text","id":"news_heading","label":"Newsletter: nagłówek","default":"Odkryj galaktykę"},
+    {"type":"text","id":"news_text","label":"Newsletter: tekst","default":"Nowe slajdy, inspiracje i oferty. Bez spamu."},
+    {"type":"url","id":"instagram","label":"Instagram"},
+    {"type":"url","id":"tiktok","label":"TikTok"},
+    {"type":"url","id":"facebook","label":"Facebook"}
+  ]
+}
+{% endschema %}

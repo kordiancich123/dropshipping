@@ -1,0 +1,54 @@
+{%- comment -%} Pasek ogłoszeń, sticky header, menu mobilne, czcionki marki {%- endcomment -%}
+<style>
+{{ section.settings.font_heading | font_face: font_display: 'swap' }}
+{%- assign fh6 = section.settings.font_heading | font_modify: 'weight', '600' -%}{{ fh6 | font_face: font_display: 'swap' }}
+{%- assign fh5 = section.settings.font_heading | font_modify: 'weight', '500' -%}{{ fh5 | font_face: font_display: 'swap' }}
+{{ section.settings.font_body | font_face: font_display: 'swap' }}
+{%- assign fb6 = section.settings.font_body | font_modify: 'weight', '600' -%}{{ fb6 | font_face: font_display: 'swap' }}
+:root{--gx-fh:{{ section.settings.font_heading.family }},{{ section.settings.font_heading.fallback_families }};--gx-fb:{{ section.settings.font_body.family }},{{ section.settings.font_body.fallback_families }}}
+</style>
+{%- if section.settings.announcement != blank -%}<div class="gx-ann">{{ section.settings.announcement }}</div>{%- endif -%}
+{%- assign shop_url = section.settings.shop_url | default: '/products/projektor-gwiazd' -%}
+<header class="gx-header">
+  <div class="gx-w gx-header__in">
+    <div style="display:flex;align-items:center;gap:6px">
+      <button type="button" class="gx-icon-btn gx-burger" data-gx-burger aria-controls="gx-mnav" aria-expanded="false" aria-label="Otwórz menu">{% render 'gx-icon', name: 'menu' %}</button>
+      <a href="{{ routes.root_url }}" class="gx-logo" aria-label="GALAKTIS, strona główna">{% render 'gx-logo', id: 'h' %}</a>
+    </div>
+    <nav class="gx-nav" aria-label="Menu główne"><ul>
+      <li><a href="{{ routes.root_url }}"{% if request.page_type == 'index' %} aria-current="page"{% endif %}>Strona główna</a></li>
+      <li><a href="{{ shop_url }}"{% if request.page_type == 'product' %} aria-current="page"{% endif %}>Sklep</a></li>
+      <li><a href="/pages/o-nas">O nas</a></li>
+      <li><a href="/#faq">FAQ</a></li>
+      <li><a href="/pages/kontakt">Kontakt</a></li>
+    </ul></nav>
+    <div class="gx-icons">
+      <a href="{{ routes.search_url }}" class="gx-icon-btn gx-hide-m" aria-label="Szukaj">{% render 'gx-icon', name: 'search' %}</a>
+      <a href="{{ routes.account_url }}" class="gx-icon-btn gx-hide-m" aria-label="Konto">{% render 'gx-icon', name: 'user' %}</a>
+      <a href="{{ routes.cart_url }}" class="gx-icon-btn" data-gx-cart-open aria-label="Koszyk">{% render 'gx-icon', name: 'cart' %}<span class="gx-count" data-gx-count data-count="{{ cart.item_count }}">{{ cart.item_count }}</span></a>
+    </div>
+  </div>
+</header>
+<div class="gx-mnav" id="gx-mnav" aria-hidden="true">
+  <nav class="gx-mnav__panel" aria-label="Menu mobilne">
+    <button type="button" class="gx-icon-btn gx-mnav__close" data-gx-mnav-close aria-label="Zamknij menu">{% render 'gx-icon', name: 'close' %}</button>
+    <a href="{{ routes.root_url }}">Strona główna</a>
+    <a href="{{ shop_url }}">Sklep</a>
+    <a href="/pages/o-nas">O nas</a>
+    <a href="/#faq">FAQ</a>
+    <a href="/pages/kontakt">Kontakt</a>
+    <a href="{{ routes.search_url }}">Szukaj</a>
+    <a href="{{ routes.account_url }}">Konto</a>
+  </nav>
+</div>
+{% schema %}
+{
+  "name": "Nagłówek",
+  "settings": [
+    {"type":"text","id":"announcement","label":"Pasek ogłoszeń","default":"✦ Darmowa dostawa od 200 zł · 30 dni na zwrot ✦"},
+    {"type":"text","id":"shop_url","label":"Link Sklep","default":"/products/projektor-gwiazd"},
+    {"type":"font_picker","id":"font_heading","label":"Czcionka nagłówków i przycisków","default":"montserrat_n7"},
+    {"type":"font_picker","id":"font_body","label":"Czcionka tekstu","default":"inter_n4"}
+  ]
+}
+{% endschema %}

@@ -1,0 +1,41 @@
+{%- comment -%} Hero: obraz, badge (pusty = ukryty), nagłówek, benefity, dwa CTA, zaufanie {%- endcomment -%}
+{%- assign s = section.settings -%}
+<section class="gx-hero" aria-labelledby="gx-hero-h">
+  <div class="gx-w gx-hero__in">
+    <div class="gx-hero__media">
+      {% render 'gx-img', image: s.image, alt: s.image_alt, ph: 'GALAKTIS W CIEMNEJ SYPIALNI, PROJEKCJA NA ŚCIANIE, 4:5', sizes: '(min-width:1000px) 520px, 100vw', eager: true %}
+    </div>
+    <div>
+      {%- if s.badge != blank -%}<span class="gx-badge">{{ s.badge }}</span>{%- endif -%}
+      <h1 id="gx-hero-h">{{ s.heading | newline_to_br }}</h1>
+      <p class="gx-hero__sub">{{ s.sub }}</p>
+      <ul class="gx-ticks">
+        {%- for i in (1..3) -%}{%- capture k %}tick{{ i }}{% endcapture -%}{%- if s[k] != blank -%}<li>{{ s[k] }}</li>{%- endif -%}{%- endfor -%}
+      </ul>
+      <div class="gx-ctas" data-gx-watch>
+        <a href="{{ s.cta_link }}" class="gx-btn gx-btn--primary">{{ s.cta }} {% render 'gx-icon', name: 'arrow' %}</a>
+        <a href="{{ s.cta2_link }}" class="gx-btn gx-btn--ghost">{{ s.cta2 }}</a>
+      </div>
+      <ul class="gx-trust"><li>Bezpieczne płatności</li><li>Śledzona wysyłka</li><li>30 dni na zwrot</li></ul>
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    {"type":"image_picker","id":"image","label":"Zdjęcie (4:5): projektor i projekcja w ciemnym pokoju"},
+    {"type":"text","id":"image_alt","label":"Opis zdjęcia (alt)","default":"Projektor GALAKTIS wyświetla księżyc i gwiazdy na ścianie sypialni"},
+    {"type":"text","id":"badge","label":"Badge (zostaw puste, dopóki nie masz prawdziwej liczby klientów)","info":"Np. ⭐ PONAD [LICZBA] ZADOWOLONYCH KLIENTÓW"},
+    {"type":"textarea","id":"heading","label":"Nagłówek","default":"Zamień swój pokój\nw prywatną galaktykę"},
+    {"type":"textarea","id":"sub","label":"Podtytuł","default":"Stwórz wyjątkową atmosferę w kilka sekund. GALAKTIS wyświetla na suficie lub ścianie księżyc, planety i galaktyki, które odmienią Twój wieczór."},
+    {"type":"text","id":"tick1","label":"Benefit 1","default":"Efekt w kilka sekund, wystarczy port USB"},
+    {"type":"text","id":"tick2","label":"Benefit 2","default":"Do sypialni, pokoju dziecka i gaming roomu"},
+    {"type":"text","id":"tick3","label":"Benefit 3","default":"Wyjątkowy pomysł na prezent"},
+    {"type":"text","id":"cta","label":"Przycisk główny","default":"Odkryj GALAKTIS"},
+    {"type":"text","id":"cta_link","label":"Link przycisku głównego","default":"#produkt"},
+    {"type":"text","id":"cta2","label":"Przycisk drugi","default":"Zobacz, jak działa"},
+    {"type":"text","id":"cta2_link","label":"Link przycisku drugiego","default":"#jak-dziala"}
+  ]
+}
+{% endschema %}

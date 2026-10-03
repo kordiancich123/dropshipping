@@ -1,0 +1,43 @@
+{%- comment -%} Pakiety: każda karta dodaje odpowiedni wariant do koszyka. Kolejność wariantów: 1, 2, 3 szt. {%- endcomment -%}
+{%- liquid
+  assign s = section.settings
+  assign p = s.product
+  if p == blank
+    assign p = product
+  endif
+-%}
+{%- if p -%}
+<section class="gx-sec gx-sec--alt" aria-labelledby="gx-bun-h">
+  <div class="gx-w">
+    <div class="gx-head gx-reveal">
+      <span class="gx-eyebrow">{{ s.eyebrow }}</span>
+      <h2 class="gx-h2" id="gx-bun-h">{{ s.heading }}</h2>
+      <p class="gx-lead">{{ s.lead }}</p>
+    </div>
+    <div class="gx-bundles">
+      {%- for v in p.variants limit: 3 -%}
+      <div class="gx-bundle gx-reveal{% if forloop.index == 2 %} gx-bundle--hot{% endif %}">
+        {%- if forloop.index == 2 -%}<span class="gx-bundle__tag">Najpopularniejszy</span>{%- elsif forloop.index == 3 -%}<span class="gx-bundle__tag">Najlepsza wartość</span>{%- endif -%}
+        <div class="gx-bundle__qty">{{ forloop.index }}× GALAKTIS</div>
+        <div class="gx-bundle__lbl">{% case forloop.index %}{% when 1 %}Dla siebie{% when 2 %}Dla siebie i na prezent{% else %}Do całego domu{% endcase %}</div>
+        <div class="gx-bundle__pr">{{ v.price | money }}</div>
+        <div class="gx-bundle__was">{% if v.compare_at_price > v.price %}<s>{{ v.compare_at_price | money }}</s>{% endif %}</div>
+        <div class="gx-bundle__unit">{% if forloop.index > 1 %}{{ v.price | divided_by: forloop.index | money }} za sztukę{% if v.price >= 20000 %} · darmowa dostawa{% endif %}{% endif %}</div>
+        <button type="button" class="gx-btn {% if forloop.index == 2 %}gx-btn--primary{% else %}gx-btn--ghost{% endif %} gx-btn--block" data-gx-add-variant="{{ v.id }}"{% unless v.available %} disabled{% endunless %}>Wybieram</button>
+      </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+{%- endif -%}
+{% schema %}
+{
+  "name": "Pakiety",
+  "settings": [
+    {"type":"product","id":"product","label":"Produkt (na stronie głównej)"},
+    {"type":"text","id":"eyebrow","label":"Nadtytuł","default":"Pakiety"},
+    {"type":"text","id":"heading","label":"Nagłówek","default":"Im więcej, tym lepiej"},
+    {"type":"text","id":"lead","label":"Opis","default":"Drugi do pokoju dziecka albo na prezent. Każdy kolejny projektor taniej."}
+  ]
+}
+{% endschema %}

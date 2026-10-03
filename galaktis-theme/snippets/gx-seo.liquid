@@ -1,0 +1,34 @@
+{%- comment -%} Tytuł, opis, Open Graph i dane strukturalne. Teksty dla strony głównej edytujesz tutaj. {%- endcomment -%}
+{%- liquid
+  assign home_title = 'GALAKTIS™ | Projektor Gwiazd i Galaktyki'
+  assign home_desc = 'Stwórz własną galaktykę w swoim pokoju. GALAKTIS to projektor gwiazd, który tworzy wyjątkową atmosferę w kilka sekund.'
+  if request.page_type == 'index'
+    assign t = home_title
+    assign desc = home_desc
+  else
+    assign t = page_title | append: ' | GALAKTIS'
+    assign desc = page_description | default: home_desc
+  endif
+  assign og_img = page_image
+  if og_img == blank and product
+    assign og_img = product.featured_image
+  endif
+-%}
+<title>{{ t | escape }}</title>
+<meta name="description" content="{{ desc | escape }}">
+<link rel="canonical" href="{{ canonical_url }}">
+<meta property="og:site_name" content="GALAKTIS">
+<meta property="og:url" content="{{ canonical_url }}">
+<meta property="og:title" content="{{ t | escape }}">
+<meta property="og:description" content="{{ desc | escape }}">
+<meta property="og:type" content="{% if request.page_type == 'product' %}product{% else %}website{% endif %}">
+<meta property="og:locale" content="pl_PL">
+{%- if og_img -%}
+<meta property="og:image" content="https:{{ og_img | image_url: width: 1200 }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="{{ 1200 | divided_by: og_img.aspect_ratio | round }}">
+{%- endif -%}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ t | escape }}">
+<meta name="twitter:description" content="{{ desc | escape }}">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"GALAKTIS","url":{{ shop.url | json }},"email":{{ shop.email | json }}}</script>

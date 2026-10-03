@@ -1,0 +1,26 @@
+{%- comment -%} Dane strukturalne produktu. Ocena dodawana tylko, gdy w sekcji wpisano prawdziwą ocenę i liczbę opinii. {%- endcomment -%}
+{%- if p -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": {{ p.title | json }},
+  "description": {{ p.description | strip_html | strip_newlines | truncate: 300 | json }},
+  "brand": {"@type": "Brand", "name": "GALAKTIS"},
+  "sku": {{ p.selected_or_first_available_variant.sku | json }},
+  "image": [{% for m in p.images limit: 6 %}{{ m | image_url: width: 1200 | prepend: 'https:' | json }}{% unless forloop.last %},{% endunless %}{% endfor %}],
+  "url": {{ shop.url | append: p.url | json }},
+  {%- if rating != blank and rating_count != blank -%}
+  "aggregateRating": {"@type": "AggregateRating", "ratingValue": {{ rating | json }}, "reviewCount": {{ rating_count | json }}},
+  {%- endif -%}
+  "offers": {
+    "@type": "AggregateOffer",
+    "priceCurrency": {{ cart.currency.iso_code | json }},
+    "lowPrice": {{ p.price_min | divided_by: 100.0 | json }},
+    "highPrice": {{ p.price_max | divided_by: 100.0 | json }},
+    "offerCount": {{ p.variants.size }},
+    "availability": "https://schema.org/{% if p.available %}InStock{% else %}OutOfStock{% endif %}"
+  }
+}
+</script>
+{%- endif -%}

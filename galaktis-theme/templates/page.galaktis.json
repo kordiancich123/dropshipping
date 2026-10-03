@@ -1,0 +1,12 @@
+{
+ "layout": "galaktis",
+ "sections": {
+  "main": {
+   "type": "gx-page",
+   "settings": {}
+  }
+ },
+ "order": [
+  "main"
+ ]
+}

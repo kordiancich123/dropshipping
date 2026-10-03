@@ -1,0 +1,19 @@
+{%- assign s = section.settings -%}
+<section class="gx-sec gx-emo" aria-labelledby="gx-emo-h">
+  <div class="gx-w gx-reveal">
+    <h2 id="gx-emo-h">{{ s.heading }}</h2>
+    <div class="gx-emo__lines">{% assign l = s.lines | newline_to_br | split: '<br />' %}{% for x in l %}<span>{{ x | strip }}</span>{% endfor %}</div>
+    <a href="{{ s.cta_link }}" class="gx-btn gx-btn--primary">{{ s.cta }} {% render 'gx-icon', name: 'arrow' %}</a>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Sekcja emocjonalna",
+  "settings": [
+    {"type":"text","id":"heading","label":"Nagłówek","default":"To nie jest tylko światło"},
+    {"type":"textarea","id":"lines","label":"Linie (każda osobno)","default":"To atmosfera.\nTo chwila dla siebie po całym dniu.\nTo wieczór, który wygląda inaczej.\nTo mały kawałek kosmosu we własnym domu."},
+    {"type":"text","id":"cta","label":"Przycisk","default":"Stwórz swoją galaktykę"},
+    {"type":"text","id":"cta_link","label":"Link","default":"#produkt"}
+  ]
+}
+{% endschema %}

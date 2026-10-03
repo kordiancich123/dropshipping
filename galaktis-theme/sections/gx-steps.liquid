@@ -1,0 +1,36 @@
+{%- assign s = section.settings -%}
+<section class="gx-sec" id="jak-dziala" aria-labelledby="gx-steps-h">
+  <div class="gx-w">
+    <div class="gx-head gx-reveal">
+      <span class="gx-eyebrow">{{ s.eyebrow }}</span>
+      <h2 class="gx-h2" id="gx-steps-h">{{ s.heading }}</h2>
+    </div>
+    <ol class="gx-steps">
+      {%- for b in section.blocks -%}
+      <li class="gx-step gx-reveal" {{ b.shopify_attributes }}>
+        <div class="gx-step__media">{% render 'gx-img', image: b.settings.image, alt: b.settings.title, ph: b.settings.ph, sizes: '(min-width:700px) 33vw, 100vw' %}</div>
+        <div class="gx-step__b">
+          <span class="gx-step__n">{{ forloop.index | prepend: '0' }}</span>
+          <h3>{{ b.settings.title }}</h3>
+          <p>{{ b.settings.text }}</p>
+        </div>
+      </li>
+      {%- endfor -%}
+    </ol>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Jak to działa",
+  "settings": [
+    {"type":"text","id":"eyebrow","label":"Nadtytuł","default":"Jak to działa"},
+    {"type":"text","id":"heading","label":"Nagłówek","default":"Trzy kroki do własnej galaktyki"}
+  ],
+  "blocks": [{"type":"step","name":"Krok","settings":[
+    {"type":"image_picker","id":"image","label":"Zdjęcie (1:1)"},
+    {"type":"text","id":"ph","label":"Opis wymaganego zdjęcia","default":"ZDJĘCIE KROKU, 1:1"},
+    {"type":"text","id":"title","label":"Tytuł"},
+    {"type":"textarea","id":"text","label":"Tekst"}
+  ]}]
+}
+{% endschema %}

@@ -1,0 +1,26 @@
+{%- comment -%} Social proof pod hero. Ocena i liczba: puste = ukryte. Zdjęcia: bloki. {%- endcomment -%}
+{%- assign s = section.settings -%}
+<section class="gx-proof" aria-label="Opinie kupujących">
+  <div class="gx-w gx-proof__in">
+    {%- if s.rating != blank -%}
+      <div>{% render 'gx-stars' %} <strong>{{ s.rating }}/5</strong>{% if s.count != blank %} <span style="color:var(--gx-muted)">na podstawie {{ s.count }} opinii</span>{% endif %}</div>
+    {%- endif -%}
+    {%- if section.blocks.size > 0 -%}
+      <div class="gx-avatars">
+        {%- for b in section.blocks -%}{%- if b.settings.image != blank -%}{{ b.settings.image | image_url: width: 120 | image_tag: width: 52, height: 52, loading: 'lazy', alt: b.settings.alt }}{%- endif -%}{%- endfor -%}
+      </div>
+    {%- endif -%}
+    <p>{{ s.text }}</p>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Social proof",
+  "settings": [
+    {"type":"text","id":"rating","label":"Średnia ocena (np. 4,9). Puste = ukryte","info":"Wpisz tylko prawdziwą ocenę z Twojego sklepu."},
+    {"type":"text","id":"count","label":"Liczba opinii. Puste = ukryte"},
+    {"type":"text","id":"text","label":"Tekst","default":"Zdjęcia od osób, które już mają ten projektor w swoim pokoju."}
+  ],
+  "blocks": [{"type":"photo","name":"Zdjęcie klienta","settings":[{"type":"image_picker","id":"image","label":"Zdjęcie (kwadrat)"},{"type":"text","id":"alt","label":"Opis","default":"Zdjęcie od klienta"}]}]
+}
+{% endschema %}
