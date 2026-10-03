@@ -1,0 +1,322 @@
+{%- liquid
+  assign p = section.settings.product
+  if p == blank
+    assign p = product
+  endif
+  assign v1 = p.variants.first
+  assign s = section.settings
+-%}
+<style>
+:root{--navy:#10163A;--navy2:#1B2350;--gold:#F4C95D;--ink:#1D2033;--muted:#5B6075;--bg:#F7F5EF;--card:#fff;--line:#E6E2D6;--ok:#2F7D4F}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+img{max-width:100%;height:auto;display:block}a{color:inherit}
+.nn-w{max-width:1080px;margin:0 auto;padding:0 16px}
+.nn-head{background:var(--navy);color:#fff;height:48px;display:flex;align-items:center}
+.nn-head .nn-w{display:flex;align-items:center;justify-content:space-between;width:100%}
+.nn-logo{height:26px;width:auto;color:#fff}
+.nn-cart{color:#fff;text-decoration:none;font-size:14px}
+.nn-hero{background:var(--navy);color:#fff;padding-bottom:20px}
+.nn-hero__grid{display:grid;gap:0}
+.nn-hero__img{position:relative;overflow:hidden;margin:0 -16px}
+.nn-hero__img img{width:100%;height:42vh;min-height:260px;max-height:460px;object-fit:cover}
+.nn-hero__img h1{position:absolute;left:0;right:0;bottom:0;margin:0;padding:48px 16px 12px;font:700 26px/1.15 Georgia,"Times New Roman",serif;background:linear-gradient(transparent,rgba(16,22,58,.92))}
+.nn-sub{margin:12px 0 10px;color:#D9DCEB;font-size:15px}
+.nn-opts{display:grid;gap:8px;margin:0 0 12px;border:0;padding:0}
+.nn-opt{display:flex;align-items:center;gap:10px;background:var(--navy2);border:2px solid #343D72;border-radius:12px;padding:10px 12px;cursor:pointer}
+.nn-opt input{accent-color:var(--gold);width:18px;height:18px;margin:0}
+.nn-opt:has(input:checked){border-color:var(--gold)}
+.nn-opt__name{flex:1;font-weight:600}
+.nn-opt__note{display:block;font-weight:400;font-size:13px;color:#B9BEDA}
+.nn-opt__price{text-align:right;font-weight:700;font-size:18px}
+.nn-opt__price s{display:block;font-weight:400;font-size:13px;color:#B9BEDA}
+.nn-btn{display:block;width:100%;border:0;border-radius:12px;background:var(--gold);color:var(--navy);font:700 18px/1 inherit;padding:17px;cursor:pointer;text-align:center;text-decoration:none}
+.nn-btn:active{transform:translateY(1px)}
+.nn-trust{display:flex;flex-wrap:wrap;gap:4px 14px;justify-content:center;margin:10px 0 0;padding:0;list-style:none;font-size:13px;color:#D9DCEB}
+.nn-trust li:before{content:"✓ ";color:var(--gold)}
+.nn-sec{padding:44px 0}.nn-sec--alt{background:#fff}
+.nn-sec h2{font:700 26px/1.2 Georgia,"Times New Roman",serif;margin:0 0 18px;text-align:center}
+.nn-lead{font-size:19px;text-align:center;max-width:620px;margin:0 auto 10px}
+.nn-muted{color:var(--muted);text-align:center;max-width:620px;margin:0 auto}
+.nn-steps{display:grid;gap:18px;counter-reset:s;margin:0;padding:0;list-style:none}
+.nn-step{background:var(--card);border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+.nn-step img{aspect-ratio:1;object-fit:cover;width:100%}
+.nn-step div{padding:12px 14px}
+.nn-step b{display:block;font-size:17px}
+.nn-step b:before{counter-increment:s;content:counter(s);display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--navy);color:var(--gold);font-size:14px;margin-right:8px}
+.nn-ba{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.nn-ba figure{margin:0;position:relative;border-radius:14px;overflow:hidden}
+.nn-ba img{aspect-ratio:3/4;object-fit:cover;width:100%}
+.nn-ba figcaption{position:absolute;top:10px;left:10px;background:rgba(16,22,58,.85);color:#fff;font-weight:700;font-size:14px;padding:4px 10px;border-radius:20px}
+.nn-who{display:grid;gap:12px}
+.nn-who div{background:var(--bg);border-radius:14px;padding:16px 18px;border-left:4px solid var(--gold)}
+.nn-who b{display:block;margin-bottom:4px}
+.nn-box{position:relative;border-radius:14px;overflow:hidden;background:#fff;border:1px solid var(--line)}
+.nn-box ul{list-style:none;margin:0;padding:14px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;text-align:center}
+.nn-box li{background:var(--bg);border-radius:10px;padding:10px 4px;font-size:13px;color:var(--muted)}
+.nn-box li b{display:block;font:700 28px/1.1 Georgia,serif;color:var(--navy)}
+.nn-tbl{width:100%;border-collapse:collapse;background:#fff;border-radius:14px;overflow:hidden;font-size:14px}
+.nn-tbl th,.nn-tbl td{padding:11px 8px;border-bottom:1px solid var(--line);text-align:center}
+.nn-tbl th:first-child,.nn-tbl td:first-child{text-align:left}
+.nn-tbl thead th{background:var(--navy);color:#fff;font-weight:600}
+.nn-tbl thead th:last-child{background:var(--gold);color:var(--navy)}
+.nn-y{color:var(--ok);font-weight:700}.nn-n{color:#B2453A;font-weight:700}
+.nn-revs{display:grid;gap:12px}
+.nn-rev{background:#fff;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+.nn-rev img{aspect-ratio:1;object-fit:cover;width:100%}
+.nn-rev div{padding:12px 14px}.nn-stars{color:#E2A400;letter-spacing:2px}
+.nn-info{display:grid;gap:12px}
+.nn-info div{background:#fff;border-radius:14px;padding:16px 18px;border:1px solid var(--line)}
+.nn-info b{display:block;font-size:20px;color:var(--navy)}
+.nn-guar{background:var(--navy);color:#fff;border-radius:16px;padding:22px 18px;text-align:center}
+.nn-guar h2{color:var(--gold)}
+.nn-faq details{background:#fff;border:1px solid var(--line);border-radius:12px;margin:0 0 8px;padding:0 16px}
+.nn-faq summary{cursor:pointer;font-weight:600;padding:14px 0;list-style:none;display:flex;justify-content:space-between;gap:10px}
+.nn-faq summary:after{content:"+";font-size:20px;line-height:1}
+.nn-faq details[open] summary:after{content:"−"}
+.nn-faq p{margin:0 0 14px;color:var(--muted)}
+.nn-foot{background:var(--navy);color:#C9CDE3;padding:28px 0 96px;font-size:14px}
+.nn-foot nav{display:flex;flex-wrap:wrap;gap:8px 18px;margin:12px 0}
+.nn-foot a{color:#fff}
+.nn-sticky{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--line);padding:10px 16px calc(10px + env(safe-area-inset-bottom));display:flex;gap:12px;align-items:center;transform:translateY(110%);transition:transform .2s;z-index:10;box-shadow:0 -4px 16px rgba(0,0,0,.08)}
+.nn-sticky.is-on{transform:none}
+.nn-sticky__p{font-weight:700;font-size:18px;white-space:nowrap}
+.nn-sticky .nn-btn{padding:14px;font-size:16px}
+@media(min-width:800px){
+ .nn-hero__grid{grid-template-columns:1.1fr 1fr;gap:40px;align-items:center;padding-top:28px}
+ .nn-hero__img{margin:0;border-radius:16px}.nn-hero__img img{height:auto;max-height:none;aspect-ratio:3/4}
+ .nn-hero__img h1{font-size:34px}
+ .nn-steps,.nn-who,.nn-revs,.nn-info{grid-template-columns:repeat(3,1fr)}
+ .nn-ba{max-width:760px;margin:0 auto}.nn-box{max-width:760px;margin:0 auto}
+ .nn-sticky{display:none}.nn-foot{padding-bottom:28px}
+}
+</style>
+
+<header class="nn-head"><div class="nn-w"><a href="{{ routes.root_url }}" aria-label="Nocne Niebo">{% render 'nn-logo' %}</a><a class="nn-cart" href="{{ routes.cart_url }}">Koszyk ({{ cart.item_count }})</a></div></header>
+
+<section class="nn-hero">
+ <div class="nn-w nn-hero__grid">
+  <div class="nn-hero__img">
+   {%- if s.img_hero != blank -%}
+    {{ s.img_hero | image_url: width: 900 | image_tag: widths: '400,600,900', sizes: '(min-width:800px) 560px, 100vw', loading: 'eager', fetchpriority: 'high', alt: 'Gwiazdy i księżyc na suficie pokoju dziecka' }}
+   {%- elsif p.featured_image -%}
+    {{ p.featured_image | image_url: width: 900 | image_tag: widths: '400,600,900', sizes: '100vw', loading: 'eager', fetchpriority: 'high' }}
+   {%- endif -%}
+   <h1>{{ s.headline }}</h1>
+  </div>
+  <div>
+   <p class="nn-sub">{{ s.subheadline }}</p>
+   {%- form 'product', p, id: 'nn-form' -%}
+    <fieldset class="nn-opts">
+     <legend class="visually-hidden" style="position:absolute;left:-9999px">Wybierz zestaw</legend>
+     {%- for v in p.variants -%}
+      <label class="nn-opt">
+       <input type="radio" name="id" value="{{ v.id }}" data-price="{{ v.price | money }}"{% if forloop.first %} checked{% endif %}{% unless v.available %} disabled{% endunless %}>
+       <span class="nn-opt__name">{{ v.title }}
+        {%- if forloop.index == 2 -%}<span class="nn-opt__note">Drugi do pokoju rodzeństwa albo na prezent · darmowa dostawa</span>
+        {%- else -%}<span class="nn-opt__note">12 wymiennych slajdów</span>{%- endif -%}
+       </span>
+       <span class="nn-opt__price">{% if v.compare_at_price > v.price %}<s>{{ v.compare_at_price | money }}</s>{% endif %}{{ v.price | money }}</span>
+      </label>
+     {%- endfor -%}
+    </fieldset>
+    <button type="submit" class="nn-btn" id="nn-atc">Dodaj do koszyka</button>
+   {%- endform -%}
+   <ul class="nn-trust"><li>Dostawa {{ s.delivery_days }} dni roboczych</li><li>Śledzenie paczki</li><li>30 dni na zwrot</li></ul>
+  </div>
+ </div>
+</section>
+
+<section class="nn-sec">
+ <div class="nn-w">
+  <p class="nn-lead">{{ s.problem }}</p>
+  <p class="nn-muted">{{ s.problem_2 }}</p>
+ </div>
+</section>
+
+<section class="nn-sec nn-sec--alt">
+ <div class="nn-w">
+  <h2>Jak to działa</h2>
+  <ol class="nn-steps">
+   {%- for i in (1..3) -%}
+    {%- capture ik %}img_step{{ i }}{% endcapture -%}{%- capture tk %}step{{ i }}_title{% endcapture -%}{%- capture dk %}step{{ i }}_text{% endcapture -%}
+    <li class="nn-step">
+     {%- if s[ik] != blank %}{{ s[ik] | image_url: width: 700 | image_tag: widths: '350,700', sizes: '(min-width:800px) 340px, 100vw', loading: 'lazy', alt: s[tk] }}{% endif -%}
+     <div><b>{{ s[tk] }}</b>{{ s[dk] }}</div>
+    </li>
+   {%- endfor -%}
+  </ol>
+ </div>
+</section>
+
+<section class="nn-sec">
+ <div class="nn-w">
+  <h2>Przed i po</h2>
+  <div class="nn-ba">
+   <figure>{% if s.img_before != blank %}{{ s.img_before | image_url: width: 600 | image_tag: widths: '300,600', sizes: '50vw', loading: 'lazy', alt: 'Pokój dziecka z zapaloną lampką' }}{% endif %}<figcaption>Przed</figcaption></figure>
+   <figure>{% if s.img_after != blank %}{{ s.img_after | image_url: width: 600 | image_tag: widths: '300,600', sizes: '50vw', loading: 'lazy', alt: 'Ten sam pokój z gwiazdami na suficie' }}{% endif %}<figcaption>Po</figcaption></figure>
+  </div>
+  <p class="nn-muted" style="margin-top:12px">{{ s.ba_note }}</p>
+ </div>
+</section>
+
+<section class="nn-sec nn-sec--alt">
+ <div class="nn-w">
+  <h2>Czy to dla Ciebie?</h2>
+  <div class="nn-who">
+   <div><b>{{ s.who1_title }}</b>{{ s.who1_text }}</div>
+   <div><b>{{ s.who2_title }}</b>{{ s.who2_text }}</div>
+   <div><b>{{ s.who3_title }}</b>{{ s.who3_text }}</div>
+  </div>
+ </div>
+</section>
+
+<section class="nn-sec">
+ <div class="nn-w">
+  <h2>Co jest w zestawie</h2>
+  <div class="nn-box">
+   {%- if s.img_box != blank %}{{ s.img_box | image_url: width: 800 | image_tag: widths: '400,800', sizes: '(min-width:800px) 760px, 100vw', loading: 'lazy', alt: 'Projektor i slajdy z zestawu' }}{% endif -%}
+   <ul><li><b>1</b>projektor</li><li><b>12</b>slajdów z projekcjami</li><li><b>0</b>baterii, zasilanie z USB</li></ul>
+  </div>
+ </div>
+</section>
+
+<section class="nn-sec nn-sec--alt">
+ <div class="nn-w">
+  <h2>Co masz dziś, a co możesz mieć</h2>
+  <table class="nn-tbl">
+   <thead><tr><th></th><th>Lampka nocna</th><th>Bajka na telefonie</th><th>Projektor</th></tr></thead>
+   <tbody>
+    <tr><td>Świeci prosto w oczy</td><td class="nn-n">tak</td><td class="nn-n">tak</td><td class="nn-y">nie</td></tr>
+    <tr><td>Ekran przed snem</td><td class="nn-y">nie</td><td class="nn-n">tak</td><td class="nn-y">nie</td></tr>
+    <tr><td>Dziecko ma na co patrzeć w łóżku</td><td class="nn-n">nie</td><td class="nn-y">tak</td><td class="nn-y">tak</td></tr>
+   </tbody>
+  </table>
+ </div>
+</section>
+
+{%- if section.blocks.size > 0 -%}
+<section class="nn-sec">
+ <div class="nn-w">
+  <h2>Opinie klientów</h2>
+  <div class="nn-revs">
+   {%- for b in section.blocks -%}
+    <div class="nn-rev" {{ b.shopify_attributes }}>
+     {%- if b.settings.image != blank %}{{ b.settings.image | image_url: width: 600 | image_tag: widths: '300,600', sizes: '(min-width:800px) 340px, 100vw', loading: 'lazy', alt: b.settings.name }}{% endif -%}
+     <div><span class="nn-stars">{% for i in (1..b.settings.stars) %}★{% endfor %}</span><p>{{ b.settings.text }}</p><b>{{ b.settings.name }}</b></div>
+    </div>
+   {%- endfor -%}
+  </div>
+ </div>
+</section>
+{%- endif -%}
+
+<section class="nn-sec{% if section.blocks.size > 0 %} nn-sec--alt{% endif %}">
+ <div class="nn-w">
+  <h2>Dostawa i zwroty</h2>
+  <div class="nn-info">
+   <div><b>{{ s.delivery_days }} dni roboczych</b>{{ s.delivery_text }}</div>
+   <div><b>Numer śledzenia</b>Dostajesz go mailem, gdy tylko paczka zostanie nadana. Widzisz, gdzie jest, na każdym etapie.</div>
+   <div><b>30 dni na zwrot</b>Bez podawania przyczyny. Odsyłasz na polski adres, pieniądze wracają w 14 dni. <a href="/pages/zwroty">Szczegóły</a></div>
+  </div>
+ </div>
+</section>
+
+<section class="nn-sec">
+ <div class="nn-w">
+  <div class="nn-guar">
+   <h2>Gwarancja</h2>
+   <p class="nn-lead" style="color:#fff">{{ s.guarantee }}</p>
+  </div>
+ </div>
+</section>
+
+<section class="nn-sec nn-sec--alt nn-faq">
+ <div class="nn-w" style="max-width:760px">
+  <h2>Pytania</h2>
+  {%- for i in (1..6) -%}
+   {%- capture qk %}q{{ i }}{% endcapture -%}{%- capture ak %}a{{ i }}{% endcapture -%}
+   {%- if s[qk] != blank -%}<details><summary>{{ s[qk] }}</summary><p>{{ s[ak] }}</p></details>{%- endif -%}
+  {%- endfor -%}
+  <div style="margin-top:20px"><a href="#nn-form" class="nn-btn">Wybierz zestaw</a></div>
+ </div>
+</section>
+
+<footer class="nn-foot">
+ <div class="nn-w">
+  {% render 'nn-logo' %}
+  <nav aria-label="Informacje">
+   <a href="/pages/regulamin">Regulamin</a><a href="/pages/zwroty">Zwroty i reklamacje</a><a href="/pages/wysylka">Wysyłka</a><a href="/policies/privacy-policy">Polityka prywatności</a><a href="/pages/kontakt">Kontakt</a>
+  </nav>
+  <p>galaktis773@gmail.com · © {{ 'now' | date: '%Y' }} Nocne Niebo</p>
+ </div>
+</footer>
+
+<div class="nn-sticky" id="nn-sticky" aria-hidden="true">
+ <span class="nn-sticky__p" id="nn-sp">{{ v1.price | money }}</span>
+ <button type="submit" form="nn-form" class="nn-btn" tabindex="-1">Dodaj do koszyka</button>
+</div>
+
+<script>
+(function(){var f=document.getElementById('nn-form'),b=document.getElementById('nn-atc'),st=document.getElementById('nn-sticky'),sp=document.getElementById('nn-sp');
+if(f){f.addEventListener('change',function(e){if(e.target.name==='id')sp.textContent=e.target.dataset.price});}
+if(b&&'IntersectionObserver'in window){new IntersectionObserver(function(en){var on=!en[0].isIntersecting&&en[0].boundingClientRect.top<0;st.classList.toggle('is-on',on);st.setAttribute('aria-hidden',!on)}).observe(b)}})();
+</script>
+
+{% schema %}
+{
+ "name": "Nocne Niebo: produkt",
+ "tag": "div",
+ "settings": [
+  {"type":"product","id":"product","label":"Produkt"},
+  {"type":"text","id":"delivery_days","label":"Czas dostawy (dni robocze)","default":"7 do 12"},
+  {"type":"header","content":"Hero"},
+  {"type":"image_picker","id":"img_hero","label":"Zdjęcie hero"},
+  {"type":"text","id":"headline","label":"Nagłówek","default":"Wieczór bez walki o zgaszenie światła"},
+  {"type":"textarea","id":"subheadline","label":"Podtytuł"},
+  {"type":"header","content":"Problem"},
+  {"type":"textarea","id":"problem","label":"Zdanie do persony"},
+  {"type":"textarea","id":"problem_2","label":"Rozwinięcie"},
+  {"type":"header","content":"Jak to działa"},
+  {"type":"image_picker","id":"img_step1","label":"Krok 1: zdjęcie"},
+  {"type":"text","id":"step1_title","label":"Krok 1: tytuł"},
+  {"type":"textarea","id":"step1_text","label":"Krok 1: opis"},
+  {"type":"image_picker","id":"img_step2","label":"Krok 2: zdjęcie"},
+  {"type":"text","id":"step2_title","label":"Krok 2: tytuł"},
+  {"type":"textarea","id":"step2_text","label":"Krok 2: opis"},
+  {"type":"image_picker","id":"img_step3","label":"Krok 3: zdjęcie"},
+  {"type":"text","id":"step3_title","label":"Krok 3: tytuł"},
+  {"type":"textarea","id":"step3_text","label":"Krok 3: opis"},
+  {"type":"header","content":"Przed i po"},
+  {"type":"image_picker","id":"img_before","label":"Przed"},
+  {"type":"image_picker","id":"img_after","label":"Po"},
+  {"type":"textarea","id":"ba_note","label":"Notka pod zdjęciami"},
+  {"type":"header","content":"Czy to dla Ciebie"},
+  {"type":"text","id":"who1_title","label":"Persona 1: tytuł"},
+  {"type":"textarea","id":"who1_text","label":"Persona 1: zdanie"},
+  {"type":"text","id":"who2_title","label":"Persona 2: tytuł"},
+  {"type":"textarea","id":"who2_text","label":"Persona 2: zdanie"},
+  {"type":"text","id":"who3_title","label":"Persona 3: tytuł"},
+  {"type":"textarea","id":"who3_text","label":"Persona 3: zdanie"},
+  {"type":"header","content":"Zestaw, dostawa, gwarancja"},
+  {"type":"image_picker","id":"img_box","label":"Zdjęcie zestawu (bez napisów)"},
+  {"type":"textarea","id":"delivery_text","label":"Opis czasu dostawy"},
+  {"type":"textarea","id":"guarantee","label":"Gwarancja"},
+  {"type":"header","content":"FAQ"},
+  {"type":"text","id":"q1","label":"Pytanie 1"},{"type":"textarea","id":"a1","label":"Odpowiedź 1"},
+  {"type":"text","id":"q2","label":"Pytanie 2"},{"type":"textarea","id":"a2","label":"Odpowiedź 2"},
+  {"type":"text","id":"q3","label":"Pytanie 3"},{"type":"textarea","id":"a3","label":"Odpowiedź 3"},
+  {"type":"text","id":"q4","label":"Pytanie 4"},{"type":"textarea","id":"a4","label":"Odpowiedź 4"},
+  {"type":"text","id":"q5","label":"Pytanie 5"},{"type":"textarea","id":"a5","label":"Odpowiedź 5"},
+  {"type":"text","id":"q6","label":"Pytanie 6"},{"type":"textarea","id":"a6","label":"Odpowiedź 6"}
+ ],
+ "blocks": [
+  {"type":"review","name":"Opinia","settings":[
+   {"type":"image_picker","id":"image","label":"Zdjęcie od klienta"},
+   {"type":"range","id":"stars","label":"Gwiazdki","min":1,"max":5,"step":1,"default":5},
+   {"type":"textarea","id":"text","label":"Treść"},
+   {"type":"text","id":"name","label":"Imię"}
+  ]}
+ ]
+}
+{% endschema %}
