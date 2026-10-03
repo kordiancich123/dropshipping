@@ -190,73 +190,6 @@
     "tile5"
    ]
   },
-  "uses": {
-   "type": "gx-tiles",
-   "settings": {
-    "eyebrow": "Zastosowania",
-    "heading": "Gdzie możesz używać GALAKTIS?",
-    "lead": "Wszędzie tam, gdzie jest gniazdo USB i odrobina ciemności."
-   },
-   "blocks": {
-    "tile1": {
-     "type": "tile",
-     "settings": {
-      "image": "shopify://shop_images/GALAKTIS_BEDROOM_01.png",
-      "alt": "Kobieta na łóżku patrzy na księżyc na suficie",
-      "title": "Sypialnia",
-      "text": "Wieczór dla siebie po całym dniu",
-      "ph": "SYPIALNIA Z PROJEKCJĄ, 4:5"
-     }
-    },
-    "tile2": {
-     "type": "tile",
-     "settings": {
-      "image": "shopify://shop_images/nn-hero.png",
-      "alt": "Dziecko w łóżku patrzy na księżyc na suficie",
-      "title": "Pokój dziecięcy",
-      "text": "Wieczorny rytuał zamiast ekranu",
-      "ph": "POKÓJ DZIECIĘCY Z PROJEKCJĄ, 4:5"
-     }
-    },
-    "tile3": {
-     "type": "tile",
-     "settings": {
-      "image": "shopify://shop_images/gx-gaming.png",
-      "alt": "Gaming room z galaktyką nad monitorem",
-      "title": "Gaming room",
-      "text": "Klimat, który nie rozprasza",
-      "ph": "GAMING ROOM Z PROJEKCJĄ, 4:5"
-     }
-    },
-    "tile4": {
-     "type": "tile",
-     "settings": {
-      "image": "shopify://shop_images/gx-salon.png",
-      "alt": "Para na kanapie pod księżycem na suficie",
-      "title": "Salon i kino domowe",
-      "text": "Seans pod gwiazdami",
-      "ph": "SALON, WIECZÓR FILMOWY, 4:5"
-     }
-    },
-    "tile5": {
-     "type": "tile",
-     "settings": {
-      "image": "shopify://shop_images/GALAKTIS_GIFT_01.png",
-      "alt": "Projektor i slajdy w pudełku prezentowym",
-      "title": "Prezent",
-      "text": "Dla dziecka, partnera, fana kosmosu",
-      "ph": "PROJEKTOR JAKO PREZENT, 4:5"
-     }
-    }
-   },
-   "block_order": [
-    "tile1",
-    "tile2",
-    "tile3",
-    "tile4",
-    "tile5"
-   ]
-  },
   "emo": {
    "type": "gx-emotion",
    "settings": {}
@@ -451,7 +384,6 @@
   "product",
   "bundles",
   "proj",
-  "uses",
   "emo",
   "reviews",
   "faq",
