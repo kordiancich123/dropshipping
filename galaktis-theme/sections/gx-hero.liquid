@@ -5,7 +5,7 @@
     <div class="gx-hero__media">
       {% render 'gx-img', image: s.image, alt: s.image_alt, ph: 'GALAKTIS W CIEMNEJ SYPIALNI, PROJEKCJA NA ŚCIANIE, 4:5', sizes: '(min-width:1000px) 520px, 100vw', eager: true %}
     </div>
-    <div>
+    <div class="gx-hero__copy">
       {%- if s.badge != blank -%}<span class="gx-badge">{{ s.badge }}</span>{%- endif -%}
       <h1 id="gx-hero-h">{{ s.heading | newline_to_br }}</h1>
       <p class="gx-hero__sub">{{ s.sub }}</p>
