@@ -6,7 +6,10 @@
     assign t = home_title
     assign desc = home_desc
   else
-    assign t = page_title | append: ' | GALAKTIS'
+    assign t = page_title
+    unless page_title contains 'GALAKTIS'
+      assign t = page_title | append: ' | GALAKTIS'
+    endunless
     assign desc = page_description | default: home_desc
   endif
   assign og_img = page_image

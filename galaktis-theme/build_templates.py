@@ -90,7 +90,7 @@ product = template([("product", prod_page), ("proof", proof), ("why", why), ("bu
                     ("guar", guar), ("final", final)])
 page = template([("main", {"type": "gx-page", "settings": {}})])
 
-for name, t in [("index.json", index), ("product.galaktis.json", product), ("page.galaktis.json", page)]:
+for name, t in [("index.json", index), ("product.galaktis.json", product), ("product.nocne-niebo.json", product), ("page.galaktis.json", page)]:
     with open("templates/" + name, "w", encoding="utf-8") as f:
         json.dump(t, f, ensure_ascii=False, indent=1)
 print("ok")
