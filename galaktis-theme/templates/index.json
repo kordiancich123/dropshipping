@@ -43,8 +43,11 @@
   "ba": {
    "type": "gx-before-after",
    "settings": {
-    "before": "shopify://shop_images/nn-przed.png",
-    "after": "shopify://shop_images/nn-hero.png"
+    "before": "shopify://shop_images/GALAKTIS_BEFORE_02.png",
+    "after": "shopify://shop_images/GALAKTIS_AFTER_02.png",
+    "before_alt": "Sypialnia wieczorem ze zwykłą żółtą lampką",
+    "after_alt": "Ta sama sypialnia z projekcją księżyca i gwiazd na suficie",
+    "before_list": "Zwykły pokój\nŻółte światło lampki\nBrak klimatu"
    }
   },
   "why": {

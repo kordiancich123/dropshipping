@@ -54,3 +54,18 @@ join ads/GALAKTIS_AD_04_PREZENT_9x16.mp4 "$T/d1.mp4" "$T/d2.mp4" "$T/end.mp4"
 
 rm -rf "$T"
 ls -la ads
+
+# AD 05: przed i po (te same dwa zdjęcia, "gaszenie światła"), 0 kredytów
+T=$(mktemp -d)
+C9="scale=1080:1434,pad=1080:1920:0:300:color=0x06081A,setsar=1,fps=30,format=yuv420p"
+printf '%s' "Mój pokój wieczorem" > $T/p1.txt
+printf '%s' "Klik. I to samo miejsce." > $T/p2.txt
+ffmpeg -v error -y -loop 1 -t 2.6 -i masters/GALAKTIS_BEFORE_02.png -loop 1 -t 4.4 -i masters/GALAKTIS_AFTER_02.png -filter_complex \
+"[0]$C9,fade=t=out:st=2.3:d=0.3,drawtext=fontfile=$F:textfile=$T/p1.txt:fontsize=62:fontcolor=white:x=(w-text_w)/2:y=130[a];\
+[1]$C9,fade=t=in:st=0:d=0.5,drawtext=fontfile=$F:textfile=$T/p2.txt:fontsize=62:fontcolor=white:x=(w-text_w)/2:y=130[b];[a][b]concat=n=2:v=1[v]" \
+-map "[v]" -c:v libx264 -crf 21 -preset fast $T/p.mp4
+F=$F LOGO=$LOGO
+txt() { printf '%s' "$2" > "$T/$1.txt"; }
+endcard "$T/end.mp4"
+join ads/GALAKTIS_AD_05_PRZED_PO_9x16.mp4 "$T/p.mp4" "$T/end.mp4"
+rm -rf "$T"

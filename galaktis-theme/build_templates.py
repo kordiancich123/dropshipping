@@ -13,7 +13,7 @@ proof = {"type": "gx-proof", "settings": {}, **blocks("photo", [
     {"image": img("nn-opinia-sa.jpg"), "alt": "Zdjęcie klienta: projekcja księżyca"},
     {"image": img("nn-opinia-nl.jpg"), "alt": "Zdjęcie klienta: projektor i slajdy"},
 ])}
-ba = {"type": "gx-before-after", "settings": {"before": img("nn-przed.png"), "after": img("nn-hero.png")}}
+ba = {"type": "gx-before-after", "settings": {"before": img("GALAKTIS_BEFORE_02.png"), "after": img("GALAKTIS_AFTER_02.png"), "before_alt": "Sypialnia wieczorem ze zwykłą żółtą lampką", "after_alt": "Ta sama sypialnia z projekcją księżyca i gwiazd na suficie", "before_list": "Zwykły pokój\nŻółte światło lampki\nBrak klimatu"}}
 why = {"type": "gx-why", "settings": {}, **blocks("card", [
     {"icon": "galaxy", "title": "Kosmos nad głową", "text": "Księżyc, planety, mgławice i galaktyki z 12 wymiennych slajdów."},
     {"icon": "sparkle", "title": "Efekt wow", "text": "Zwykły sufit zamienia się w okno na nocne niebo."},

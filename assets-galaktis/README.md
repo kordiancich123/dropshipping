@@ -36,7 +36,9 @@
 | GALAKTIS_UGC_01 | masters/GALAKTIS_UGC_01.png | krok 2 „jak to działa”, reklamy UGC |
 | GALAKTIS_GIFT_01 | masters/GALAKTIS_GIFT_01.png | zastosowania: prezent, reklamy prezentowe |
 | GALAKTIS_GAMING_01 | wcześniejszy gaming room | zastosowania: gaming |
-| GALAKTIS_KIDS_01 / BEFORE_01 | wcześniejsze kadry pokoju dziecka | przed i po, pokój dziecięcy |
+| GALAKTIS_BEFORE_02 | masters/GALAKTIS_BEFORE_02.png | sekcja „Przed i po”: sypialnia przy żółtej lampce, projektor wyłączony |
+| GALAKTIS_AFTER_02 | masters/GALAKTIS_AFTER_02.png | sekcja „Przed i po”: ten sam kadr, lampka zgaszona, jedna okrągła projekcja na suficie |
+| GALAKTIS_KIDS_01 / BEFORE_01 | wcześniejsze kadry pokoju dziecka | pokój dziecięcy |
 
 Formaty (16:9, 1:1, 4:5, 9:16) to przycięcia mastera w `crops/`, nie nowe generacje.
 
@@ -50,6 +52,7 @@ Formaty (16:9, 1:1, 4:5, 9:16) to przycięcia mastera w `crops/`, nie nowe gener
 | ads/GALAKTIS_AD_01_POV_9x16.mp4 | 10 s, hook „POV: odkrywasz, czego brakowało w Twoim pokoju” | TikTok, Reels, Meta 9:16 |
 | ads/GALAKTIS_AD_02_SUFIT_9x16.mp4 | 10 s, „Wsuwasz slajd. Gasisz światło.” → „Poczekaj, aż zobaczysz sufit” | TikTok, Reels, Meta 9:16 |
 | ads/GALAKTIS_AD_03_PO22_9x16.mp4 | 10 s, „Mój pokój po 22:00” | TikTok, Reels |
+| ads/GALAKTIS_AD_05_PRZED_PO_9x16.mp4 | 9,5 s, „Mój pokój wieczorem” → „Klik. I to samo miejsce.” (BEFORE_02 → AFTER_02) | TikTok, Reels, Meta 9:16 |
 | ads/GALAKTIS_AD_04_PREZENT_9x16.mp4 | 9,5 s, „Prezent dla kogoś, kto ma już wszystko” | Meta, sezon prezentowy |
 
 Reklamy składa skrypt `make_ads.sh` (ffmpeg, 0 kredytów): zmień tekst hooka i uruchom ponownie. Każda kończy się planszą: logo, „od 149 zł · dostawa 7 do 12 dni”, „Kup teraz”. Muzykę dodaj w aplikacji TikTok lub Meta (licencjonowana biblioteka platformy).
