@@ -59,24 +59,17 @@ def mixed(*groups):
 
 SRC = "Opinia o tym samym modelu z platformy producenta, przetłumaczona. Nie jest to zamówienie w sklepie GALAKTIS."
 reviews = {"type": "gx-reviews", "settings": {
-    "heading": "GALAKTIS w prawdziwych pokojach",
-    "lead": "Jak projektor wygląda w ciemnym pokoju i co mówią osoby, które kupiły ten sam model.",
+    "heading": "Co mówią kupujący",
+    "lead": "Opinie osób, które kupiły ten sam model projektora. Przetłumaczone, łącznie z minusami.",
+    "show_feat": False,
     "feat_image": img("GALAKTIS_SP_FEATURED_EXPERIENCE.jpg"),
     "feat_alt": "Osoba leży w łóżku i patrzy na projekcję na suficie, obok projektor GALAKTIS",
     "feat_video": "shopify://files/videos/GALAKTIS_VIDEO_REAL_EXPERIENCE_01.mp4",
     "feat_caption": "Wizualizacja",
     "cta_label": "Odkryj GALAKTIS", "cta_link": "#produkt",
-    "car_title": "Co mówią kupujący ten sam model",
+    "car_title": "",
     "note": "Opinie pochodzą od osób, które kupiły ten sam model projektora u producenta. Przetłumaczyliśmy je bez upiększania, łącznie z minusami. Opinie klientów sklepu GALAKTIS dodamy po pierwszych zamówieniach.",
 }, **mixed(
-    ("photo", [
-        {"image": img("GALAKTIS_SP_BEDROOM.jpg"), "caption": "Sypialnia · wizualizacja"},
-        {"image": img("GALAKTIS_SP_IN_HAND.jpg"), "caption": "Slajd i projektor · wizualizacja"},
-        {"image": img("GALAKTIS_SP_GAMING.jpg"), "caption": "Pokój do grania · wizualizacja"},
-        {"image": img("GALAKTIS_SP_GIFT.jpg"), "caption": "Na prezent · wizualizacja"},
-        {"image": img("GALAKTIS_SP_CLOSEUP.jpg"), "caption": "Tryb lampki · wizualizacja"},
-        {"image": img("GALAKTIS_SP_CHOOSE.jpg"), "caption": "Zmiana slajdu · wizualizacja"},
-    ]),
     ("review", [
         {"topic": "Jakość", "objection": "Czy obraz jest ostry i łatwo się go obsługuje?", "stars": 5, "text": "Świetny i piękny, najbardziej podobają mi się czarno-białe obrazy. Ostrość da się regulować, a projektor działa też jako lampka nocna z przyciskiem dotykowym. Minus: każdy slajd trzeba zmieniać ręcznie. Daję 9 na 10.", "name": "Kupujący z Hiszpanii", "source": SRC},
         {"topic": "Pokój dziecięcy", "objection": "Czy warto za tę cenę?", "stars": 4, "text": "Za tę cenę dobry produkt. Kilka slajdów jest mniej wyraźnych, ale da się z tym żyć. Córka jest zadowolona.", "name": "Kupujący z Arabii Saudyjskiej", "source": SRC},

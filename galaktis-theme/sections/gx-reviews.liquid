@@ -26,6 +26,7 @@
     </div>
 
     {%- comment -%} Wyróżniona opinia {%- endcomment -%}
+    {%- if s.show_feat -%}
     <div class="gx-sp__feat gx-reveal">
       <div class="gx-sp__media">
         {% render 'gx-img', image: s.feat_image, alt: s.feat_alt, ph: 'SYPIALNIA NOCĄ, PROJEKCJA NA SUFICIE, 4:5', sizes: '(min-width:1000px) 560px, 100vw' %}
@@ -50,6 +51,8 @@
       </div>
     </div>
 
+    {%- endif -%}
+
     {%- comment -%} Galeria zdjęć {%- endcomment -%}
     {%- if photos.size > 0 -%}
     <div class="gx-sp__gal-head gx-reveal">
@@ -68,7 +71,7 @@
 
     {%- comment -%} Karuzela opinii {%- endcomment -%}
     <div class="gx-sp__car-head gx-reveal">
-      <h3 class="gx-sp__h3">{{ s.car_title }}</h3>
+      {%- if s.car_title != blank -%}<h3 class="gx-sp__h3">{{ s.car_title }}</h3>{%- else -%}<span></span>{%- endif -%}
       <div class="gx-sp__nav"><button type="button" class="gx-sp__arr" data-gx-car-prev aria-label="Poprzednie opinie">←</button><button type="button" class="gx-sp__arr" data-gx-car-next aria-label="Następne opinie">→</button></div>
     </div>
     <div class="gx-sp__car" data-gx-car tabindex="0" aria-label="Opinie">
@@ -104,6 +107,7 @@
     {"type":"text","id":"rating","label":"Średnia ocena (np. 4,8). Puste = ukryte"},
     {"type":"text","id":"count","label":"Liczba opinii. Puste = ukryte"},
     {"type":"header","content":"Wyróżniona opinia"},
+    {"type":"checkbox","id":"show_feat","label":"Pokaż wyróżnioną opinię","default":true},
     {"type":"image_picker","id":"feat_image","label":"Duże zdjęcie (4:5)"},
     {"type":"text","id":"feat_alt","label":"Alt zdjęcia"},
     {"type":"video","id":"feat_video","label":"Wideo (opcjonalnie, bez dźwięku)"},

@@ -171,60 +171,19 @@
   "reviews": {
    "type": "gx-reviews",
    "settings": {
-    "heading": "GALAKTIS w prawdziwych pokojach",
-    "lead": "Jak projektor wygląda w ciemnym pokoju i co mówią osoby, które kupiły ten sam model.",
+    "heading": "Co mówią kupujący",
+    "lead": "Opinie osób, które kupiły ten sam model projektora. Przetłumaczone, łącznie z minusami.",
+    "show_feat": false,
     "feat_image": "shopify://shop_images/GALAKTIS_SP_FEATURED_EXPERIENCE.jpg",
     "feat_alt": "Osoba leży w łóżku i patrzy na projekcję na suficie, obok projektor GALAKTIS",
     "feat_video": "shopify://files/videos/GALAKTIS_VIDEO_REAL_EXPERIENCE_01.mp4",
     "feat_caption": "Wizualizacja",
     "cta_label": "Odkryj GALAKTIS",
     "cta_link": "#produkt",
-    "car_title": "Co mówią kupujący ten sam model",
+    "car_title": "",
     "note": "Opinie pochodzą od osób, które kupiły ten sam model projektora u producenta. Przetłumaczyliśmy je bez upiększania, łącznie z minusami. Opinie klientów sklepu GALAKTIS dodamy po pierwszych zamówieniach."
    },
    "blocks": {
-    "photo1": {
-     "type": "photo",
-     "settings": {
-      "image": "shopify://shop_images/GALAKTIS_SP_BEDROOM.jpg",
-      "caption": "Sypialnia · wizualizacja"
-     }
-    },
-    "photo2": {
-     "type": "photo",
-     "settings": {
-      "image": "shopify://shop_images/GALAKTIS_SP_IN_HAND.jpg",
-      "caption": "Slajd i projektor · wizualizacja"
-     }
-    },
-    "photo3": {
-     "type": "photo",
-     "settings": {
-      "image": "shopify://shop_images/GALAKTIS_SP_GAMING.jpg",
-      "caption": "Pokój do grania · wizualizacja"
-     }
-    },
-    "photo4": {
-     "type": "photo",
-     "settings": {
-      "image": "shopify://shop_images/GALAKTIS_SP_GIFT.jpg",
-      "caption": "Na prezent · wizualizacja"
-     }
-    },
-    "photo5": {
-     "type": "photo",
-     "settings": {
-      "image": "shopify://shop_images/GALAKTIS_SP_CLOSEUP.jpg",
-      "caption": "Tryb lampki · wizualizacja"
-     }
-    },
-    "photo6": {
-     "type": "photo",
-     "settings": {
-      "image": "shopify://shop_images/GALAKTIS_SP_CHOOSE.jpg",
-      "caption": "Zmiana slajdu · wizualizacja"
-     }
-    },
     "review1": {
      "type": "review",
      "settings": {
@@ -288,12 +247,6 @@
     }
    },
    "block_order": [
-    "photo1",
-    "photo2",
-    "photo3",
-    "photo4",
-    "photo5",
-    "photo6",
     "review1",
     "review2",
     "review3",
