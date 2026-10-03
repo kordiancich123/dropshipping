@@ -381,7 +381,7 @@ button{font:inherit;color:inherit}
 .gx-sp__src{margin:0;color:var(--gx-muted);font-size:12px;opacity:.8}
 .gx-sp__gal-head,.gx-sp__car-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:8px 20px;margin-bottom:18px}
 .gx-sp__gal-head .gx-sp__p{font-size:14px;flex-basis:100%}
-.gx-sp__gal{list-style:none;margin:0 calc(var(--gx-pad)*-1) 56px;padding:0 var(--gx-pad);display:grid;grid-auto-flow:column;grid-auto-columns:42%;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+.gx-sp__gal{list-style:none;margin:0 calc(var(--gx-pad)*-1) 56px;padding:0 var(--gx-pad);display:grid;grid-auto-flow:column;grid-auto-columns:42%;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--gx-pad);scrollbar-width:none}
 .gx-sp__gal::-webkit-scrollbar,.gx-sp__car::-webkit-scrollbar{display:none}
 .gx-sp__tile{position:relative;aspect-ratio:4/5;border-radius:var(--gx-radius-s);overflow:hidden;background:var(--gx-card-2);scroll-snap-align:start}
 .gx-sp__tile img{width:100%;height:100%;object-fit:cover}
@@ -389,7 +389,7 @@ button{font:inherit;color:inherit}
 .gx-sp__nav{display:none;gap:8px}
 .gx-sp__arr{width:44px;height:44px;border-radius:50%;border:1px solid var(--gx-line);background:var(--gx-card);color:var(--gx-text);font-size:18px;cursor:pointer}
 .gx-sp__arr:hover{border-color:var(--gx-violet)}
-.gx-sp__car{display:grid;grid-auto-flow:column;grid-auto-columns:86%;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;margin:0 calc(var(--gx-pad)*-1);padding:0 var(--gx-pad) 4px;scrollbar-width:none}
+.gx-sp__car{display:grid;grid-auto-flow:column;grid-auto-columns:86%;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--gx-pad);scroll-behavior:smooth;margin:0 calc(var(--gx-pad)*-1);padding:0 var(--gx-pad) 4px;scrollbar-width:none}
 .gx-sp__card{scroll-snap-align:start;background:var(--gx-card);border:1px solid var(--gx-line);border-radius:var(--gx-radius);padding:22px;display:flex;flex-direction:column;gap:12px}
 .gx-sp__card--req{border-style:dashed}
 .gx-sp__top{display:flex;align-items:center;justify-content:space-between;gap:10px}
