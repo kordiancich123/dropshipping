@@ -3,6 +3,10 @@ img = lambda n: f"shopify://shop_images/{n}"
 settings = {
  "product": "projektor-gwiazd",
  "delivery_days": "7 do 12",
+ "announcement": "Darmowa dostawa od 200 zł · 30 dni na zwrot",
+ "bullet1": "Księżyc, planety i gwiazdy na suficie",
+ "bullet2": "12 wymiennych slajdów w zestawie",
+ "bullet3": "Projektor i lampka nocna w jednym",
  "img_hero": img("nn-hero.png"),
  "headline": "Wieczór bez walki o zgaszenie światła",
  "subheadline": "Gwiazdy i księżyc na suficie pokoju dziecka. Podłączasz do USB, gasisz światło i jest na co patrzeć zamiast na ekran.",
@@ -39,9 +43,9 @@ settings = {
  "a6": "Masz 30 dni na zwrot bez podawania przyczyny. Odsyłasz na polski adres, pieniądze wracają w ciągu 14 dni."
 }
 blocks = {
- "rev_sa": {"type": "review", "settings": {"image": img("nn-opinia-sa.jpg"), "stars": 4, "text": "Za tę cenę dobry produkt. Kilka slajdów jest mniej wyraźnych, ale da się z tym żyć. Córka jest zadowolona.", "name": "Kupujący z Arabii Saudyjskiej, AliExpress"}},
- "rev_es": {"type": "review", "settings": {"image": img("nn-opinia-es.jpg"), "stars": 5, "text": "Świetny i piękny, najbardziej podobają mi się czarno-białe obrazy. Ostrość da się regulować, a projektor działa też jako lampka nocna z przyciskiem dotykowym. Minus: każdy slajd trzeba zmieniać ręcznie. Daję 9 na 10.", "name": "Kupujący z Hiszpanii, AliExpress"}},
- "rev_nl": {"type": "review", "settings": {"image": img("nn-opinia-nl.jpg"), "stars": 5, "text": "Bardzo ładny efekt.", "name": "Kupujący z Holandii, AliExpress"}}
+ "rev_sa": {"type": "review", "settings": {"image": img("nn-opinia-sa.jpg"), "stars": 4, "text": "Za tę cenę dobry produkt. Kilka slajdów jest mniej wyraźnych, ale da się z tym żyć. Córka jest zadowolona.", "name": "Kupujący z Arabii Saudyjskiej"}},
+ "rev_es": {"type": "review", "settings": {"image": img("nn-opinia-es.jpg"), "stars": 5, "text": "Świetny i piękny, najbardziej podobają mi się czarno-białe obrazy. Ostrość da się regulować, a projektor działa też jako lampka nocna z przyciskiem dotykowym. Minus: każdy slajd trzeba zmieniać ręcznie. Daję 9 na 10.", "name": "Kupujący z Hiszpanii"}},
+ "rev_nl": {"type": "review", "settings": {"image": img("nn-opinia-nl.jpg"), "stars": 5, "text": "Bardzo ładny efekt.", "name": "Kupujący z Holandii"}}
 }
 for name in ["index.json", "product.nocne-niebo.json"]:
     t = {"layout": "nocne-niebo", "sections": {"main": {"type": "nn-landing", "blocks": blocks, "block_order": list(blocks), "settings": dict(settings)}}, "order": ["main"]}

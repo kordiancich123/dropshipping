@@ -82,6 +82,21 @@ img{max-width:100%;height:auto;display:block}a{color:inherit}
 .nn-sticky.is-on{transform:none}
 .nn-sticky__p{font-weight:700;font-size:18px;white-space:nowrap}
 .nn-sticky .nn-btn{padding:14px;font-size:16px}
+.nn-ann{background:var(--gold);color:var(--navy);text-align:center;font-size:13px;font-weight:700;padding:7px 12px}
+.nn-title{font:700 20px/1.25 Georgia,"Times New Roman",serif;margin:14px 0 6px}
+.nn-bul{list-style:none;margin:0 0 12px;padding:0;display:grid;gap:4px;font-size:15px;color:#E6E8F3}
+.nn-bul li:before{content:"★ ";color:var(--gold)}
+.nn-pay{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:12px 0 0;padding:0;list-style:none}
+.nn-pay svg{height:22px;width:auto;display:block}
+.nn-mini{background:var(--navy2);border-radius:12px;padding:12px 14px;margin:14px 0 0;font-size:14px;color:#E6E8F3}
+.nn-mini b{display:block;margin-top:4px;color:#B9BEDA;font-weight:400;font-size:13px}
+.nn-acc{margin:12px 0 0;border-top:1px solid #343D72}
+.nn-acc details{border-bottom:1px solid #343D72}
+.nn-acc summary{cursor:pointer;list-style:none;padding:12px 0;font-weight:600;display:flex;justify-content:space-between}
+.nn-acc summary:after{content:"+"}.nn-acc details[open] summary:after{content:"\2212"}
+.nn-acc p{margin:0 0 12px;font-size:14px;color:#D9DCEB}
+.nn-cta{background:var(--navy);color:#fff;text-align:center}
+.nn-cta h2{color:#fff}.nn-cta .nn-btn{max-width:420px;margin:0 auto}
 @media(min-width:800px){
  .nn-hero__grid{grid-template-columns:1.1fr 1fr;gap:40px;align-items:center;padding-top:28px}
  .nn-hero__img{margin:0;border-radius:16px}.nn-hero__img img{height:auto;max-height:none;aspect-ratio:3/4}
@@ -92,6 +107,7 @@ img{max-width:100%;height:auto;display:block}a{color:inherit}
 }
 </style>
 
+<div class="nn-ann">{{ s.announcement }}</div>
 <header class="nn-head"><div class="nn-w"><a href="{{ routes.root_url }}" aria-label="Nocne Niebo">{% render 'nn-logo' %}</a><a class="nn-cart" href="{{ routes.cart_url }}">Koszyk ({{ cart.item_count }})</a></div></header>
 
 <section class="nn-hero">
@@ -105,7 +121,8 @@ img{max-width:100%;height:auto;display:block}a{color:inherit}
    <h1>{{ s.headline }}</h1>
   </div>
   <div>
-   <p class="nn-sub">{{ s.subheadline }}</p>
+   <h2 class="nn-title">{{ p.title }}</h2>
+   <ul class="nn-bul"><li>{{ s.bullet1 }}</li><li>{{ s.bullet2 }}</li><li>{{ s.bullet3 }}</li></ul>
    {%- form 'product', p, id: 'nn-form' -%}
     <fieldset class="nn-opts">
      <legend class="visually-hidden" style="position:absolute;left:-9999px">Wybierz zestaw</legend>
@@ -123,6 +140,13 @@ img{max-width:100%;height:auto;display:block}a{color:inherit}
     <button type="submit" class="nn-btn" id="nn-atc">Dodaj do koszyka</button>
    {%- endform -%}
    <ul class="nn-trust"><li>Dostawa {{ s.delivery_days }} dni roboczych</li><li>Śledzenie paczki</li><li>30 dni na zwrot</li></ul>
+   {%- if shop.enabled_payment_types.size > 0 -%}<ul class="nn-pay" aria-label="Metody płatności">{%- for t in shop.enabled_payment_types -%}<li>{{ t | payment_type_svg_tag }}</li>{%- endfor -%}</ul>{%- endif -%}
+   {%- assign fb = section.blocks.first -%}
+   {%- if fb -%}<div class="nn-mini"><span class="nn-stars">{% for i in (1..fb.settings.stars) %}★{% endfor %}</span> {{ fb.settings.text }}<b>{{ fb.settings.name }}</b></div>{%- endif -%}
+   <div class="nn-acc">
+    <details><summary>Wysyłka</summary><p>{{ s.delivery_days }} dni roboczych, z numerem śledzenia. 14,99 zł, od 200 zł za darmo. Cło i podatki wliczone w cenę.</p></details>
+    <details><summary>Zwrot i gwarancja</summary><p>30 dni na zwrot bez podawania przyczyny. Uszkodzony albo niedziałający? Wymiana albo zwrot pieniędzy, odesłanie na nasz koszt.</p></details>
+   </div>
   </div>
  </div>
 </section>
@@ -199,7 +223,7 @@ img{max-width:100%;height:auto;display:block}a{color:inherit}
 <section class="nn-sec">
  <div class="nn-w">
   <h2>Opinie kupujących ten model</h2>
-  <p class="nn-muted" style="margin:-8px auto 18px">Opinie i zdjęcia od osób, które kupiły ten sam projektor u naszego dostawcy. Przetłumaczone na polski.</p>
+  <p class="nn-muted" style="margin:-8px auto 18px">Zdjęcia i opinie osób, które kupiły ten sam projektor. Przetłumaczone na polski.</p>
   <div class="nn-revs">
    {%- for b in section.blocks -%}
     <div class="nn-rev" {{ b.shopify_attributes }}>
@@ -243,6 +267,14 @@ img{max-width:100%;height:auto;display:block}a{color:inherit}
  </div>
 </section>
 
+<section class="nn-sec nn-cta">
+ <div class="nn-w">
+  <h2>{{ s.headline }}</h2>
+  <p class="nn-muted" style="color:#D9DCEB;margin-bottom:18px">Od {{ v1.price | money }} · dostawa {{ s.delivery_days }} dni roboczych · 30 dni na zwrot</p>
+  <a href="#nn-form" class="nn-btn">Wybierz zestaw</a>
+ </div>
+</section>
+
 <footer class="nn-foot">
  <div class="nn-w">
   {% render 'nn-logo' %}
@@ -271,7 +303,11 @@ if(b&&'IntersectionObserver'in window){new IntersectionObserver(function(en){var
  "settings": [
   {"type":"product","id":"product","label":"Produkt"},
   {"type":"text","id":"delivery_days","label":"Czas dostawy (dni robocze)","default":"7 do 12"},
+  {"type":"text","id":"announcement","label":"Pasek na górze","default":"Darmowa dostawa od 200 zł · 30 dni na zwrot"},
   {"type":"header","content":"Hero"},
+  {"type":"text","id":"bullet1","label":"Punkt 1"},
+  {"type":"text","id":"bullet2","label":"Punkt 2"},
+  {"type":"text","id":"bullet3","label":"Punkt 3"},
   {"type":"image_picker","id":"img_hero","label":"Zdjęcie hero"},
   {"type":"text","id":"headline","label":"Nagłówek","default":"Wieczór bez walki o zgaszenie światła"},
   {"type":"textarea","id":"subheadline","label":"Podtytuł"},
