@@ -10,35 +10,9 @@
   },
   "proof": {
    "type": "gx-proof",
-   "settings": {},
-   "blocks": {
-    "photo1": {
-     "type": "photo",
-     "settings": {
-      "image": "shopify://shop_images/nn-opinia-es.jpg",
-      "alt": "Zdjęcie klienta: księżyc na suficie"
-     }
-    },
-    "photo2": {
-     "type": "photo",
-     "settings": {
-      "image": "shopify://shop_images/nn-opinia-sa.jpg",
-      "alt": "Zdjęcie klienta: projekcja księżyca"
-     }
-    },
-    "photo3": {
-     "type": "photo",
-     "settings": {
-      "image": "shopify://shop_images/nn-opinia-nl.jpg",
-      "alt": "Zdjęcie klienta: projektor i slajdy"
-     }
-    }
-   },
-   "block_order": [
-    "photo1",
-    "photo2",
-    "photo3"
-   ]
+   "settings": {
+    "text": "12 slajdów w zestawie · zasilanie z USB · 30 dni na zwrot"
+   }
   },
   "ba": {
    "type": "gx-before-after",
@@ -196,43 +170,137 @@
   },
   "reviews": {
    "type": "gx-reviews",
-   "settings": {},
+   "settings": {
+    "heading": "GALAKTIS w prawdziwych pokojach",
+    "lead": "Jak projektor wygląda w ciemnym pokoju i co mówią osoby, które kupiły ten sam model.",
+    "feat_image": "shopify://shop_images/GALAKTIS_SP_FEATURED_EXPERIENCE.jpg",
+    "feat_alt": "Osoba leży w łóżku i patrzy na projekcję na suficie, obok projektor GALAKTIS",
+    "feat_video": "shopify://files/videos/GALAKTIS_VIDEO_REAL_EXPERIENCE_01.mp4",
+    "feat_caption": "Wizualizacja",
+    "cta_label": "Odkryj GALAKTIS",
+    "cta_link": "#produkt",
+    "car_title": "Co mówią kupujący ten sam model",
+    "note": "Opinie pochodzą od osób, które kupiły ten sam model projektora u producenta. Przetłumaczyliśmy je bez upiększania, łącznie z minusami. Opinie klientów sklepu GALAKTIS dodamy po pierwszych zamówieniach."
+   },
    "blocks": {
+    "photo1": {
+     "type": "photo",
+     "settings": {
+      "image": "shopify://shop_images/GALAKTIS_SP_BEDROOM.jpg",
+      "caption": "Sypialnia · wizualizacja"
+     }
+    },
+    "photo2": {
+     "type": "photo",
+     "settings": {
+      "image": "shopify://shop_images/GALAKTIS_SP_IN_HAND.jpg",
+      "caption": "Slajd i projektor · wizualizacja"
+     }
+    },
+    "photo3": {
+     "type": "photo",
+     "settings": {
+      "image": "shopify://shop_images/GALAKTIS_SP_GAMING.jpg",
+      "caption": "Pokój do grania · wizualizacja"
+     }
+    },
+    "photo4": {
+     "type": "photo",
+     "settings": {
+      "image": "shopify://shop_images/GALAKTIS_SP_GIFT.jpg",
+      "caption": "Na prezent · wizualizacja"
+     }
+    },
+    "photo5": {
+     "type": "photo",
+     "settings": {
+      "image": "shopify://shop_images/GALAKTIS_SP_CLOSEUP.jpg",
+      "caption": "Tryb lampki · wizualizacja"
+     }
+    },
+    "photo6": {
+     "type": "photo",
+     "settings": {
+      "image": "shopify://shop_images/GALAKTIS_SP_CHOOSE.jpg",
+      "caption": "Zmiana slajdu · wizualizacja"
+     }
+    },
     "review1": {
      "type": "review",
      "settings": {
-      "image": "shopify://shop_images/nn-opinia-es.jpg",
-      "alt": "Zdjęcie klienta: księżyc na suficie",
+      "topic": "Jakość",
+      "objection": "Czy obraz jest ostry i łatwo się go obsługuje?",
       "stars": 5,
       "text": "Świetny i piękny, najbardziej podobają mi się czarno-białe obrazy. Ostrość da się regulować, a projektor działa też jako lampka nocna z przyciskiem dotykowym. Minus: każdy slajd trzeba zmieniać ręcznie. Daję 9 na 10.",
-      "name": "Kupujący z Hiszpanii"
+      "name": "Kupujący z Hiszpanii",
+      "source": "Opinia o tym samym modelu z platformy producenta, przetłumaczona. Nie jest to zamówienie w sklepie GALAKTIS."
      }
     },
     "review2": {
      "type": "review",
      "settings": {
-      "image": "shopify://shop_images/nn-opinia-sa.jpg",
-      "alt": "Zdjęcie klienta: projekcja księżyca",
+      "topic": "Pokój dziecięcy",
+      "objection": "Czy warto za tę cenę?",
       "stars": 4,
       "text": "Za tę cenę dobry produkt. Kilka slajdów jest mniej wyraźnych, ale da się z tym żyć. Córka jest zadowolona.",
-      "name": "Kupujący z Arabii Saudyjskiej"
+      "name": "Kupujący z Arabii Saudyjskiej",
+      "source": "Opinia o tym samym modelu z platformy producenta, przetłumaczona. Nie jest to zamówienie w sklepie GALAKTIS."
      }
     },
     "review3": {
      "type": "review",
      "settings": {
-      "image": "shopify://shop_images/nn-opinia-nl.jpg",
-      "alt": "Zdjęcie klienta: projektor i slajdy",
+      "topic": "Atmosfera",
+      "objection": "Czy efekt robi wrażenie?",
       "stars": 5,
       "text": "Bardzo ładny efekt.",
-      "name": "Kupujący z Holandii"
+      "name": "Kupujący z Holandii",
+      "source": "Opinia o tym samym modelu z platformy producenta, przetłumaczona. Nie jest to zamówienie w sklepie GALAKTIS."
+     }
+    },
+    "review4": {
+     "type": "review",
+     "settings": {
+      "topic": "Sypialnia",
+      "objection": "Czy nie świeci za mocno przed snem?"
+     }
+    },
+    "review5": {
+     "type": "review",
+     "settings": {
+      "topic": "Prezent",
+      "objection": "Czy spodoba się obdarowanemu?"
+     }
+    },
+    "review6": {
+     "type": "review",
+     "settings": {
+      "topic": "Łatwość użycia",
+      "objection": "Czy podłączenie jest proste?"
+     }
+    },
+    "review7": {
+     "type": "review",
+     "settings": {
+      "topic": "Gaming",
+      "objection": "Czy pasuje do pokoju z komputerem?"
      }
     }
    },
    "block_order": [
+    "photo1",
+    "photo2",
+    "photo3",
+    "photo4",
+    "photo5",
+    "photo6",
     "review1",
     "review2",
-    "review3"
+    "review3",
+    "review4",
+    "review5",
+    "review6",
+    "review7"
    ]
   },
   "faq": {

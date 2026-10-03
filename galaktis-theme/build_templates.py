@@ -8,11 +8,7 @@ def blocks(kind, items):
     return {"blocks": b, "block_order": list(b)}
 
 hero = {"type": "gx-hero", "settings": {"image": img("GALAKTIS_HERO_01.png"), "video": "shopify://files/videos/GALAKTIS_VIDEO_HERO_01.mp4"}}
-proof = {"type": "gx-proof", "settings": {}, **blocks("photo", [
-    {"image": img("nn-opinia-es.jpg"), "alt": "Zdjęcie klienta: księżyc na suficie"},
-    {"image": img("nn-opinia-sa.jpg"), "alt": "Zdjęcie klienta: projekcja księżyca"},
-    {"image": img("nn-opinia-nl.jpg"), "alt": "Zdjęcie klienta: projektor i slajdy"},
-])}
+proof = {"type": "gx-proof", "settings": {"text": "12 slajdów w zestawie · zasilanie z USB · 30 dni na zwrot"}}
 ba = {"type": "gx-before-after", "settings": {"before": img("GALAKTIS_BEFORE_02.png"), "after": img("GALAKTIS_AFTER_02.png"), "before_alt": "Sypialnia wieczorem ze zwykłą żółtą lampką", "after_alt": "Ta sama sypialnia z projekcją księżyca i gwiazd na suficie", "before_list": "Zwykły pokój\nŻółte światło lampki\nBrak klimatu"}}
 why = {"type": "gx-why", "settings": {}, **blocks("card", [
     {"icon": "galaxy", "title": "Kosmos nad głową", "text": "Księżyc, planety, mgławice i galaktyki z 12 wymiennych slajdów."},
@@ -54,11 +50,43 @@ uses = {"type": "gx-tiles", "settings": {
     {"image": img("GALAKTIS_GIFT_01.png"), "alt": "Projektor i slajdy w pudełku prezentowym", "title": "Prezent", "text": "Dla dziecka, partnera, fana kosmosu", "ph": "PROJEKTOR JAKO PREZENT, 4:5"},
 ])}
 emo = {"type": "gx-emotion", "settings": {}}
-reviews = {"type": "gx-reviews", "settings": {}, **blocks("review", [
-    {"image": img("nn-opinia-es.jpg"), "alt": "Zdjęcie klienta: księżyc na suficie", "stars": 5, "text": "Świetny i piękny, najbardziej podobają mi się czarno-białe obrazy. Ostrość da się regulować, a projektor działa też jako lampka nocna z przyciskiem dotykowym. Minus: każdy slajd trzeba zmieniać ręcznie. Daję 9 na 10.", "name": "Kupujący z Hiszpanii"},
-    {"image": img("nn-opinia-sa.jpg"), "alt": "Zdjęcie klienta: projekcja księżyca", "stars": 4, "text": "Za tę cenę dobry produkt. Kilka slajdów jest mniej wyraźnych, ale da się z tym żyć. Córka jest zadowolona.", "name": "Kupujący z Arabii Saudyjskiej"},
-    {"image": img("nn-opinia-nl.jpg"), "alt": "Zdjęcie klienta: projektor i slajdy", "stars": 5, "text": "Bardzo ładny efekt.", "name": "Kupujący z Holandii"},
-])}
+def mixed(*groups):
+    b, order = {}, []
+    for kind, items in groups:
+        for i, st in enumerate(items):
+            k = f"{kind}{i+1}"; b[k] = {"type": kind, "settings": st}; order.append(k)
+    return {"blocks": b, "block_order": order}
+
+SRC = "Opinia o tym samym modelu z platformy producenta, przetłumaczona. Nie jest to zamówienie w sklepie GALAKTIS."
+reviews = {"type": "gx-reviews", "settings": {
+    "heading": "GALAKTIS w prawdziwych pokojach",
+    "lead": "Jak projektor wygląda w ciemnym pokoju i co mówią osoby, które kupiły ten sam model.",
+    "feat_image": img("GALAKTIS_SP_FEATURED_EXPERIENCE.jpg"),
+    "feat_alt": "Osoba leży w łóżku i patrzy na projekcję na suficie, obok projektor GALAKTIS",
+    "feat_video": "shopify://files/videos/GALAKTIS_VIDEO_REAL_EXPERIENCE_01.mp4",
+    "feat_caption": "Wizualizacja",
+    "cta_label": "Odkryj GALAKTIS", "cta_link": "#produkt",
+    "car_title": "Co mówią kupujący ten sam model",
+    "note": "Opinie pochodzą od osób, które kupiły ten sam model projektora u producenta. Przetłumaczyliśmy je bez upiększania, łącznie z minusami. Opinie klientów sklepu GALAKTIS dodamy po pierwszych zamówieniach.",
+}, **mixed(
+    ("photo", [
+        {"image": img("GALAKTIS_SP_BEDROOM.jpg"), "caption": "Sypialnia · wizualizacja"},
+        {"image": img("GALAKTIS_SP_IN_HAND.jpg"), "caption": "Slajd i projektor · wizualizacja"},
+        {"image": img("GALAKTIS_SP_GAMING.jpg"), "caption": "Pokój do grania · wizualizacja"},
+        {"image": img("GALAKTIS_SP_GIFT.jpg"), "caption": "Na prezent · wizualizacja"},
+        {"image": img("GALAKTIS_SP_CLOSEUP.jpg"), "caption": "Tryb lampki · wizualizacja"},
+        {"image": img("GALAKTIS_SP_CHOOSE.jpg"), "caption": "Zmiana slajdu · wizualizacja"},
+    ]),
+    ("review", [
+        {"topic": "Jakość", "objection": "Czy obraz jest ostry i łatwo się go obsługuje?", "stars": 5, "text": "Świetny i piękny, najbardziej podobają mi się czarno-białe obrazy. Ostrość da się regulować, a projektor działa też jako lampka nocna z przyciskiem dotykowym. Minus: każdy slajd trzeba zmieniać ręcznie. Daję 9 na 10.", "name": "Kupujący z Hiszpanii", "source": SRC},
+        {"topic": "Pokój dziecięcy", "objection": "Czy warto za tę cenę?", "stars": 4, "text": "Za tę cenę dobry produkt. Kilka slajdów jest mniej wyraźnych, ale da się z tym żyć. Córka jest zadowolona.", "name": "Kupujący z Arabii Saudyjskiej", "source": SRC},
+        {"topic": "Atmosfera", "objection": "Czy efekt robi wrażenie?", "stars": 5, "text": "Bardzo ładny efekt.", "name": "Kupujący z Holandii", "source": SRC},
+        {"topic": "Sypialnia", "objection": "Czy nie świeci za mocno przed snem?"},
+        {"topic": "Prezent", "objection": "Czy spodoba się obdarowanemu?"},
+        {"topic": "Łatwość użycia", "objection": "Czy podłączenie jest proste?"},
+        {"topic": "Gaming", "objection": "Czy pasuje do pokoju z komputerem?"},
+    ]),
+)}
 faq = {"type": "gx-faq", "settings": {}, **blocks("qa", [
     {"q": "Czy GALAKTIS jest łatwy w obsłudze?", "a": "<p>Tak. Podłączasz wtyk USB do ładowarki, powerbanku albo laptopa, wsuwasz slajd i dotykasz przycisku. Szyjkę wyginasz w stronę sufitu lub ściany, a ostrość ustawiasz ręcznie.</p>"},
     {"q": "Na jakiej powierzchni najlepiej działa?", "a": "<p>Na gładkim, jasnym i matowym suficie albo ścianie, w ciemnym pokoju. Projektor wyświetla jeden okrągły obraz naraz. Im ciemniej, tym wyraźniejszy obraz; przy zapalonym świetle prawie go nie widać.</p>"},
