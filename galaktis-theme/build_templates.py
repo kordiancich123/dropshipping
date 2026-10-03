@@ -7,7 +7,7 @@ def blocks(kind, items):
     b = {f"{kind}{i+1}": {"type": kind, "settings": s} for i, s in enumerate(items)}
     return {"blocks": b, "block_order": list(b)}
 
-hero = {"type": "gx-hero", "settings": {"image": img("nn-kawalerka.png")}}
+hero = {"type": "gx-hero", "settings": {"image": img("GALAKTIS_HERO_01.png")}}
 proof = {"type": "gx-proof", "settings": {}, **blocks("photo", [
     {"image": img("nn-opinia-es.jpg"), "alt": "Zdjęcie klienta: księżyc na suficie"},
     {"image": img("nn-opinia-sa.jpg"), "alt": "Zdjęcie klienta: projekcja księżyca"},
@@ -28,7 +28,7 @@ bundles_home = {"type": "gx-bundles", "settings": {"product": "projektor-gwiazd"
 bundles_page = {"type": "gx-bundles", "settings": {}}
 steps = {"type": "gx-steps", "settings": {}, **blocks("step", [
     {"image": img("nn-krok1b.png"), "ph": "WTYK USB WKŁADANY DO ŁADOWARKI, 1:1", "title": "Podłącz GALAKTIS", "text": "Wtyk USB do ładowarki, powerbanku albo laptopa."},
-    {"image": img("nn-krok2.png"), "ph": "SLAJD WSUWANY DO PROJEKTORA, 1:1", "title": "Wybierz projekcję", "text": "Wsuń jeden z 12 slajdów i włącz tryb gwiazd albo lampki."},
+    {"image": img("GALAKTIS_UGC_01.png"), "ph": "SLAJD WSUWANY DO PROJEKTORA, 1:1", "title": "Wybierz projekcję", "text": "Wsuń jeden z 12 slajdów i włącz tryb gwiazd albo lampki."},
     {"image": img("nn-krok3b.png"), "ph": "PROJEKCJA NA SUFICIE W CIEMNYM POKOJU, 1:1", "title": "Ciesz się galaktyką", "text": "Zgaś światło, wygnij szyjkę w stronę sufitu i ustaw ostrość."},
 ])}
 proj = {"type": "gx-tiles", "settings": {
@@ -47,10 +47,11 @@ uses = {"type": "gx-tiles", "settings": {
     "eyebrow": "Zastosowania", "heading": "Gdzie możesz używać GALAKTIS?",
     "lead": "Wszędzie tam, gdzie jest gniazdo USB i odrobina ciemności.",
 }, **blocks("tile", [
+    {"image": img("GALAKTIS_BEDROOM_01.png"), "alt": "Kobieta na łóżku patrzy na księżyc na suficie", "title": "Sypialnia", "text": "Wieczór dla siebie po całym dniu", "ph": "SYPIALNIA Z PROJEKCJĄ, 4:5"},
     {"image": img("nn-hero.png"), "alt": "Dziecko w łóżku patrzy na księżyc na suficie", "title": "Pokój dziecięcy", "text": "Wieczorny rytuał zamiast ekranu", "ph": "POKÓJ DZIECIĘCY Z PROJEKCJĄ, 4:5"},
     {"image": img("gx-gaming.png"), "alt": "Gaming room z galaktyką nad monitorem", "title": "Gaming room", "text": "Klimat, który nie rozprasza", "ph": "GAMING ROOM Z PROJEKCJĄ, 4:5"},
     {"image": img("gx-salon.png"), "alt": "Para na kanapie pod księżycem na suficie", "title": "Salon i kino domowe", "text": "Seans pod gwiazdami", "ph": "SALON, WIECZÓR FILMOWY, 4:5"},
-    {"image": img("nn-prezent.png"), "alt": "Projektor w pudełku prezentowym", "title": "Prezent", "text": "Dla dziecka, partnera, fana kosmosu", "ph": "PROJEKTOR JAKO PREZENT, 4:5"},
+    {"image": img("GALAKTIS_GIFT_01.png"), "alt": "Projektor i slajdy w pudełku prezentowym", "title": "Prezent", "text": "Dla dziecka, partnera, fana kosmosu", "ph": "PROJEKTOR JAKO PREZENT, 4:5"},
 ])}
 emo = {"type": "gx-emotion", "settings": {}}
 reviews = {"type": "gx-reviews", "settings": {}, **blocks("review", [
@@ -76,7 +77,7 @@ guar = {"type": "gx-guarantee", "settings": {"lead": "Przyszedł uszkodzony albo
     {"icon": "return", "title": "30 dni na zwrot", "text": "Bez podawania przyczyny"},
     {"icon": "chat", "title": "Obsługa klienta", "text": "Odpowiadamy w 1 dzień roboczy"},
 ])}
-final = {"type": "gx-final", "settings": {"image": img("gx-gaming.png")}}
+final = {"type": "gx-final", "settings": {"image": img("GALAKTIS_BEDROOM_01.png")}}
 
 def template(order):
     secs = {k: v for k, v in order}

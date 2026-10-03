@@ -159,6 +159,18 @@
     if (m && dlg && dlg.showModal) m.addEventListener('click', function () { dlg.showModal(); });
   });
 
+  /* wideo w hero: ładowane po załadowaniu strony, żeby nie spowalniać pierwszego wyświetlenia */
+  window.addEventListener('load', function () {
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var save = navigator.connection && navigator.connection.saveData;
+    if (reduce || save) return;
+    $$('[data-gx-lazy-video]').forEach(function (v) {
+      v.src = v.getAttribute('data-gx-lazy-video');
+      v.addEventListener('playing', function () { v.classList.add('is-on'); }, { once: true });
+      var p = v.play(); if (p && p.catch) p.catch(function () {});
+    });
+  });
+
   /* animacje przy przewijaniu */
   if ('IntersectionObserver' in window) {
     var rio = new IntersectionObserver(function (es) {

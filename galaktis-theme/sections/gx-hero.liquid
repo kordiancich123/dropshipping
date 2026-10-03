@@ -4,6 +4,10 @@
   <div class="gx-w gx-hero__in">
     <div class="gx-hero__media">
       {% render 'gx-img', image: s.image, alt: s.image_alt, ph: 'GALAKTIS W CIEMNEJ SYPIALNI, PROJEKCJA NA ŚCIANIE, 4:5', sizes: '(min-width:1000px) 520px, 100vw', eager: true %}
+      {%- if s.video != blank -%}
+        {%- assign mp4 = s.video.sources | where: 'format', 'mp4' | sort: 'height' | last -%}
+        {%- if mp4 -%}<video class="gx-hero__video" muted loop playsinline preload="none" aria-hidden="true" data-gx-lazy-video="{{ mp4.url }}"></video>{%- endif -%}
+      {%- endif -%}
     </div>
     <div class="gx-hero__copy">
       {%- if s.badge != blank -%}<span class="gx-badge">{{ s.badge }}</span>{%- endif -%}
@@ -25,6 +29,7 @@
   "name": "Hero",
   "settings": [
     {"type":"image_picker","id":"image","label":"Zdjęcie (4:5): projektor i projekcja w ciemnym pokoju"},
+    {"type":"video","id":"video","label":"Wideo w tle (opcjonalne, MP4, bez dźwięku)","info":"Zdjęcie zostaje jako plakat i ładuje się pierwsze."},
     {"type":"text","id":"image_alt","label":"Opis zdjęcia (alt)","default":"Projektor GALAKTIS wyświetla księżyc i gwiazdy na ścianie sypialni"},
     {"type":"text","id":"badge","label":"Badge (zostaw puste, dopóki nie masz prawdziwej liczby klientów)","info":"Np. ⭐ PONAD [LICZBA] ZADOWOLONYCH KLIENTÓW"},
     {"type":"textarea","id":"heading","label":"Nagłówek","default":"Zamień swój pokój\nw prywatną galaktykę"},

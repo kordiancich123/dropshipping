@@ -4,7 +4,7 @@
   "hero": {
    "type": "gx-hero",
    "settings": {
-    "image": "shopify://shop_images/nn-kawalerka.png"
+    "image": "shopify://shop_images/GALAKTIS_HERO_01.png"
    }
   },
   "proof": {
@@ -136,7 +136,7 @@
     "step2": {
      "type": "step",
      "settings": {
-      "image": "shopify://shop_images/nn-krok2.png",
+      "image": "shopify://shop_images/GALAKTIS_UGC_01.png",
       "ph": "SLAJD WSUWANY DO PROJEKTORA, 1:1",
       "title": "Wybierz projekcję",
       "text": "Wsuń jeden z 12 slajdów i włącz tryb gwiazd albo lampki."
@@ -235,6 +235,16 @@
     "tile1": {
      "type": "tile",
      "settings": {
+      "image": "shopify://shop_images/GALAKTIS_BEDROOM_01.png",
+      "alt": "Kobieta na łóżku patrzy na księżyc na suficie",
+      "title": "Sypialnia",
+      "text": "Wieczór dla siebie po całym dniu",
+      "ph": "SYPIALNIA Z PROJEKCJĄ, 4:5"
+     }
+    },
+    "tile2": {
+     "type": "tile",
+     "settings": {
       "image": "shopify://shop_images/nn-hero.png",
       "alt": "Dziecko w łóżku patrzy na księżyc na suficie",
       "title": "Pokój dziecięcy",
@@ -242,7 +252,7 @@
       "ph": "POKÓJ DZIECIĘCY Z PROJEKCJĄ, 4:5"
      }
     },
-    "tile2": {
+    "tile3": {
      "type": "tile",
      "settings": {
       "image": "shopify://shop_images/gx-gaming.png",
@@ -252,7 +262,7 @@
       "ph": "GAMING ROOM Z PROJEKCJĄ, 4:5"
      }
     },
-    "tile3": {
+    "tile4": {
      "type": "tile",
      "settings": {
       "image": "shopify://shop_images/gx-salon.png",
@@ -262,11 +272,11 @@
       "ph": "SALON, WIECZÓR FILMOWY, 4:5"
      }
     },
-    "tile4": {
+    "tile5": {
      "type": "tile",
      "settings": {
-      "image": "shopify://shop_images/nn-prezent.png",
-      "alt": "Projektor w pudełku prezentowym",
+      "image": "shopify://shop_images/GALAKTIS_GIFT_01.png",
+      "alt": "Projektor i slajdy w pudełku prezentowym",
       "title": "Prezent",
       "text": "Dla dziecka, partnera, fana kosmosu",
       "ph": "PROJEKTOR JAKO PREZENT, 4:5"
@@ -277,7 +287,8 @@
     "tile1",
     "tile2",
     "tile3",
-    "tile4"
+    "tile4",
+    "tile5"
    ]
   },
   "emo": {
@@ -462,7 +473,7 @@
   "final": {
    "type": "gx-final",
    "settings": {
-    "image": "shopify://shop_images/gx-gaming.png"
+    "image": "shopify://shop_images/GALAKTIS_BEDROOM_01.png"
    }
   }
  },
