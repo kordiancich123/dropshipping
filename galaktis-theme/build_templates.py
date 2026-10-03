@@ -27,9 +27,9 @@ prod_page = {"type": "gx-product", "settings": {}}
 bundles_home = {"type": "gx-bundles", "settings": {"product": "projektor-gwiazd"}}
 bundles_page = {"type": "gx-bundles", "settings": {}}
 steps = {"type": "gx-steps", "settings": {}, **blocks("step", [
-    {"image": img("nn-krok1b.png"), "ph": "WTYK USB WKŁADANY DO ŁADOWARKI, 1:1", "title": "Podłącz GALAKTIS", "text": "Wtyk USB do ładowarki, powerbanku albo laptopa."},
-    {"image": img("GALAKTIS_UGC_01.png"), "ph": "SLAJD WSUWANY DO PROJEKTORA, 1:1", "title": "Wybierz projekcję", "text": "Wsuń jeden z 12 slajdów i włącz tryb gwiazd albo lampki."},
-    {"image": img("nn-krok3b.png"), "ph": "PROJEKCJA NA SUFICIE W CIEMNYM POKOJU, 1:1", "title": "Ciesz się galaktyką", "text": "Zgaś światło, wygnij szyjkę w stronę sufitu i ustaw ostrość."},
+    {"image": img("GALAKTIS_STEP_01_CONNECT.jpg"), "ph": "WTYK USB WKŁADANY DO ŁADOWARKI, 1:1", "title": "Podłącz GALAKTIS", "text": "Wtyk USB do ładowarki, powerbanku albo laptopa."},
+    {"image": img("GALAKTIS_STEP_02_CHOOSE.jpg"), "ph": "SLAJD WSUWANY DO PROJEKTORA, 1:1", "title": "Wybierz projekcję", "text": "Wsuń jeden z 12 slajdów i włącz tryb gwiazd albo lampki."},
+    {"image": img("GALAKTIS_STEP_03_ENJOY.jpg"), "ph": "PROJEKCJA NA SUFICIE W CIEMNYM POKOJU, 1:1", "title": "Ciesz się galaktyką", "text": "Zgaś światło, wygnij szyjkę w stronę sufitu i ustaw ostrość."},
 ])}
 proj = {"type": "gx-tiles", "settings": {
     "anchor": "projekcje", "alt": True, "square": True, "eyebrow": "Projekcje",

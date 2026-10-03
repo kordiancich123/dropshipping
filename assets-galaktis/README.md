@@ -42,6 +42,19 @@
 
 Formaty (16:9, 1:1, 4:5, 9:16) to przycięcia mastera w `crops/`, nie nowe generacje.
 
+### Zdjęcia „Jak to działa” (jedna sesja, ta sama sypialnia)
+
+| Asset | Plik | Gdzie użyty |
+|---|---|---|
+| GALAKTIS_STEP_01_CONNECT | masters/…_STEP_01_CONNECT.png (2k, 16:9) | krok 1 „Podłącz GALAKTIS”: dłoń wkłada wtyk USB szyjki do ładowarki |
+| GALAKTIS_STEP_02_CHOOSE | masters/…_STEP_02_CHOOSE.png | krok 2 „Wybierz projekcję”: dłoń wsuwa slajd, projekcja na suficie |
+| GALAKTIS_STEP_03_ENJOY | masters/…_STEP_03_ENJOY.png (master sesji) | krok 3 „Ciesz się galaktyką”: osoba w łóżku patrzy na sufit |
+| GALAKTIS_STEP_03_VIDEO | video/GALAKTIS_STEP_03_VIDEO.mp4 | 6 s powolnego najazdu kamery na master (ffmpeg, 0 kredytów) |
+
+Formaty 16:9, 4:5 i 1:1 w `crops/`; 4:5 i 1:1 przycięte z przesunięciem na produkt. W sklepie wgrane wersje 1:1, bo sekcja kroków ma kwadratowe kadry.
+Uwaga produktowa: GALAKTIS nie ma gniazda kabla. Szyjka kończy się własnym wtykiem USB, dlatego krok 1 pokazuje wkładanie wtyku do ładowarki, a krok 2 wsuwanie slajdu (jedyny realny „wybór projekcji”).
+Odrzucone w kontroli jakości: pierwsza wersja ENJOY (wymyślona podstawka i dodatkowy kabel) i pierwsza wersja CONNECT (wtyk w dłoni niepołączony z szyjką). Obie poprawione edycją, bez nowych generacji od zera. Koszt: 5 generacji gpt_image_2_5 high 2k.
+
 ## 4. Wideo i gotowe reklamy
 
 | Plik | Co to jest | Gdzie użyty |
