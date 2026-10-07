@@ -111,7 +111,7 @@ GALLERY = [
 reviews = {"type": "gx-reviews", "settings": {
     "announcement": "Opinie",
     "heading": "Zobacz, co mówią o GALAKTIS",
-    "lead": "Prawdziwe wrażenia z wieczorów w różnych pokojach. Bez upiększania, razem z minusami.",
+    "lead": "Prawdziwe wrażenia z wieczorów w różnych pokojach.",
     "feat_image": img("GALAKTIS_SP_FEATURED_EXPERIENCE.jpg"),
     "feat_alt": "Osoba leży w łóżku i patrzy na projekcję na suficie, obok projektor GALAKTIS",
     "feat_image_label": "Wizualizacja",
@@ -122,6 +122,7 @@ reviews = {"type": "gx-reviews", "settings": {
     "cta_heading": "Teraz czas na Twoją galaktykę.",
     "cta_text": "Zobacz, co GALAKTIS może zmienić w Twoim pokoju.",
     "cta_label": "Odkryj GALAKTIS", "cta_link": "#produkt",
+    "video": "shopify://files/videos/1007.mp4", "video_is_customer": True,
 }, **mixed(
     ("review", [review_block(r) for r in REVIEWS]),
 )}
