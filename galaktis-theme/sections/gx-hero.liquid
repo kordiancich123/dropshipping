@@ -15,7 +15,6 @@
             endif
           endfor
         -%}
-        <!-- gxsrc {% for x in s.video.sources %}{{ x.format }}:{{ x.height }}:{{ x.url | split: "/" | last }}; {% endfor %} -->
         {%- if mp4 -%}<video class="gx-hero__video" muted loop playsinline preload="none" aria-hidden="true" data-gx-lazy-video="{{ mp4.url }}"></video>{%- endif -%}
       {%- endif -%}
     </div>
