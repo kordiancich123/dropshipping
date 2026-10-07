@@ -9,7 +9,8 @@
           assign mp4s = s.video.sources | where: 'format', 'mp4' | sort: 'height'
           assign mp4 = mp4s | last
           for src in mp4s
-            if src.height >= 720
+            assign hh = src.height | plus: 0
+            if hh >= 720
               assign mp4 = src
               break
             endif
