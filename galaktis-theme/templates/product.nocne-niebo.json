@@ -318,48 +318,6 @@
       "verified": false,
       "source": "Opinia o tym samym modelu z platformy producenta, przetłumaczona. Nie jest to zamówienie w sklepie GALAKTIS."
      }
-    },
-    "photo1": {
-     "type": "photo",
-     "settings": {
-      "image": "shopify://shop_images/GALAKTIS_HERO_01.png",
-      "caption": "Sypialnia nocą"
-     }
-    },
-    "photo2": {
-     "type": "photo",
-     "settings": {
-      "image": "shopify://shop_images/GALAKTIS_SP_CLOSEUP.jpg",
-      "caption": "Na stoliku nocnym"
-     }
-    },
-    "photo3": {
-     "type": "photo",
-     "settings": {
-      "image": "shopify://shop_images/GALAKTIS_SP_BEDROOM.jpg",
-      "caption": "Projekcja na suficie"
-     }
-    },
-    "photo4": {
-     "type": "photo",
-     "settings": {
-      "image": "shopify://shop_images/nn-hero.png",
-      "caption": "Pokój dziecięcy"
-     }
-    },
-    "photo5": {
-     "type": "photo",
-     "settings": {
-      "image": "shopify://shop_images/GALAKTIS_SP_GAMING.jpg",
-      "caption": "Pokój do grania"
-     }
-    },
-    "photo6": {
-     "type": "photo",
-     "settings": {
-      "image": "shopify://shop_images/GALAKTIS_SP_IN_HAND.jpg",
-      "caption": "W dłoni, ze slajdem"
-     }
     }
    },
    "block_order": [
@@ -373,13 +331,7 @@
     "review8",
     "review9",
     "review10",
-    "review11",
-    "photo1",
-    "photo2",
-    "photo3",
-    "photo4",
-    "photo5",
-    "photo6"
+    "review11"
    ]
   },
   "faq": {

@@ -124,7 +124,6 @@ reviews = {"type": "gx-reviews", "settings": {
     "cta_label": "Odkryj GALAKTIS", "cta_link": "#produkt",
 }, **mixed(
     ("review", [review_block(r) for r in REVIEWS]),
-    ("photo", [{"image": img(f), "caption": c} for f, c in GALLERY]),
 )}
 faq = {"type": "gx-faq", "settings": {}, **blocks("qa", [
     {"q": "Czy GALAKTIS jest łatwy w obsłudze?", "a": "<p>Tak. Podłączasz wtyk USB do ładowarki, powerbanku albo laptopa, wsuwasz slajd i dotykasz przycisku. Szyjkę wyginasz w stronę sufitu lub ściany, a ostrość ustawiasz ręcznie.</p>"},
