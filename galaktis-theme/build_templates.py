@@ -7,7 +7,7 @@ def blocks(kind, items):
     b = {f"{kind}{i+1}": {"type": kind, "settings": s} for i, s in enumerate(items)}
     return {"blocks": b, "block_order": list(b)}
 
-hero = {"type": "gx-hero", "settings": {"image": img("GALAKTIS_HERO_01.png"), "video": "shopify://files/videos/GALAKTIS_VIDEO_HERO_01.mp4"}}
+hero = {"type": "gx-hero", "settings": {"image": img("GALAKTIS_HERO_01.png"), "video": "shopify://files/videos/1007.mp4"}}
 proof = {"type": "gx-proof", "settings": {"text": "12 slajdów w zestawie · zasilanie z USB · 30 dni na zwrot"}}
 ba = {"type": "gx-before-after", "settings": {"before": img("GALAKTIS_BEFORE_02.png"), "after": img("GALAKTIS_AFTER_02.png"), "before_alt": "Sypialnia wieczorem ze zwykłą żółtą lampką", "after_alt": "Ta sama sypialnia z projekcją księżyca i gwiazd na suficie", "before_list": "Zwykły pokój\nŻółte światło lampki\nBrak klimatu"}}
 why = {"type": "gx-why", "settings": {}, **blocks("card", [
