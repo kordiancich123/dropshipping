@@ -6,11 +6,10 @@
       {% render 'gx-img', image: s.image, alt: s.image_alt, ph: 'GALAKTIS W CIEMNEJ SYPIALNI, PROJEKCJA NA ŚCIANIE, 4:5', sizes: '(min-width:1000px) 520px, 100vw', eager: true %}
       {%- if s.video != blank -%}
         {%- liquid
-          assign mp4s = s.video.sources | where: 'format', 'mp4' | sort: 'height'
-          assign mp4 = mp4s | last
+          assign mp4s = s.video.sources | where: 'format', 'mp4'
+          assign mp4 = mp4s | first
           for src in mp4s
-            assign hh = src.height | plus: 0
-            if hh >= 720
+            if src.url contains '720p'
               assign mp4 = src
               break
             endif
