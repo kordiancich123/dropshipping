@@ -100,7 +100,7 @@ def review_block(r):
     return st
 
 GALLERY = [
-    ("GALAKTIS_SP_FEATURED_EXPERIENCE.jpg", "Sypialnia nocą"),
+    ("GALAKTIS_HERO_01.png", "Sypialnia nocą"),
     ("GALAKTIS_SP_CLOSEUP.jpg", "Na stoliku nocnym"),
     ("GALAKTIS_SP_BEDROOM.jpg", "Projekcja na suficie"),
     ("nn-hero.png", "Pokój dziecięcy"),
