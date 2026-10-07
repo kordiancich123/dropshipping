@@ -177,13 +177,20 @@
     vids.forEach(function (v) { vio.observe(v); });
   });
 
-  /* karuzela opinii */
-  $$('[data-gx-car]').forEach(function (car) {
-    var wrap = car.parentNode;
-    function step(dir) { var c = car.querySelector('.gx-sp__card'); car.scrollBy({ left: dir * (c ? c.offsetWidth + 14 : car.clientWidth), behavior: 'smooth' }); }
-    var p = $('[data-gx-car-prev]', wrap), n = $('[data-gx-car-next]', wrap);
-    if (p) p.addEventListener('click', function () { step(-1); });
-    if (n) n.addEventListener('click', function () { step(1); });
+  /* opinie: filtry */
+  $$('[data-gx-rv-filter]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var f = btn.getAttribute('data-gx-rv-filter');
+      var sec = btn.closest('.gx-rv'), grid = sec && $('[data-gx-rv-grid]', sec);
+      if (!grid) return;
+      $$('[data-gx-rv-filter]', sec).forEach(function (x) { x.setAttribute('aria-pressed', x === btn); });
+      $$('.gx-rv__card', grid).forEach(function (c) {
+        var ok = f === 'all' || (f === '5' ? c.getAttribute('data-stars') === '5' : c.getAttribute('data-topic') === f);
+        c.hidden = !ok;
+        if (ok) c.classList.add('is-in');
+      });
+      grid.scrollLeft = 0;
+    });
   });
 
   /* animacje przy przewijaniu */

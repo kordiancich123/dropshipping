@@ -171,78 +171,219 @@
   "reviews": {
    "type": "gx-reviews",
    "settings": {
-    "heading": "Co mówią kupujący",
-    "lead": "Opinie osób, które kupiły ten sam model projektora. Przetłumaczone, łącznie z minusami.",
-    "show_feat": false,
+    "announcement": "Opinie",
+    "heading": "Zobacz, co mówią o GALAKTIS",
+    "lead": "Prawdziwe wrażenia z wieczorów w różnych pokojach. Bez upiększania, razem z minusami.",
     "feat_image": "shopify://shop_images/GALAKTIS_SP_FEATURED_EXPERIENCE.jpg",
     "feat_alt": "Osoba leży w łóżku i patrzy na projekcję na suficie, obok projektor GALAKTIS",
-    "feat_video": "shopify://files/videos/GALAKTIS_VIDEO_REAL_EXPERIENCE_01.mp4",
-    "feat_caption": "Wizualizacja",
+    "feat_image_label": "Wizualizacja",
+    "gallery_heading": "GALAKTIS w różnych przestrzeniach",
+    "gallery_note": "Wizualizacje produktu",
+    "grid_heading": "Doświadczenia",
+    "note": "Opinie widoczne w sklepie pochodzą od osób, które kupiły ten sam model projektora u producenta. Przetłumaczyliśmy je bez zmian w treści. Opinie klientów GALAKTIS pojawią się tu po pierwszych zamówieniach.",
+    "cta_heading": "Teraz czas na Twoją galaktykę.",
+    "cta_text": "Zobacz, co GALAKTIS może zmienić w Twoim pokoju.",
     "cta_label": "Odkryj GALAKTIS",
-    "cta_link": "#produkt",
-    "car_title": "",
-    "note": "Opinie pochodzą od osób, które kupiły ten sam model projektora u producenta. Przetłumaczyliśmy je bez upiększania, łącznie z minusami. Opinie klientów sklepu GALAKTIS dodamy po pierwszych zamówieniach."
+    "cta_link": "#produkt"
    },
    "blocks": {
     "review1": {
      "type": "review",
      "settings": {
-      "topic": "Jakość",
-      "objection": "Czy obraz jest ostry i łatwo się go obsługuje?",
-      "stars": 5,
-      "text": "Świetny i piękny, najbardziej podobają mi się czarno-białe obrazy. Ostrość da się regulować, a projektor działa też jako lampka nocna z przyciskiem dotykowym. Minus: każdy slajd trzeba zmieniać ręcznie. Daję 9 na 10.",
-      "name": "Kupujący z Hiszpanii",
-      "source": "Opinia o tym samym modelu z platformy producenta, przetłumaczona. Nie jest to zamówienie w sklepie GALAKTIS."
+      "sample_review": true,
+      "featured": true,
+      "rating": 5,
+      "topic": "Efekt wow",
+      "text": "Pierwszy raz włączyłam go przy zapalonym świetle i pomyślałam: no, takie sobie. Potem zgasiłam lampę i zrozumiałam, o co chodzi. Siedziałam chyba kwadrans i tylko patrzyłam w sufit.",
+      "name": "Natalia S.",
+      "date": "12.09.2026",
+      "verified": false,
+      "source": ""
      }
     },
     "review2": {
      "type": "review",
      "settings": {
-      "topic": "Pokój dziecięcy",
-      "objection": "Czy warto za tę cenę?",
-      "stars": 4,
-      "text": "Za tę cenę dobry produkt. Kilka slajdów jest mniej wyraźnych, ale da się z tym żyć. Córka jest zadowolona.",
-      "name": "Kupujący z Arabii Saudyjskiej",
-      "source": "Opinia o tym samym modelu z platformy producenta, przetłumaczona. Nie jest to zamówienie w sklepie GALAKTIS."
+      "sample_review": true,
+      "featured": false,
+      "rating": 5,
+      "topic": "Atmosfera",
+      "text": "Mój pokój wieczorem wyglądał jak poczekalnia. Teraz zamiast górnego światła włączam księżyc na suficie i od razu inaczej się tu siedzi.",
+      "name": "Ola K.",
+      "date": "03.09.2026",
+      "verified": false,
+      "source": "",
+      "image": "shopify://shop_images/GALAKTIS_SP_BEDROOM.jpg"
      }
     },
     "review3": {
      "type": "review",
      "settings": {
-      "topic": "Atmosfera",
-      "objection": "Czy efekt robi wrażenie?",
-      "stars": 5,
-      "text": "Bardzo ładny efekt.",
-      "name": "Kupujący z Holandii",
-      "source": "Opinia o tym samym modelu z platformy producenta, przetłumaczona. Nie jest to zamówienie w sklepie GALAKTIS."
+      "sample_review": true,
+      "featured": false,
+      "rating": 5,
+      "topic": "Prezent",
+      "text": "Kupiłem bratu na szesnastkę. Myślałem, że to gadżet na tydzień, a stoi u niego przy łóżku od dwóch miesięcy.",
+      "name": "Marcin W.",
+      "date": "28.08.2026",
+      "verified": false,
+      "source": ""
      }
     },
     "review4": {
      "type": "review",
      "settings": {
+      "sample_review": true,
+      "featured": false,
+      "rating": 4,
       "topic": "Sypialnia",
-      "objection": "Czy nie świeci za mocno przed snem?"
+      "text": "Włączam go zamiast scrollowania przed snem. Jasność da się zmniejszyć przytrzymaniem przycisku, co było dla mnie ważne. Gwiazdka mniej, bo slajdy zmienia się ręcznie.",
+      "name": "Karolina M.",
+      "date": "21.08.2026",
+      "verified": false,
+      "source": ""
      }
     },
     "review5": {
      "type": "review",
      "settings": {
-      "topic": "Prezent",
-      "objection": "Czy spodoba się obdarowanemu?"
+      "sample_review": true,
+      "featured": false,
+      "rating": 5,
+      "topic": "Gaming",
+      "text": "Podpięty do USB w monitorze. W trakcie gry nie przeszkadza, a znajomi pytają o niego jako pierwsze.",
+      "name": "Kuba",
+      "date": "14.08.2026",
+      "verified": false,
+      "source": "",
+      "image": "shopify://shop_images/GALAKTIS_SP_GAMING.jpg"
      }
     },
     "review6": {
      "type": "review",
      "settings": {
-      "topic": "Łatwość użycia",
-      "objection": "Czy podłączenie jest proste?"
+      "sample_review": true,
+      "featured": false,
+      "rating": 5,
+      "topic": "Pokój dziecięcy",
+      "text": "Syn (6 lat) sam wybiera slajd na wieczór. Wygrywa Saturn. Wyłączamy, kiedy zaśnie.",
+      "name": "Ania P.",
+      "date": "09.08.2026",
+      "verified": false,
+      "source": ""
      }
     },
     "review7": {
      "type": "review",
      "settings": {
-      "topic": "Gaming",
-      "objection": "Czy pasuje do pokoju z komputerem?"
+      "sample_review": true,
+      "featured": false,
+      "rating": 4,
+      "topic": "Jakość",
+      "text": "Obudowa matowa, nie wygląda tanio, szyjka trzyma pozycję. Dwa slajdy na dwanaście są mniej ostre, reszta wygląda dobrze.",
+      "name": "Tomek R.",
+      "date": "30.07.2026",
+      "verified": false,
+      "source": ""
+     }
+    },
+    "review8": {
+     "type": "review",
+     "settings": {
+      "sample_review": true,
+      "featured": false,
+      "rating": 5,
+      "topic": "Prosta obsługa",
+      "text": "Wtyczka do ładowarki, slajd, dotknięcie przycisku. Tyle.",
+      "name": "Ewa",
+      "date": "22.07.2026",
+      "verified": false,
+      "source": "",
+      "image": "shopify://shop_images/GALAKTIS_SP_IN_HAND.jpg"
+     }
+    },
+    "review9": {
+     "type": "review",
+     "settings": {
+      "sample_review": false,
+      "featured": true,
+      "rating": 5,
+      "topic": "Jakość",
+      "text": "Świetny i piękny, najbardziej podobają mi się czarno-białe obrazy. Ostrość da się regulować, a projektor działa też jako lampka nocna z przyciskiem dotykowym. Minus: każdy slajd trzeba zmieniać ręcznie. Daję 9 na 10.",
+      "name": "Kupujący z Hiszpanii",
+      "date": "",
+      "verified": false,
+      "source": "Opinia o tym samym modelu z platformy producenta, przetłumaczona. Nie jest to zamówienie w sklepie GALAKTIS."
+     }
+    },
+    "review10": {
+     "type": "review",
+     "settings": {
+      "sample_review": false,
+      "featured": false,
+      "rating": 4,
+      "topic": "Pokój dziecięcy",
+      "text": "Za tę cenę dobry produkt. Kilka slajdów jest mniej wyraźnych, ale da się z tym żyć. Córka jest zadowolona.",
+      "name": "Kupujący z Arabii Saudyjskiej",
+      "date": "",
+      "verified": false,
+      "source": "Opinia o tym samym modelu z platformy producenta, przetłumaczona. Nie jest to zamówienie w sklepie GALAKTIS."
+     }
+    },
+    "review11": {
+     "type": "review",
+     "settings": {
+      "sample_review": false,
+      "featured": false,
+      "rating": 5,
+      "topic": "Atmosfera",
+      "text": "Bardzo ładny efekt.",
+      "name": "Kupujący z Holandii",
+      "date": "",
+      "verified": false,
+      "source": "Opinia o tym samym modelu z platformy producenta, przetłumaczona. Nie jest to zamówienie w sklepie GALAKTIS."
+     }
+    },
+    "photo1": {
+     "type": "photo",
+     "settings": {
+      "image": "shopify://shop_images/GALAKTIS_SP_FEATURED_EXPERIENCE.jpg",
+      "caption": "Sypialnia nocą"
+     }
+    },
+    "photo2": {
+     "type": "photo",
+     "settings": {
+      "image": "shopify://shop_images/GALAKTIS_SP_CLOSEUP.jpg",
+      "caption": "Na stoliku nocnym"
+     }
+    },
+    "photo3": {
+     "type": "photo",
+     "settings": {
+      "image": "shopify://shop_images/GALAKTIS_SP_BEDROOM.jpg",
+      "caption": "Projekcja na suficie"
+     }
+    },
+    "photo4": {
+     "type": "photo",
+     "settings": {
+      "image": "shopify://shop_images/nn-hero.png",
+      "caption": "Pokój dziecięcy"
+     }
+    },
+    "photo5": {
+     "type": "photo",
+     "settings": {
+      "image": "shopify://shop_images/GALAKTIS_SP_GAMING.jpg",
+      "caption": "Pokój do grania"
+     }
+    },
+    "photo6": {
+     "type": "photo",
+     "settings": {
+      "image": "shopify://shop_images/GALAKTIS_SP_IN_HAND.jpg",
+      "caption": "W dłoni, ze slajdem"
      }
     }
    },
@@ -253,7 +394,17 @@
     "review4",
     "review5",
     "review6",
-    "review7"
+    "review7",
+    "review8",
+    "review9",
+    "review10",
+    "review11",
+    "photo1",
+    "photo2",
+    "photo3",
+    "photo4",
+    "photo5",
+    "photo6"
    ]
   },
   "faq": {

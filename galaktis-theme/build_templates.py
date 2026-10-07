@@ -57,28 +57,74 @@ def mixed(*groups):
             k = f"{kind}{i+1}"; b[k] = {"type": kind, "settings": st}; order.append(k)
     return {"blocks": b, "block_order": order}
 
+# ─────────────────────────────────────────────────────────────────────────────
+# OPINIE: jedno miejsce do podmiany.
+# sampleReview=True  → treść przykładowa do projektu, widoczna TYLKO w edytorze motywu.
+# sampleReview=False → prawdziwa opinia, widoczna w sklepie.
+# verified=True tylko przy potwierdzonym zamówieniu w sklepie GALAKTIS.
+# featured=True → pierwsza widoczna taka opinia trafia do dużej karty.
+# ─────────────────────────────────────────────────────────────────────────────
 SRC = "Opinia o tym samym modelu z platformy producenta, przetłumaczona. Nie jest to zamówienie w sklepie GALAKTIS."
+REVIEWS = [
+    # przykładowe (tylko edytor)
+    {"sampleReview": True, "featured": True, "rating": 5, "topic": "Efekt wow", "name": "Natalia S.", "date": "12.09.2026",
+     "text": "Pierwszy raz włączyłam go przy zapalonym świetle i pomyślałam: no, takie sobie. Potem zgasiłam lampę i zrozumiałam, o co chodzi. Siedziałam chyba kwadrans i tylko patrzyłam w sufit."},
+    {"sampleReview": True, "rating": 5, "topic": "Atmosfera", "name": "Ola K.", "date": "03.09.2026", "image": "GALAKTIS_SP_BEDROOM.jpg",
+     "text": "Mój pokój wieczorem wyglądał jak poczekalnia. Teraz zamiast górnego światła włączam księżyc na suficie i od razu inaczej się tu siedzi."},
+    {"sampleReview": True, "rating": 5, "topic": "Prezent", "name": "Marcin W.", "date": "28.08.2026",
+     "text": "Kupiłem bratu na szesnastkę. Myślałem, że to gadżet na tydzień, a stoi u niego przy łóżku od dwóch miesięcy."},
+    {"sampleReview": True, "rating": 4, "topic": "Sypialnia", "name": "Karolina M.", "date": "21.08.2026",
+     "text": "Włączam go zamiast scrollowania przed snem. Jasność da się zmniejszyć przytrzymaniem przycisku, co było dla mnie ważne. Gwiazdka mniej, bo slajdy zmienia się ręcznie."},
+    {"sampleReview": True, "rating": 5, "topic": "Gaming", "name": "Kuba", "date": "14.08.2026", "image": "GALAKTIS_SP_GAMING.jpg",
+     "text": "Podpięty do USB w monitorze. W trakcie gry nie przeszkadza, a znajomi pytają o niego jako pierwsze."},
+    {"sampleReview": True, "rating": 5, "topic": "Pokój dziecięcy", "name": "Ania P.", "date": "09.08.2026",
+     "text": "Syn (6 lat) sam wybiera slajd na wieczór. Wygrywa Saturn. Wyłączamy, kiedy zaśnie."},
+    {"sampleReview": True, "rating": 4, "topic": "Jakość", "name": "Tomek R.", "date": "30.07.2026",
+     "text": "Obudowa matowa, nie wygląda tanio, szyjka trzyma pozycję. Dwa slajdy na dwanaście są mniej ostre, reszta wygląda dobrze."},
+    {"sampleReview": True, "rating": 5, "topic": "Prosta obsługa", "name": "Ewa", "date": "22.07.2026", "image": "GALAKTIS_SP_IN_HAND.jpg",
+     "text": "Wtyczka do ładowarki, slajd, dotknięcie przycisku. Tyle."},
+    # prawdziwe opinie (widoczne w sklepie): kupujący ten sam model u producenta
+    {"sampleReview": False, "featured": True, "rating": 5, "topic": "Jakość", "name": "Kupujący z Hiszpanii", "source": SRC,
+     "text": "Świetny i piękny, najbardziej podobają mi się czarno-białe obrazy. Ostrość da się regulować, a projektor działa też jako lampka nocna z przyciskiem dotykowym. Minus: każdy slajd trzeba zmieniać ręcznie. Daję 9 na 10."},
+    {"sampleReview": False, "rating": 4, "topic": "Pokój dziecięcy", "name": "Kupujący z Arabii Saudyjskiej", "source": SRC,
+     "text": "Za tę cenę dobry produkt. Kilka slajdów jest mniej wyraźnych, ale da się z tym żyć. Córka jest zadowolona."},
+    {"sampleReview": False, "rating": 5, "topic": "Atmosfera", "name": "Kupujący z Holandii", "source": SRC,
+     "text": "Bardzo ładny efekt."},
+]
+
+def review_block(r):
+    st = {"sample_review": r["sampleReview"], "featured": r.get("featured", False), "rating": r["rating"],
+          "topic": r["topic"], "text": r["text"], "name": r["name"], "date": r.get("date", ""),
+          "verified": r.get("verified", False), "source": r.get("source", "")}
+    if r.get("image"): st["image"] = img(r["image"])
+    return st
+
+GALLERY = [
+    ("GALAKTIS_SP_FEATURED_EXPERIENCE.jpg", "Sypialnia nocą"),
+    ("GALAKTIS_SP_CLOSEUP.jpg", "Na stoliku nocnym"),
+    ("GALAKTIS_SP_BEDROOM.jpg", "Projekcja na suficie"),
+    ("nn-hero.png", "Pokój dziecięcy"),
+    ("GALAKTIS_SP_GAMING.jpg", "Pokój do grania"),
+    ("GALAKTIS_SP_IN_HAND.jpg", "W dłoni, ze slajdem"),
+]
+
 reviews = {"type": "gx-reviews", "settings": {
-    "heading": "Co mówią kupujący",
-    "lead": "Opinie osób, które kupiły ten sam model projektora. Przetłumaczone, łącznie z minusami.",
-    "show_feat": False,
+    "announcement": "Opinie",
+    "heading": "Zobacz, co mówią o GALAKTIS",
+    "lead": "Prawdziwe wrażenia z wieczorów w różnych pokojach. Bez upiększania, razem z minusami.",
     "feat_image": img("GALAKTIS_SP_FEATURED_EXPERIENCE.jpg"),
     "feat_alt": "Osoba leży w łóżku i patrzy na projekcję na suficie, obok projektor GALAKTIS",
-    "feat_video": "shopify://files/videos/GALAKTIS_VIDEO_REAL_EXPERIENCE_01.mp4",
-    "feat_caption": "Wizualizacja",
+    "feat_image_label": "Wizualizacja",
+    "gallery_heading": "GALAKTIS w różnych przestrzeniach",
+    "gallery_note": "Wizualizacje produktu",
+    "grid_heading": "Doświadczenia",
+    "note": "Opinie widoczne w sklepie pochodzą od osób, które kupiły ten sam model projektora u producenta. Przetłumaczyliśmy je bez zmian w treści. Opinie klientów GALAKTIS pojawią się tu po pierwszych zamówieniach.",
+    "cta_heading": "Teraz czas na Twoją galaktykę.",
+    "cta_text": "Zobacz, co GALAKTIS może zmienić w Twoim pokoju.",
     "cta_label": "Odkryj GALAKTIS", "cta_link": "#produkt",
-    "car_title": "",
-    "note": "Opinie pochodzą od osób, które kupiły ten sam model projektora u producenta. Przetłumaczyliśmy je bez upiększania, łącznie z minusami. Opinie klientów sklepu GALAKTIS dodamy po pierwszych zamówieniach.",
 }, **mixed(
-    ("review", [
-        {"topic": "Jakość", "objection": "Czy obraz jest ostry i łatwo się go obsługuje?", "stars": 5, "text": "Świetny i piękny, najbardziej podobają mi się czarno-białe obrazy. Ostrość da się regulować, a projektor działa też jako lampka nocna z przyciskiem dotykowym. Minus: każdy slajd trzeba zmieniać ręcznie. Daję 9 na 10.", "name": "Kupujący z Hiszpanii", "source": SRC},
-        {"topic": "Pokój dziecięcy", "objection": "Czy warto za tę cenę?", "stars": 4, "text": "Za tę cenę dobry produkt. Kilka slajdów jest mniej wyraźnych, ale da się z tym żyć. Córka jest zadowolona.", "name": "Kupujący z Arabii Saudyjskiej", "source": SRC},
-        {"topic": "Atmosfera", "objection": "Czy efekt robi wrażenie?", "stars": 5, "text": "Bardzo ładny efekt.", "name": "Kupujący z Holandii", "source": SRC},
-        {"topic": "Sypialnia", "objection": "Czy nie świeci za mocno przed snem?"},
-        {"topic": "Prezent", "objection": "Czy spodoba się obdarowanemu?"},
-        {"topic": "Łatwość użycia", "objection": "Czy podłączenie jest proste?"},
-        {"topic": "Gaming", "objection": "Czy pasuje do pokoju z komputerem?"},
-    ]),
+    ("review", [review_block(r) for r in REVIEWS]),
+    ("photo", [{"image": img(f), "caption": c} for f, c in GALLERY]),
 )}
 faq = {"type": "gx-faq", "settings": {}, **blocks("qa", [
     {"q": "Czy GALAKTIS jest łatwy w obsłudze?", "a": "<p>Tak. Podłączasz wtyk USB do ładowarki, powerbanku albo laptopa, wsuwasz slajd i dotykasz przycisku. Szyjkę wyginasz w stronę sufitu lub ściany, a ostrość ustawiasz ręcznie.</p>"},

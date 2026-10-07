@@ -1,153 +1,267 @@
 {%- comment -%}
-  Opinie i social proof.
-  Zasady uczciwości (wbudowane w sekcję):
-  * ocena i liczba opinii pokazują się tylko, gdy je wpiszesz;
-  * „Zweryfikowany zakup” tylko przy potwierdzonym zamówieniu w Twoim sklepie;
-  * zdjęcie w galerii jest podpisane jako zdjęcie klienta tylko, gdy zaznaczysz „Zdjęcie klienta”;
-    pozostałe są podpisane jako wizualizacje;
-  * opinia bez treści nie wyświetla się klientom; w edytorze widać [REAL REVIEW REQUIRED].
+  GALAKTIS: opinie klientów.
+
+  Dane opinii: bloki „review” (w repo: tablica REVIEWS w build_templates.py).
+  Każda opinia ma pole sample_review:
+    * true  = treść przykładowa do projektu. Widać ją TYLKO w edytorze motywu, nigdy klientom.
+    * false = prawdziwa opinia. Widać ją w sklepie.
+  „Zweryfikowany zakup” pokazuje się tylko przy prawdziwej opinii z zaznaczonym polem verified.
+  Ocena, liczba opinii i paski podsumowania pokazują się klientom dopiero po wpisaniu prawdziwych danych.
 {%- endcomment -%}
-{%- assign s = section.settings -%}
-{%- assign photos = section.blocks | where: 'type', 'photo' -%}
-{%- assign reviews = section.blocks | where: 'type', 'review' -%}
-{%- assign n_customer = 0 -%}
-{%- for b in photos -%}{%- if b.settings.customer -%}{%- assign n_customer = n_customer | plus: 1 -%}{%- endif -%}{%- endfor -%}
-<section class="gx-sec gx-sec--alt gx-sp" id="opinie" aria-labelledby="gx-rev-h">
+{%- liquid
+  assign s = section.settings
+  assign dm = request.design_mode
+  assign reviews = section.blocks | where: 'type', 'review'
+  assign photos = section.blocks | where: 'type', 'photo'
+
+  assign feat = nil
+  assign feat_id = ''
+  for b in reviews
+    if b.settings.featured and b.settings.text != blank
+      if dm or b.settings.sample_review == false
+        assign feat = b
+        assign feat_id = b.id
+        break
+      endif
+    endif
+  endfor
+
+  assign n_cards = 0
+  assign topics = ''
+  for b in reviews
+    if b.settings.text != blank and b.id != feat_id
+      if dm or b.settings.sample_review == false
+        assign n_cards = n_cards | plus: 1
+        unless topics contains b.settings.topic
+          assign topics = topics | append: b.settings.topic | append: '|'
+        endunless
+      endif
+    endif
+  endfor
+  assign topic_list = topics | split: '|'
+
+  assign has_rating = false
+  if s.rating != blank
+    assign has_rating = true
+  endif
+  assign has_bars = false
+  if s.bar1_value != blank or s.bar2_value != blank or s.bar3_value != blank or s.bar4_value != blank
+    assign has_bars = true
+  endif
+-%}
+<section class="gx-rv" id="opinie" aria-labelledby="gx-rv-h">
+  <div class="gx-rv__glow" aria-hidden="true"></div>
   <div class="gx-w">
-    <div class="gx-head gx-reveal">
-      <span class="gx-eyebrow">{{ s.eyebrow }}</span>
-      <h2 class="gx-h2" id="gx-rev-h">{{ s.heading }}</h2>
-      {%- if s.rating != blank -%}
-        <div class="gx-sp__sum">{% render 'gx-stars' %}<b>{{ s.rating }}/5</b>{% if s.count != blank %}<span>{{ s.count }} opinii</span>{% endif %}</div>
-      {%- elsif request.design_mode -%}
-        <div class="gx-sp__sum gx-sp__req">[PRAWDZIWA OCENA] · [PRAWDZIWA LICZBA OPINII]</div>
+
+    {%- comment -%} 1. Nagłówek i ocena {%- endcomment -%}
+    <header class="gx-rv__top gx-reveal">
+      {%- if s.announcement != blank -%}<p class="gx-rv__pill">{{ s.announcement }}</p>{%- endif -%}
+      <h2 class="gx-rv__h" id="gx-rv-h">{{ s.heading }}</h2>
+      {%- if has_rating -%}
+        <div class="gx-rv__score">
+          <span class="gx-rv__stars gx-rv__stars--lg" aria-hidden="true">★★★★★</span>
+          <p><b>{{ s.rating }}</b><span>/ 5</span></p>
+          {%- if s.count != blank -%}<small>{{ s.count_label | replace: '[N]', s.count }}</small>{%- endif -%}
+        </div>
+      {%- elsif dm -%}
+        <div class="gx-rv__score gx-rv__score--ph">
+          <span class="gx-rv__stars gx-rv__stars--lg" aria-hidden="true">★★★★★</span>
+          <p><b>4,9</b><span>/ 5</span></p>
+          <small class="gx-rv__ph">[REAL RATING] · [REAL REVIEW COUNT] · ukryte dla klientów, dopóki ich nie wpiszesz</small>
+        </div>
       {%- endif -%}
-      {%- if s.lead != blank -%}<p class="gx-lead">{{ s.lead }}</p>{%- endif -%}
-    </div>
+      {%- if s.lead != blank -%}<p class="gx-rv__lead">{{ s.lead }}</p>{%- endif -%}
+    </header>
 
-    {%- comment -%} Wyróżniona opinia {%- endcomment -%}
-    {%- if s.show_feat -%}
-    <div class="gx-sp__feat gx-reveal">
-      <div class="gx-sp__media">
-        {% render 'gx-img', image: s.feat_image, alt: s.feat_alt, ph: 'SYPIALNIA NOCĄ, PROJEKCJA NA SUFICIE, 4:5', sizes: '(min-width:1000px) 560px, 100vw' %}
-        {%- if s.feat_video != blank -%}
-          {%- assign mp4 = s.feat_video.sources | where: 'format', 'mp4' | sort: 'height' | last -%}
-          {%- if mp4 -%}<video class="gx-sp__video" muted loop playsinline preload="none" aria-hidden="true" data-gx-lazy-video="{{ mp4.url }}"></video>{%- endif -%}
+    {%- comment -%} 2. Podsumowanie (paski) {%- endcomment -%}
+    {%- if has_bars or dm -%}
+    <div class="gx-rv__bars gx-reveal{% unless has_bars %} gx-rv__bars--ph{% endunless %}">
+      {%- for i in (1..4) -%}
+        {%- capture lk %}bar{{ i }}_label{% endcapture -%}
+        {%- capture vk %}bar{{ i }}_value{% endcapture -%}
+        {%- assign label = s[lk] -%}
+        {%- assign val = s[vk] -%}
+        {%- if label != blank -%}
+          {%- if has_bars -%}
+            {%- if val != blank -%}
+            <div class="gx-rv__bar"><span>{{ label }}</span><b>{{ val }}%</b><i style="--w:{{ val }}%"></i></div>
+            {%- endif -%}
+          {%- else -%}
+            {%- assign demo = '96,92,95,98' | split: ',' -%}
+            <div class="gx-rv__bar"><span>{{ label }}</span><b class="gx-rv__ph">[REAL DATA]</b><i style="--w:{{ demo[forloop.index0] }}%"></i></div>
+          {%- endif -%}
         {%- endif -%}
-        {%- if s.feat_caption != blank -%}<span class="gx-sp__badge">{{ s.feat_caption }}</span>{%- endif -%}
-      </div>
-      <div class="gx-sp__quote">
-        {%- if s.feat_text != blank -%}
-          {% render 'gx-stars', count: s.feat_stars %}
-          <blockquote>„{{ s.feat_text }}”</blockquote>
-          <div class="gx-sp__who"><b>{{ s.feat_name }}</b>{% if s.feat_date != blank %} · {{ s.feat_date }}{% endif %}{% if s.feat_verified %}<span class="gx-sp__ok">✓ Zweryfikowany zakup</span>{% endif %}</div>
-          {%- if s.feat_source != blank -%}<p class="gx-sp__src">{{ s.feat_source }}</p>{%- endif -%}
-        {%- else -%}
-          {%- if request.design_mode -%}<p class="gx-sp__req">[REAL REVIEW REQUIRED] Wpisz tu prawdziwą opinię klienta, imię, datę. Do tego czasu klienci widzą tekst poniżej.</p>{%- endif -%}
-          <h3 class="gx-sp__h3">{{ s.feat_fallback_title }}</h3>
-          <p class="gx-sp__p">{{ s.feat_fallback_text }}</p>
-        {%- endif -%}
-        {%- if s.cta_label != blank -%}<a class="gx-btn gx-btn--primary" href="{{ s.cta_link | default: '#produkt' }}">{{ s.cta_label }} <span aria-hidden="true">→</span></a>{%- endif -%}
-      </div>
+      {%- endfor -%}
     </div>
-
     {%- endif -%}
 
-    {%- comment -%} Galeria zdjęć {%- endcomment -%}
+    {%- comment -%} 3. Wyróżniona opinia {%- endcomment -%}
+    {%- if feat -%}
+    {%- assign f = feat.settings -%}
+    <article class="gx-rv__feat gx-reveal{% if f.sample_review %} is-sample{% endif %}" {{ feat.shopify_attributes }}>
+      <div class="gx-rv__feat-img gx-rv__zoom">
+        {% render 'gx-img', image: s.feat_image, alt: s.feat_alt, ph: 'DUŻE ZDJĘCIE LIFESTYLE, 4:5', sizes: '(min-width:1000px) 560px, 100vw', widths: '480,720,960,1200' %}
+        {%- if s.feat_image_label != blank -%}<span class="gx-rv__label">{{ s.feat_image_label }}</span>{%- endif -%}
+      </div>
+      <div class="gx-rv__feat-body">
+        {%- if f.sample_review -%}<span class="gx-rv__sample">Przykład · widoczny tylko w edytorze</span>{%- endif -%}
+        <span class="gx-rv__stars" aria-label="Ocena {{ f.rating }} na 5">{% for i in (1..f.rating) %}★{% endfor %}</span>
+        <blockquote class="gx-rv__quote">„{{ f.text }}”</blockquote>
+        <footer class="gx-rv__who">
+          <b>{{ f.name }}</b>
+          {%- if f.date != blank -%}<span>{{ f.date }}</span>{%- endif -%}
+          {%- if f.verified and f.sample_review == false -%}<span class="gx-rv__ok">✓ Zweryfikowany zakup</span>{%- endif -%}
+        </footer>
+        {%- if f.source != blank -%}<p class="gx-rv__src">{{ f.source }}</p>{%- endif -%}
+      </div>
+    </article>
+    {%- endif -%}
+
+    {%- comment -%} 4. Galeria {%- endcomment -%}
     {%- if photos.size > 0 -%}
-    <div class="gx-sp__gal-head gx-reveal">
-      <h3 class="gx-sp__h3">{% if n_customer > 0 %}{{ s.gal_title_customers }}{% else %}{{ s.gal_title }}{% endif %}</h3>
-      {%- if n_customer == 0 and s.gal_note != blank -%}<p class="gx-sp__p">{{ s.gal_note }}</p>{%- endif -%}
+    <div class="gx-rv__sub gx-reveal">
+      <h3>{{ s.gallery_heading }}</h3>
+      {%- if s.gallery_note != blank -%}<p>{{ s.gallery_note }}</p>{%- endif -%}
     </div>
-    <ul class="gx-sp__gal" role="list">
+    <ul class="gx-rv__gal" role="list">
       {%- for b in photos -%}
-      <li class="gx-sp__tile" {{ b.shopify_attributes }}>
-        {% render 'gx-img', image: b.settings.image, alt: b.settings.caption, ph: '[REAL CUSTOMER PHOTO REQUIRED]', sizes: '(min-width:1000px) 190px, 42vw', widths: '240,360,480,600' %}
-        <span class="gx-sp__cap">{% if b.settings.customer %}{{ b.settings.name | default: 'Zdjęcie klienta' }}{% else %}{{ b.settings.caption }}{% endif %}</span>
+      <li class="gx-rv__tile gx-rv__zoom gx-reveal" style="--i:{{ forloop.index0 }}" {{ b.shopify_attributes }}>
+        {% render 'gx-img', image: b.settings.image, alt: b.settings.caption, ph: b.settings.caption, sizes: '(min-width:1000px) 30vw, 70vw', widths: '360,540,720,960' %}
+        <span class="gx-rv__cap">{{ b.settings.caption }}</span>
       </li>
       {%- endfor -%}
     </ul>
     {%- endif -%}
 
-    {%- comment -%} Karuzela opinii {%- endcomment -%}
-    <div class="gx-sp__car-head gx-reveal">
-      {%- if s.car_title != blank -%}<h3 class="gx-sp__h3">{{ s.car_title }}</h3>{%- else -%}<span></span>{%- endif -%}
-      <div class="gx-sp__nav"><button type="button" class="gx-sp__arr" data-gx-car-prev aria-label="Poprzednie opinie">←</button><button type="button" class="gx-sp__arr" data-gx-car-next aria-label="Następne opinie">→</button></div>
+    {%- comment -%} 5. Siatka opinii z filtrami {%- endcomment -%}
+    {%- if n_cards > 0 -%}
+    <div class="gx-rv__sub gx-reveal">
+      <h3>{{ s.grid_heading }}</h3>
     </div>
-    <div class="gx-sp__car" data-gx-car tabindex="0" aria-label="Opinie">
+    {%- if n_cards >= 4 -%}
+    <div class="gx-rv__filters gx-reveal" role="toolbar" aria-label="Filtruj opinie">
+      <button type="button" class="gx-rv__chip" data-gx-rv-filter="all" aria-pressed="true">Wszystkie</button>
+      <button type="button" class="gx-rv__chip" data-gx-rv-filter="5" aria-pressed="false">★★★★★</button>
+      {%- for t in topic_list -%}{%- if t != blank -%}
+      <button type="button" class="gx-rv__chip" data-gx-rv-filter="{{ t | handleize }}" aria-pressed="false">{{ t }}</button>
+      {%- endif -%}{%- endfor -%}
+    </div>
+    {%- endif -%}
+    <div class="gx-rv__grid" data-gx-rv-grid>
+      {%- assign k = 0 -%}
       {%- for b in reviews -%}
-        {%- if b.settings.text != blank -%}
-        <article class="gx-sp__card" {{ b.shopify_attributes }}>
-          <div class="gx-sp__top">{% render 'gx-stars', count: b.settings.stars %}{% if b.settings.topic != blank %}<span class="gx-sp__tag">{{ b.settings.topic }}</span>{% endif %}</div>
-          {%- if b.settings.objection != blank -%}<p class="gx-sp__obj">{{ b.settings.objection }}</p>{%- endif -%}
-          <p class="gx-sp__txt">„{{ b.settings.text }}”</p>
-          <div class="gx-sp__who"><b>{{ b.settings.name }}</b>{% if b.settings.date != blank %} · {{ b.settings.date }}{% endif %}{% if b.settings.verified %}<span class="gx-sp__ok">✓ Zweryfikowany zakup</span>{% endif %}</div>
-          {%- if b.settings.source != blank -%}<p class="gx-sp__src">{{ b.settings.source }}</p>{%- endif -%}
+        {%- assign r = b.settings -%}
+        {%- if r.text != blank and b.id != feat_id -%}
+        {%- if dm or r.sample_review == false -%}
+        <article class="gx-rv__card gx-reveal{% if r.sample_review %} is-sample{% endif %}" style="--i:{{ k | modulo: 3 }}" data-stars="{{ r.rating }}" data-topic="{{ r.topic | handleize }}" {{ b.shopify_attributes }}>
+          {%- if r.image != blank -%}<div class="gx-rv__card-img">{% render 'gx-img', image: r.image, alt: r.topic, sizes: '(min-width:1000px) 360px, 80vw', widths: '360,540,720' %}</div>{%- endif -%}
+          <div class="gx-rv__card-top">
+            <span class="gx-rv__stars" aria-label="Ocena {{ r.rating }} na 5">{% for i in (1..r.rating) %}★{% endfor %}</span>
+            <span class="gx-rv__tag">{{ r.topic }}</span>
+          </div>
+          {%- if r.sample_review -%}<span class="gx-rv__sample">Przykład · tylko w edytorze</span>{%- endif -%}
+          <p class="gx-rv__text">„{{ r.text }}”</p>
+          <footer class="gx-rv__who">
+            <b>{{ r.name }}</b>
+            {%- if r.date != blank -%}<span>{{ r.date }}</span>{%- endif -%}
+            {%- if r.verified and r.sample_review == false -%}<span class="gx-rv__ok">✓ Zweryfikowany zakup</span>{%- endif -%}
+          </footer>
+          {%- if r.source != blank -%}<p class="gx-rv__src">{{ r.source }}</p>{%- endif -%}
         </article>
-        {%- elsif request.design_mode -%}
-        <article class="gx-sp__card gx-sp__card--req" {{ b.shopify_attributes }}>
-          <span class="gx-sp__tag">{{ b.settings.topic }}</span>
-          <p class="gx-sp__req">[REAL REVIEW REQUIRED]</p>
-          <p class="gx-sp__obj">{{ b.settings.objection }}</p>
-          <p class="gx-sp__src">Ukryte dla klientów, dopóki nie wpiszesz prawdziwej opinii.</p>
-        </article>
+        {%- assign k = k | plus: 1 -%}
+        {%- endif -%}
         {%- endif -%}
       {%- endfor -%}
     </div>
-    {%- if s.note != blank -%}<p class="gx-sp__note">{{ s.note }}</p>{%- endif -%}
+    {%- endif -%}
+    {%- if s.note != blank -%}<p class="gx-rv__note">{{ s.note }}</p>{%- endif -%}
+
+    {%- comment -%} 6. Wideo klienta {%- endcomment -%}
+    {%- if s.video != blank and s.video_is_customer -%}
+    <div class="gx-rv__video gx-reveal">
+      <span class="gx-rv__pill">▶ Nagranie klienta</span>
+      {{ s.video | video_tag: muted: true, controls: true, playsinline: true, preload: 'none', image_size: '1200x' }}
+      {%- if s.video_caption != blank -%}<p class="gx-rv__src">{{ s.video_caption }}</p>{%- endif -%}
+    </div>
+    {%- elsif dm -%}
+    <div class="gx-rv__video gx-rv__video--ph gx-reveal">
+      <span class="gx-rv__pill">▶ Nagranie klienta</span>
+      <p class="gx-rv__ph">[REAL CUSTOMER VIDEO]</p>
+      <p class="gx-rv__src">Wgraj prawdziwe nagranie klienta (za jego zgodą) i zaznacz „To nagranie klienta”. Do tego czasu klienci nie widzą tego miejsca.</p>
+    </div>
+    {%- endif -%}
+
+    {%- comment -%} 7. CTA {%- endcomment -%}
+    {%- if s.cta_heading != blank -%}
+    <div class="gx-rv__cta gx-reveal">
+      <h3>{{ s.cta_heading }}</h3>
+      {%- if s.cta_text != blank -%}<p>{{ s.cta_text }}</p>{%- endif -%}
+      <a class="gx-btn gx-btn--primary" href="{{ s.cta_link | default: '#produkt' }}">{{ s.cta_label }} <span aria-hidden="true">→</span></a>
+    </div>
+    {%- endif -%}
   </div>
 </section>
 {% schema %}
 {
   "name": "Opinie",
+  "max_blocks": 40,
   "settings": [
-    {"type":"text","id":"eyebrow","label":"Nadtytuł","default":"Opinie"},
-    {"type":"text","id":"heading","label":"Nagłówek","default":"GALAKTIS w prawdziwych pokojach"},
-    {"type":"text","id":"lead","label":"Opis"},
-    {"type":"text","id":"rating","label":"Średnia ocena (np. 4,8). Puste = ukryte"},
+    {"type":"text","id":"announcement","label":"Napis nad nagłówkiem","default":"Opinie"},
+    {"type":"text","id":"heading","label":"Nagłówek","default":"Zobacz, co mówią o GALAKTIS"},
+    {"type":"textarea","id":"lead","label":"Opis"},
+    {"type":"header","content":"Ocena (tylko prawdziwe dane)"},
+    {"type":"text","id":"rating","label":"Średnia ocena, np. 4,9. Puste = ukryte"},
     {"type":"text","id":"count","label":"Liczba opinii. Puste = ukryte"},
+    {"type":"text","id":"count_label","label":"Podpis liczby ([N] = liczba)","default":"na podstawie [N] opinii"},
+    {"type":"header","content":"Podsumowanie (tylko prawdziwe dane)"},
+    {"type":"text","id":"bar1_label","label":"Pasek 1","default":"Jakość produktu"},
+    {"type":"number","id":"bar1_value","label":"Pasek 1, % (puste = ukryte)"},
+    {"type":"text","id":"bar2_label","label":"Pasek 2","default":"Wygląd projekcji"},
+    {"type":"number","id":"bar2_value","label":"Pasek 2, %"},
+    {"type":"text","id":"bar3_label","label":"Pasek 3","default":"Łatwość użytkowania"},
+    {"type":"number","id":"bar3_value","label":"Pasek 3, %"},
+    {"type":"text","id":"bar4_label","label":"Pasek 4","default":"Efekt wow"},
+    {"type":"number","id":"bar4_value","label":"Pasek 4, %"},
     {"type":"header","content":"Wyróżniona opinia"},
-    {"type":"checkbox","id":"show_feat","label":"Pokaż wyróżnioną opinię","default":true},
+    {"type":"paragraph","content":"Treść bierze się z pierwszej widocznej opinii z zaznaczonym „Wyróżniona”."},
     {"type":"image_picker","id":"feat_image","label":"Duże zdjęcie (4:5)"},
     {"type":"text","id":"feat_alt","label":"Alt zdjęcia"},
-    {"type":"video","id":"feat_video","label":"Wideo (opcjonalnie, bez dźwięku)"},
-    {"type":"text","id":"feat_caption","label":"Podpis na zdjęciu","default":"Wizualizacja"},
-    {"type":"textarea","id":"feat_text","label":"Treść prawdziwej opinii. Puste = tekst zastępczy"},
-    {"type":"range","id":"feat_stars","label":"Gwiazdki","min":1,"max":5,"step":1,"default":5},
-    {"type":"text","id":"feat_name","label":"Imię klienta"},
-    {"type":"text","id":"feat_date","label":"Data opinii"},
-    {"type":"checkbox","id":"feat_verified","label":"Zweryfikowany zakup w moim sklepie","default":false},
-    {"type":"text","id":"feat_source","label":"Źródło opinii"},
-    {"type":"text","id":"feat_fallback_title","label":"Tekst zastępczy: tytuł","default":"Tak to wygląda w ciemnym pokoju"},
-    {"type":"textarea","id":"feat_fallback_text","label":"Tekst zastępczy: opis","default":"Jeden okrągły obraz na suficie, miękkie światło na ścianach i pościeli. Najwyraźniej w ciemnym pokoju."},
-    {"type":"text","id":"cta_label","label":"Przycisk","default":"Odkryj GALAKTIS"},
-    {"type":"url","id":"cta_link","label":"Link przycisku"},
+    {"type":"text","id":"feat_image_label","label":"Podpis na zdjęciu","default":"Wizualizacja"},
     {"type":"header","content":"Galeria"},
-    {"type":"text","id":"gal_title","label":"Tytuł galerii (same wizualizacje)","default":"GALAKTIS w różnych pokojach"},
-    {"type":"text","id":"gal_title_customers","label":"Tytuł galerii (są zdjęcia klientów)","default":"Zdjęcia klientów"},
-    {"type":"text","id":"gal_note","label":"Notka pod tytułem (gdy brak zdjęć klientów)","default":"Wizualizacje produktu. Zdjęcia od klientów dodamy tu po pierwszych zamówieniach."},
-    {"type":"header","content":"Karuzela opinii"},
-    {"type":"text","id":"car_title","label":"Tytuł","default":"Co mówią kupujący"},
-    {"type":"textarea","id":"note","label":"Notka pod opiniami"}
+    {"type":"text","id":"gallery_heading","label":"Tytuł","default":"GALAKTIS w różnych przestrzeniach"},
+    {"type":"text","id":"gallery_note","label":"Notka"},
+    {"type":"header","content":"Siatka opinii"},
+    {"type":"text","id":"grid_heading","label":"Tytuł","default":"Doświadczenia"},
+    {"type":"textarea","id":"note","label":"Notka pod opiniami"},
+    {"type":"header","content":"Wideo"},
+    {"type":"video","id":"video","label":"Nagranie"},
+    {"type":"checkbox","id":"video_is_customer","label":"To prawdziwe nagranie klienta (mam zgodę)","default":false},
+    {"type":"text","id":"video_caption","label":"Podpis"},
+    {"type":"header","content":"Wezwanie do działania"},
+    {"type":"text","id":"cta_heading","label":"Nagłówek","default":"Teraz czas na Twoją galaktykę."},
+    {"type":"text","id":"cta_text","label":"Tekst","default":"Zobacz, co GALAKTIS może zmienić w Twoim pokoju."},
+    {"type":"text","id":"cta_label","label":"Przycisk","default":"Odkryj GALAKTIS"},
+    {"type":"url","id":"cta_link","label":"Link przycisku"}
   ],
   "blocks": [
-    {"type":"photo","name":"Zdjęcie w galerii","settings":[
-      {"type":"image_picker","id":"image","label":"Zdjęcie (4:5)"},
-      {"type":"text","id":"caption","label":"Podpis / alt","default":"Wizualizacja"},
-      {"type":"checkbox","id":"customer","label":"To prawdziwe zdjęcie klienta (mam zgodę)","default":false},
-      {"type":"text","id":"name","label":"Imię klienta (tylko przy zdjęciu klienta)"}
-    ]},
     {"type":"review","name":"Opinia","settings":[
+      {"type":"checkbox","id":"sample_review","label":"Przykładowa treść (sampleReview). Widoczna tylko w edytorze","default":true},
+      {"type":"checkbox","id":"featured","label":"Wyróżniona","default":false},
+      {"type":"range","id":"rating","label":"Gwiazdki","min":1,"max":5,"step":1,"default":5},
       {"type":"select","id":"topic","label":"Temat","default":"Atmosfera","options":[
-        {"value":"Atmosfera","label":"Atmosfera"},{"value":"Jakość","label":"Jakość"},{"value":"Łatwość użycia","label":"Łatwość użycia"},
-        {"value":"Sypialnia","label":"Sypialnia"},{"value":"Prezent","label":"Prezent"},{"value":"Gaming","label":"Gaming"},{"value":"Pokój dziecięcy","label":"Pokój dziecięcy"}]},
-      {"type":"text","id":"objection","label":"Na jaką obawę odpowiada"},
-      {"type":"range","id":"stars","label":"Gwiazdki","min":1,"max":5,"step":1,"default":5},
-      {"type":"textarea","id":"text","label":"Treść prawdziwej opinii. Puste = ukryta"},
-      {"type":"text","id":"name","label":"Podpis"},
+        {"value":"Atmosfera","label":"Atmosfera"},{"value":"Prezent","label":"Prezent"},{"value":"Sypialnia","label":"Sypialnia"},
+        {"value":"Gaming","label":"Gaming"},{"value":"Pokój dziecięcy","label":"Pokój dziecięcy"},{"value":"Jakość","label":"Jakość"},
+        {"value":"Prosta obsługa","label":"Prosta obsługa"},{"value":"Efekt wow","label":"Efekt wow"}]},
+      {"type":"textarea","id":"text","label":"Treść"},
+      {"type":"text","id":"name","label":"Imię"},
       {"type":"text","id":"date","label":"Data"},
+      {"type":"image_picker","id":"image","label":"Zdjęcie (opcjonalnie)"},
       {"type":"checkbox","id":"verified","label":"Zweryfikowany zakup w moim sklepie","default":false},
-      {"type":"text","id":"source","label":"Źródło"}
+      {"type":"text","id":"source","label":"Źródło (opcjonalnie)"}
+    ]},
+    {"type":"photo","name":"Zdjęcie w galerii","settings":[
+      {"type":"image_picker","id":"image","label":"Zdjęcie"},
+      {"type":"text","id":"caption","label":"Podpis / alt","default":"Wizualizacja"}
     ]}
   ]
 }
